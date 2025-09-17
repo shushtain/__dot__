@@ -1,0 +1,68 @@
+[general]
+import = ["themes/farba-dark.toml"]
+live_config_reload = true
+
+# [env]
+# TERMCMD = "alacritty -e"
+
+[window]
+padding = { x = 6, y = 6 }
+dynamic_padding = true
+decorations = "none"
+dynamic_title = true
+opacity = 1
+
+[font]
+builtin_box_drawing = true
+normal = { family = "JetBrains Mono NL" }
+size = 12.75
+
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[cursor]
+style = { shape = "Beam", blinking = "Never" }
+vi_mode_style = { shape = "Block", blinking = "Never" }
+unfocused_hollow = true
+thickness = 0.1
+
+[mouse]
+hide_when_typing = true
+
+# [debug]
+# log_level = "Debug"
+
+[[keyboard.bindings]]
+action = "ToggleViMode"
+mods = "Alt"
+key = "Space"
+
+[[keyboard.bindings]]
+action = "SpawnNewInstance"
+mods = "Super|Shift"
+key = "Return"
+
+# [[keyboard.bindings]]
+# action = "ReceiveChar"
+# mods = "Control|Shift"
+# key = "F"
+
+[[hints.enabled]]
+# command = { program = "alacritty", args = ["-e", "xdg-open"] }
+command = "alacritty-hints.sh"
+# action = "Copy"
+hyperlinks = true
+post_processing = true
+persist = false
+mouse.enabled = true
+binding = { key = "O", mods = "Control|Shift" }
+regex = "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`\\\\]+"
+
+[[hints.enabled]]
+action = "Copy"
+hyperlinks = true
+post_processing = true
+persist = false
+mouse.enabled = true
+binding = { key = "H", mods = "Control|Shift" }
+regex = "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`\\\\]+"

@@ -1,0 +1,45 @@
+[manager]
+
+marker_copied = {fg = "green"}
+marker_cut = {fg = "red"}
+marker_marked = {fg = "cyan"}
+marker_selected = {fg = "yellow"}
+
+count_copied = {fg = "black", bg = "green", bold = true}
+count_cut = {fg = "black", bg = "red", bold = true}
+count_selected = {fg = "black", bg = "yellow", bold = true}
+
+border_style = {fg = "darkgray"}
+
+
+[mode]
+
+normal_main = { bg = "blue", fg = "black"  }
+normal_alt = { bg = "lightgray", fg = "black" }
+
+select_main = { bg = "green", fg = "black" }
+select_alt = { bg = "lightgray", fg = "black" }
+
+unset_main = { bg = "red", fg = "black" }
+unset_alt = { bg = "lightgray", fg = "black" }
+
+[status]
+
+overall = {bg = "darkgray", fg = "gray"}
+sep_left = {open = "", close = ""}
+sep_right = {open = "", close = ""}
+
+perm_sep = {fg = "gray"}
+perm_type = {fg = "gray"}
+perm_read = {fg = "gray"}
+perm_write = {fg = "gray"}
+perm_exec = {fg = "gray"}
+
+progress_label = { bold = true }
+progress_normal = {fg = "blue", bg = "black"}
+progress_error = {fg = "red", bg = "black"}
+
+[confirm]
+border = {fg = "darkgray"}
+title = {fg = "gray", bg = "black", bold = true}
+btn_yes = {}

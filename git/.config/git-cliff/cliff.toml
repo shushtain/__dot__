@@ -1,0 +1,60 @@
+# git-cliff ~ configuration file
+# https://git-cliff.org/docs/configuration
+
+[bump]
+features_always_bump_minor = true
+breaking_always_bump_major = true
+initial_tag = "0.1.0"
+
+[changelog]
+header = """
+# Changelog
+\n> Newest commits first.
+"""
+body = """
+{% if version %}\
+    \n## {{ version }} :: {{ timestamp | date(format="%Y-%m-%d") }}
+{% else %}\
+    \n## Rolling Update
+{% endif %}\
+{% for group, commits in commits | group_by(attribute="group") %}
+    ### {{ group | striptags | trim | upper_first }}
+    {% for commit in commits %}
+        - {% if commit.scope %}*({{ commit.scope }})* {% endif %}\
+            {% if commit.breaking %}[**breaking**] {% endif %}\
+            {{ commit.message | upper_first }}\
+    {% endfor %}
+{% endfor %}
+"""
+trim = true
+render_always = true
+postprocessors = []
+
+[git]
+conventional_commits = true
+filter_unconventional = true
+require_conventional = false
+split_commits = false
+sort_commits = "newest"
+tag_pattern = "v[0-9].*"
+use_branch_tags = false
+topo_order = false
+topo_order_commits = true
+recurse_submodules = false
+filter_commits = true
+protect_breaking_commits = true
+commit_preprocessors = []
+commit_parsers = [
+  { message = "^feat", group = "<!-- 0 -->Features" },
+  { message = "^fix", group = "<!-- 1 -->Bug Fixes" },
+  { message = "^refactor", group = "<!-- 2 -->Refactor" },
+  { message = "^perf", group = "<!-- 3 -->Performance" },
+  { message = "^doc", group = "<!-- 4 -->Documentation" },
+  { message = "^test", group = "<!-- 5 -->Testing" },
+  { message = "^revert", group = "<!-- 6 -->Revert" },
+  { message = "^chore\\(release\\): prepare for", skip = true },
+  { message = "^chore\\(deps.*\\)", skip = true },
+  { message = "^chore\\(pr\\)", skip = true },
+  { message = "^chore\\(pull\\)", skip = true },
+  { message = ".*", group = "<!-- 7 -->Other" },
+]

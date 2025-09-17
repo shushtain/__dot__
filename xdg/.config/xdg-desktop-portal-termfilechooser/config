@@ -1,0 +1,7 @@
+[filechooser]
+cmd=yazi-wrapper.sh
+default_dir=$HOME/desk/
+env=TERMCMD=alacritty -e
+
+open_mode=suggested
+save_mode=suggested

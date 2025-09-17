@@ -1,0 +1,199 @@
+■ Black Square
+□ White Square
+▢ White Square With Rounded Corners
+▣ White Square Containing Black Small Square
+▤ Square With Horizontal Fill
+▥ Square With Vertical Fill
+▦ Square With Orthogonal Crosshatch Fill
+▧ Square With Upper Left To Lower Right Fill
+▨ Square With Upper Right To Lower Left Fill
+▩ Square With Diagonal Crosshatch Fill
+▪ Black Small Square
+▫ White Small Square
+▬ Black Rectangle
+▭ White Rectangle
+▮ Black Vertical Rectangle
+▯ White Vertical Rectangle
+▰ Black Parallelogram
+▱ White Parallelogram
+▲ Black Up-Pointing Triangle
+△ White Up-Pointing Triangle
+▴ Black Up-Pointing Small Triangle
+▵ White Up-Pointing Small Triangle
+▶ Black Right-Pointing Triangle
+▷ White Right-Pointing Triangle
+▸ Black Right-Pointing Small Triangle
+▹ White Right-Pointing Small Triangle
+► Black Right-Pointing Pointer
+▻ White Right-Pointing Pointer
+▼ Black Down-Pointing Triangle
+▽ White Down-Pointing Triangle
+▾ Black Down-Pointing Small Triangle
+▿ White Down-Pointing Small Triangle
+◀ Black Left-Pointing Triangle
+◁ White Left-Pointing Triangle
+◂ Black Left-Pointing Small Triangle
+◃ White Left-Pointing Small Triangle
+◄ Black Left-Pointing Pointer
+◅ White Left-Pointing Pointer
+◆ Black Diamond
+◇ White Diamond
+◈ White Diamond Containing Black Small Diamond
+◉ Fisheye
+◊ Lozenge
+○ White Circle
+◌ Dotted Circle
+◍ Circle With Vertical Fill
+◎ Bullseye
+● Black Circle
+◐ Circle With Left Half Black
+◑ Circle With Right Half Black
+◒ Circle With Lower Half Black
+◓ Circle With Upper Half Black
+◔ Circle With Upper Right Quadrant Black
+◕ Circle With All But Upper Left Quadrant Black
+◖ Left Half Black Circle
+◗ Right Half Black Circle
+◘ Inverse Bullet
+◙ Inverse White Circle
+◚ Upper Half Inverse White Circle
+◛ Lower Half Inverse White Circle
+◜ Upper Left Quadrant Circular Arc
+◝ Upper Right Quadrant Circular Arc
+◞ Lower Right Quadrant Circular Arc
+◟ Lower Left Quadrant Circular Arc
+◠ Upper Half Circle
+◡ Lower Half Circle
+◢ Black Lower Right Triangle
+◣ Black Lower Left Triangle
+◤ Black Upper Left Triangle
+◥ Black Upper Right Triangle
+◦ White Bullet
+◧ Square With Left Half Black
+◨ Square With Right Half Black
+◩ Square With Upper Left Diagonal Half Black
+◪ Square With Lower Right Diagonal Half Black
+◫ White Square With Vertical Bisecting Line
+◬ White Up-Pointing Triangle With Dot
+◭ Up-Pointing Triangle With Left Half Black
+◮ Up-Pointing Triangle With Right Half Black
+◯ Large Circle
+◰ White Square With Upper Left Quadrant
+◱ White Square With Lower Left Quadrant
+◲ White Square With Lower Right Quadrant
+◳ White Square With Upper Right Quadrant
+◴ White Circle With Upper Left Quadrant
+◵ White Circle With Lower Left Quadrant
+◶ White Circle With Lower Right Quadrant
+◷ White Circle With Upper Right Quadrant
+◸ Upper Left Triangle
+◹ Upper Right Triangle
+◺ Lower Left Triangle
+◻ White Medium Square
+◼ Black Medium Square
+◽ White Medium Small Square
+◾ Black Medium Small Square
+◿ Lower Right Triangle
+🞀 Black Left-Pointing Isosceles Right Triangle
+🞁 Black Up-Pointing Isosceles Right Triangle
+🞂 Black Right-Pointing Isosceles Right Triangle
+🞃 Black Down-Pointing Isosceles Right Triangle
+🞄 Black Slightly Small Circle
+🞅 Medium Bold White Circle
+🞆 Bold White Circle
+🞇 Heavy White Circle
+🞈 Very Heavy White Circle
+🞉 Extremely Heavy White Circle
+🞊 White Circle Containing Black Small Circle
+🞋 Round Target
+🞌 Black Tiny Square
+🞍 Black Slightly Small Square
+🞎 Light White Square
+🞏 Medium White Square
+🞐 Bold White Square
+🞑 Heavy White Square
+🞒 Very Heavy White Square
+🞓 Extremely Heavy White Square
+🞔 White Square Containing Black Very Small Square
+🞕 White Square Containing Black Medium Square
+🞖 Square Target
+🞗 Black Tiny Diamond
+🞘 Black Very Small Diamond
+🞙 Black Medium Small Diamond
+🞚 White Diamond Containing Black Very Small Diamond
+🞛 White Diamond Containing Black Medium Diamond
+🞜 Diamond Target
+🞝 Black Tiny Lozenge
+🞞 Black Very Small Lozenge
+🞟 Black Medium Small Lozenge
+🞠 White Lozenge Containing Black Small Lozenge
+🞡 Thin Greek Cross
+🞢 Light Greek Cross
+🞣 Medium Greek Cross
+🞤 Bold Greek Cross
+🞥 Very Bold Greek Cross
+🞦 Very Heavy Greek Cross
+🞧 Extremely Heavy Greek Cross
+🞨 Thin Saltire
+🞩 Light Saltire
+🞪 Medium Saltire
+🞫 Bold Saltire
+🞬 Heavy Saltire
+🞭 Very Heavy Saltire
+🞮 Extremely Heavy Saltire
+🞯 Light Five Spoked Asterisk
+🞰 Medium Five Spoked Asterisk
+🞱 Bold Five Spoked Asterisk
+🞲 Heavy Five Spoked Asterisk
+🞳 Very Heavy Five Spoked Asterisk
+🞴 Extremely Heavy Five Spoked Asterisk
+🞵 Light Six Spoked Asterisk
+🞶 Medium Six Spoked Asterisk
+🞷 Bold Six Spoked Asterisk
+🞸 Heavy Six Spoked Asterisk
+🞹 Very Heavy Six Spoked Asterisk
+🞺 Extremely Heavy Six Spoked Asterisk
+🞻 Light Eight Spoked Asterisk
+🞼 Medium Eight Spoked Asterisk
+🞽 Bold Eight Spoked Asterisk
+🞾 Heavy Eight Spoked Asterisk
+🞿 Very Heavy Eight Spoked Asterisk
+🟀 Light Three Pointed Black Star
+🟁 Medium Three Pointed Black Star
+🟂 Three Pointed Black Star
+🟃 Medium Three Pointed Pinwheel Star
+🟄 Light Four Pointed Black Star
+🟅 Medium Four Pointed Black Star
+🟆 Four Pointed Black Star
+🟇 Medium Four Pointed Pinwheel Star
+🟈 Reverse Light Four Pointed Pinwheel Star
+🟉 Light Five Pointed Black Star
+🟊 Heavy Five Pointed Black Star
+🟋 Medium Six Pointed Black Star
+🟌 Heavy Six Pointed Black Star
+🟍 Six Pointed Pinwheel Star
+🟎 Medium Eight Pointed Black Star
+🟏 Heavy Eight Pointed Black Star
+🟐 Very Heavy Eight Pointed Black Star
+🟑 Heavy Eight Pointed Pinwheel Star
+🟒 Light Twelve Pointed Black Star
+🟓 Heavy Twelve Pointed Black Star
+🟔 Heavy Twelve Pointed Pinwheel Star
+🟕 Circled Triangle
+🟖 Negative Circled Triangle
+🟗 Circled Square
+🟘 Negative Circled Square
+🟙 Nine Pointed White Star
+🟠 Large Orange Circle
+🟡 Large Yellow Circle
+🟢 Large Green Circle
+🟣 Large Purple Circle
+🟤 Large Brown Circle
+🟥 Large Red Square
+🟦 Large Blue Square
+🟧 Large Orange Square
+🟨 Large Yellow Square
+🟩 Large Green Square
+🟪 Large Purple Square
+🟫 Large Brown Square
+🟰 Heavy Equals Sign

@@ -1,0 +1,85 @@
+[user]
+    name = Artem Shush
+    email = shushtain@gmail.com
+    
+[core]
+    compression = 9
+    preloadindex = true
+    editor = nvim
+    pager = delta
+
+[column]
+    ui = auto
+
+[help]
+    autocorrect = prompt
+
+[interactive]
+    diffFilter = delta --color-only
+
+[init]
+    defaultBranch = main
+
+[diff]
+    algorithm = histogram
+    colorMoved = plain
+    mnemonicPrefix = true
+    renames = copies
+
+[commit]
+    verbose = true
+
+[push]
+    default = simple
+    autoSetupRemote = true
+    followTags = true
+
+[pull]
+    rebase = true
+
+[merge]
+    conflictStyle = zdiff3
+    ff = only
+
+[rebase]
+    autoStash = true
+    missingCommitsCheck = warn
+
+[branch]
+    sort = -committerdate
+
+[tag]
+    sort = version:refname
+
+# delta
+
+[delta]
+    navigate = true
+    hyperlinks = true
+    line-numbers = true
+    tabs = 0
+    ; dark = true
+    zero-style = syntax
+    minus-style = syntax "#2C120E"
+    minus-emph-style = syntax "#5E221A"
+    line-numbers-minus-style = red
+    plus-style = syntax "#122105"
+    plus-emph-style = syntax "#26400F"
+    line-numbers-plus-style = green
+    hunk-header-decoration-style = blue
+
+# GitHub
+
+[credential "https://github.com"]
+    helper = !/usr/bin/gh auth git-credential
+
+[credential "https://gist.github.com"]
+    helper = !/usr/bin/gh auth git-credential
+
+# aliases
+
+[url "https://github.com/"]
+    insteadOf = gh:
+
+[url "https://github.com/shushtain/"]
+    insteadOf = sh:

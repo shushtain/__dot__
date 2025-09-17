@@ -1,0 +1,44 @@
+"$schema" = "https://yazi-rs.github.io/schemas/theme.json"
+
+[mgr]
+marker_copied = { fg = "green" }
+marker_cut = { fg = "red" }
+marker_marked = { fg = "blue" }
+marker_selected = { fg = "yellow" }
+count_copied = { fg = "#333333", bg = "green", bold = true }
+count_cut = { fg = "#333333", bg = "red", bold = true }
+count_selected = { fg = "#333333", bg = "yellow", bold = true }
+border_style = { fg = "#0D0D0D" }
+preview_hovered = {  }
+
+[tabs]
+active = { bg = "#999999", fg = "#333333", bold = true }
+inactive = { bg = "#333333", fg = "#B3B3B3" }
+sep_inner = { open = "", close = "" }
+sep_outer = { open = "", close = "" }
+
+[mode]
+normal_main = { bg = "#999999", fg = "#333333", bold = true }
+normal_alt = { bg = "#4C4C4C", fg = "#B3B3B3" }
+select_main = { bg = "blue", fg = "#333333", bold = true }
+select_alt = { bg = "#4C4C4C", fg = "#B3B3B3" }
+unset_main = { bg = "red", fg = "#333333", bold = true }
+unset_alt = { bg = "#4C4C4C", fg = "#B3B3B3" }
+
+[status]
+overall = { bg = "#333333", fg = "#B3B3B3" }
+sep_left = { open = "", close = "" }
+sep_right = { open = "", close = "" }
+perm_sep = { fg = "#B3B3B3" }
+perm_type = { fg = "#B3B3B3" }
+perm_read = { fg = "#B3B3B3" }
+perm_write = { fg = "#B3B3B3" }
+perm_exec = { fg = "#B3B3B3" }
+progress_label = { bold = true }
+progress_normal = { fg = "cyan", bg = "#333333" }
+progress_error = { fg = "red", bg = "#333333" }
+
+[confirm]
+# border = { fg = "darkgray" }
+# title = { fg = "gray", bold = true }
+btn_yes = {  }

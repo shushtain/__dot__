@@ -1,0 +1,154 @@
+{
+  "layer": "top",
+  "exclusive": true,
+  "position": "bottom",
+  "start_hidden": true,
+  // "height": 24,
+  // "spacing": 4, // Gaps between modules (4px)
+  "margin": "2 0 0 0",
+  "fixed-center": true,
+  "reload_style_on_change": false,
+  "modules-left": [
+    "hyprland/workspaces"
+    // "hyprland/window"
+  ],
+  "modules-center": [],
+  "modules-right": [
+    // "systemd-failed-units",
+    // "privacy",
+    "tray",
+    "hyprland/submap",
+    "hyprland/language",
+    // "idle_inhibitor",
+    "wireplumber",
+    "bluetooth",
+    "network",
+    "power-profiles-daemon",
+    "clock",
+    "backlight"
+  ],
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "default": "∙",
+      "active": "●"
+    },
+    "persistent-workspaces": {
+      "*": 3
+    },
+    "on-click": "activate"
+  },
+  "hyprland/window": {
+    "format": "{title}",
+    "icon": false,
+    "icon-size": 14,
+    "tooltip": false
+  },
+  "hyprland/submap": {
+    "format": "[{}]",
+    "always-on": false,
+    "default-submap": "N"
+  },
+  "hyprland/language": {
+    "format": "{}",
+    "format-en": "en",
+    "format-uk": "ua"
+  },
+  "tray": {
+    "icon-size": 14,
+    "show-passive-items": true,
+    "spacing": 4,
+    "reverse-direction": true
+  },
+  "wireplumber": {
+    "format": "#{volume}",
+    "format-muted": "#--",
+    "reverse-scrolling": 1
+  },
+  "privacy": {
+    "icon-spacing": 8,
+    "icon-size": 14,
+    "modules": [
+      {
+        "type": "screenshare",
+        "tooltip-icon-size": 14
+      },
+      {
+        "type": "audio-in",
+        "tooltip-icon-size": 14
+      },
+      {
+        "type": "audio-out",
+        "tooltip-icon-size": 14
+      }
+    ]
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "◉",
+      "deactivated": "◎"
+    },
+    "tooltip-format-activated": "sleepless on",
+    "tooltip-format-deactivated": "sleepless off"
+  },
+  "bluetooth": {
+    "format": "{device_alias}",
+    "format-disabled": "",
+    "format-off": "",
+    "format-on": "+",
+    "format-no-controller": "?"
+  },
+  "network": {
+    "format": "",
+    "format-wifi": "{essid}",
+    "format-ethernet": "{ifname}",
+    "format-linked": "{ifname}",
+    "format-disconnected": "",
+    "tooltip-format": "{essid}\n{ifname}\n{ipaddr}\nStrength: {signalStrength}%"
+  },
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "tooltip-format": "{profile}",
+    "tooltip": true,
+    "format-icons": {
+      "default": "Ξ",
+      "performance": "Σ",
+      "balanced": "‡",
+      "power-saver": "ℓ"
+    }
+  },
+  "clock": {
+    "interval": 60,
+    "format": "{:%a %m-%d %H:%M}",
+    "tooltip-format": "<tt>{calendar}</tt>",
+    "calendar": {
+      "mode": "year",
+      "mode-mon-col": 3,
+      "format": {
+        "months": "<span><b>{}</b></span>",
+        "days": "<span><b>{}</b></span>",
+        "weeks": "<span>{}</span>",
+        "weekdays": "<span>{}</span>",
+        "today": "<span><b><u>{}</u></b></span>"
+      }
+    }
+  },
+  "backlight": {
+    "format": "{icon}",
+    "tooltip": false,
+    "format-icons": [
+      "∙",
+      "○",
+      "◎",
+      "◉",
+      "●"
+    ],
+    "scroll-step": 1.0,
+    "reverse-scrolling": true
+  },
+  "systemd-failed-units": {
+    "format": "{nr_failed} systemd errors",
+    "hide-on-ok": true
+  }
+}

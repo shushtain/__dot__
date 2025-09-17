@@ -1,0 +1,14 @@
+**/*.lock
+**/*.log
+**/*.tmp
+
+**/lazy-lock.json
+
+**/aichat/sessions/
+**/aichat/messages.md
+**/aichat/.env
+
+**/rofimoji/frecency
+**/rofimoji/recent/
+
+**/shell/.secrets

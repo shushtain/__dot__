@@ -1,0 +1,87 @@
+# https://github.com/sigoden/aichat/blob/main/config.example.yaml
+
+# ---
+# Default LLM
+# ----
+
+model: gemini:gemini-2.5-flash
+# temperature: [0-1] or [0-2]
+# top_p: [0-1] or [0-2]
+
+# ---
+# Behavior
+# ---
+
+stream: true
+save: true
+keybindings: vi
+editor: nvim
+wrap: 80
+wrap_code: false
+
+# ---
+# Functions
+# https://github.com/sigoden/llm-functions
+# ---
+
+function_calling: true
+mapping_tools:
+  fs: fs_cat,fs_ls,fs_mkdir,fs_rm,fs_write
+  fsr: fs_cat,fs_ls
+  fsw: fs_mkdir,fs_rm,fs_write
+use_tools: fsr,web_search
+
+# ---
+# Prelude
+# ---
+
+repl_prelude: temp:shush
+cmd_prelude: temp:%shell%
+agent_prelude: temp
+
+# ---
+# Session
+# ---
+
+save_session: true
+compress_threshold: 4000
+summarize_prompt: "Summarize the discussion briefly in 200 words or less to use as a prompt for future context."
+summary_prompt: "This is a summary of the chat history as a recap: "
+
+# ---
+# Appearance
+# ---
+
+highlight: true
+light_theme: false
+left_prompt: "{color.light_green}{?session #{session} }{color.light_blue}{?role @{role} }{color.light_cyan}{?agent /{agent} }{color.light_magenta}{?rag {rag} }{color.dark_gray}»{color.reset} "
+right_prompt: ""
+
+# ---
+# Miscellaneous
+# ---
+
+# serve_addr: 127.0.0.1:8000
+# user_agent: null
+save_shell_history: true
+
+# ---
+# Clients
+# ---
+
+clients:
+  - type: gemini
+    api_base: https://generativelanguage.googleapis.com/v1beta
+    patch:
+      chat_completions:
+        ".*":
+          body:
+            safetySettings:
+              - category: HARM_CATEGORY_HARASSMENT
+                threshold: BLOCK_NONE
+              - category: HARM_CATEGORY_HATE_SPEECH
+                threshold: BLOCK_NONE
+              - category: HARM_CATEGORY_SEXUALLY_EXPLICIT
+                threshold: BLOCK_NONE
+              - category: HARM_CATEGORY_DANGEROUS_CONTENT
+                threshold: BLOCK_NONE

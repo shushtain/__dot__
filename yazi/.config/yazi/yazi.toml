@@ -1,0 +1,62 @@
+"$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
+
+[mgr]
+ratio = [0, 1, 1]
+sort_by = "natural"
+sort_sensitive = false
+sort_reverse = false
+sort_dir_first = true
+sort_translit = true
+# linemode = "mtime"
+show_hidden = true
+show_symlink = false
+scrolloff = 8
+title_format = "{cwd}"
+
+[preview]
+wrap = "yes"
+tab_size = 4
+image_delay = 50
+image_filter = "nearest"
+
+[input]
+cursor_blink = false
+
+[opener]
+play = [
+  { run = 'app2unit -- celluloid "$@"', orphan = true, desc = "Celluloid" },
+  { run = 'app2unit -- brave file://"$@"', orphan = true, desc = "Brave" },
+  { run = 'app2unit -- nvim "$@"', orphan = true, desc = "Neovim" },
+]
+edit = [
+  { run = 'app2unit -- nvim "$@"', block = true, desc = "Neovim" },
+  { run = 'app2unit -- nvim "$@"', orphan = true, desc = "Neovim (detached)" },
+  { run = 'app2unit -- brave file://"$@"', orphan = true, desc = "Brave" },
+]
+open = [
+  { run = 'app2unit-open "$@"', orphan = true, desc = "Default" },
+  { run = 'app2unit -- brave file://"$@"', orphan = true, desc = "Brave" },
+  { run = 'app2unit -- nvim "$@"', orphan = true, desc = "Neovim" },
+]
+extract = [
+  { run = 'ya pub extract --list "$@"', desc = "Extract here" },
+]
+
+# [open]
+# prepend_rules = [
+#   { name = "*.html", use = ["open", "edit"] },
+#   { mime = "text/*", use = "edit" },
+# ]
+# append_rules = [
+#   { name = "*", use = "open" },
+# ]
+
+[[plugin.prepend_fetchers]]
+id = "git"
+name = "*"
+run = "git"
+
+[[plugin.prepend_fetchers]]
+id = "git"
+name = "*/"
+run = "git"
