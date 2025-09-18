@@ -133,12 +133,6 @@ end, { noremap = true })
 
 -- [[ SPECIAL ]]
 
-vim.keymap.set("n", "<Leader>;", function()
-  local cur = vim.fn.getcurpos()
-  vim.cmd("normal! A;")
-  vim.fn.cursor({ cur[2], cur[3], cur[4], cur[5] })
-end, { desc = "Append ;" })
-
 vim.keymap.set("n", "<Leader>:j", function()
   local tw = vim.o.textwidth
   tw = tw == 0 and 80 or tw

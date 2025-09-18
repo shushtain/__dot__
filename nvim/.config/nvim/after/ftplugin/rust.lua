@@ -1,5 +1,11 @@
 vim.lsp.enable("rust_analyzer")
 
+vim.keymap.set("n", "<Leader>;", function()
+  local cur = vim.fn.getcurpos()
+  vim.cmd("normal! A;")
+  vim.fn.cursor({ cur[2], cur[3], cur[4], cur[5] })
+end, { desc = "Append ;" })
+
 vim.keymap.set("n", "<Leader>.", function()
   vim.cmd("update")
   local cur = vim.api.nvim_get_current_win()
