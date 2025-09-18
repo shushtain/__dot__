@@ -55,8 +55,8 @@ alias gap='git add --patch'
 
 alias gc='git commit'
 alias gcm='git commit -m'
-alias gca='git commit -a'
-alias gcam='git commit -am'
+alias gca='git add --all && git commit'
+alias gcam='git add --all && git commit -m'
 
 alias gco='git checkout'
 alias gcob='git checkout -b'
