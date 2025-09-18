@@ -1,35 +1,13 @@
 vim.filetype.add({
   extension = {
     ebnf = "ebnf",
-    -- colson = "colson",
   },
-  -- pattern = {
-  --   -- [".aliases"] = "sh",
-  -- },
 })
 
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "*" },
   callback = function(env)
-    -- if vim.bo[env.buf].filetype == "colson" then
-    --   vim.treesitter.language.add("colson", {
-    --     path = vim.fn.getenv("HOME")
-    --       .. "/box/colson/tree-sitter-colson/colson.so",
-    --   })
-    --   vim.treesitter.start(env.buf, "colson")
-    -- end
-    -- vim.opt_local.formatoptions:remove("c")
-    -- vim.opt_local.formatoptions:remove("r")
     vim.opt_local.formatoptions:remove("o")
-
-    vim.opt_local.listchars = {
-      tab = "▏ ",
-      multispace = "·",
-      lead = "·",
-      leadmultispace = "▏" .. string.rep(" ", vim.bo.shiftwidth - 1),
-      trail = "·",
-      nbsp = "␣",
-    }
 
     local ft = vim.bo.filetype
     local lang = vim.treesitter.language.get_lang(ft) or ft
@@ -44,8 +22,26 @@ vim.api.nvim_create_autocmd("FileType", {
 
     vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
     vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+  end,
+})
 
-    if not vim.bo.modifiable then
+vim.api.nvim_create_autocmd("BufWinEnter", {
+  group = vim.api.nvim_create_augroup("uOptsEnter", { clear = true }),
+  callback = function()
+    vim.opt_local.listchars = {
+      -- tab = "▏ ⇥",
+      tab = "▎ ",
+      multispace = "·",
+      lead = "·",
+      leadmultispace = "▏" .. string.rep(" ", vim.bo.shiftwidth - 1),
+      trail = "·",
+      nbsp = "␣",
+    }
+
+    if vim.bo.modifiable then
+      vim.wo.conceallevel = 0
+      vim.wo.spell = true
+    else
       vim.wo.conceallevel = 2
       vim.wo.spell = false
     end
@@ -67,14 +63,9 @@ vim.api.nvim_create_autocmd("TermOpen", {
 })
 
 vim.api.nvim_create_autocmd("UIEnter", {
-  group = vim.api.nvim_create_augroup("RustStarter", { clear = true }),
+  group = vim.api.nvim_create_augroup("uRustStarter", { clear = true }),
   once = true,
   callback = function(env)
-    if vim.g.u_after_init then
-      return nil
-    end
-    vim.g.u_after_init = true
-
     local bufname = vim.api.nvim_buf_get_name(env.buf)
     local line_count = vim.api.nvim_buf_line_count(env.buf)
 

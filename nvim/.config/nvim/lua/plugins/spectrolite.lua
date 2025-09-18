@@ -24,7 +24,24 @@ return {
         percents = { a = false },
         separators = { regular = " ", alpha = " / " },
       },
+      highlighter = {
+        -- limit_models = { "hex", "rgba" },
+        limit_models = false,
+      },
     })
+
+    -- #CC0000FF
+    -- #CC0000
+    -- rgba(255 180 0 / 1)
+    -- rgb(255 180 0)
+    -- hsla(90 90 50 / 1)
+    -- hsl(90 90 50)
+    -- hxla(180 150 50 / 1)
+    -- hxl(180 150 50)
+
+    vim.keymap.set({ "n", "v" }, "<Leader>tc", function()
+      require("spectrolite.highlighter").toggle()
+    end, { desc = "Toggle : Colorize" })
 
     vim.keymap.set(
       { "n", "x" },
