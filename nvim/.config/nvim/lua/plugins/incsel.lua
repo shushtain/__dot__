@@ -23,26 +23,26 @@ return {
     )
     vim.keymap.set(
       "v",
-      "<BS>",
+      "<M-CR>",
       require("nvim-treesitter-incremental-selection").decrement_node
     )
 
     vim.keymap.set(
       "v",
-      "<M-CR>",
+      "<Tab>",
       require("nvim-treesitter-incremental-selection").next_sibling
     )
     vim.keymap.set(
       "v",
-      "<M-S-CR>",
+      "<S-Tab>",
       require("nvim-treesitter-incremental-selection").prev_sibling
     )
     vim.keymap.set(
       "v",
-      "<M-BS>",
+      "<BS>",
       require("nvim-treesitter-incremental-selection").child
     )
-    vim.keymap.set("v", "<M-S-BS>", function()
+    vim.keymap.set("v", "<M-BS>", function()
       require("nvim-treesitter-incremental-selection").child(-1)
     end)
   end,

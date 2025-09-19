@@ -12,14 +12,14 @@ end, { buffer = true, desc = "Source File" })
 
 vim.keymap.set(
   "n",
-  "<Leader>:t",
-  "<Plug>PlenaryTestFile",
-  { desc = "Test with Plenary" }
+  "<Leader>,",
+  "<Cmd> .lua <CR>",
+  { desc = "Run current line in Lua" }
 )
 
 vim.keymap.set(
   "n",
-  "<Leader>:l",
-  "<Cmd> .lua <CR>",
-  { desc = "Run current line in Lua" }
+  "<Leader>:",
+  "<Plug>PlenaryTestFile",
+  { desc = "Test with Plenary" }
 )

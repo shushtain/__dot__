@@ -133,7 +133,14 @@ end, { noremap = true })
 
 -- [[ SPECIAL ]]
 
-vim.keymap.set("n", "<Leader>:j", function()
+vim.keymap.set(
+  "n",
+  "<Leader>'r",
+  "<Cmd> ri <CR>",
+  { silent = true, desc = "Format : Right" }
+)
+
+vim.keymap.set("n", "<Leader>'j", function()
   local tw = vim.o.textwidth
   tw = tw == 0 and 80 or tw
 
@@ -150,7 +157,7 @@ vim.keymap.set("n", "<Leader>:j", function()
   local e4 = cmd .. "nohlsearch\r"
 
   vim.api.nvim_feedkeys(e1 .. e2 .. e3 .. e4, "n", false)
-end, { silent = true, desc = "Split-justify here" })
+end, { silent = true, desc = "Format : Split-Justify" })
 
 vim.keymap.set("n", "U", "<Cmd> redo <CR>", { desc = "Redo" })
 vim.keymap.set("n", "<M-u>", "<Cmd> redo <CR>", { desc = "Redo" })
