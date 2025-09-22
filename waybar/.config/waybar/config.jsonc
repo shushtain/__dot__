@@ -9,8 +9,8 @@
   "fixed-center": true,
   "reload_style_on_change": false,
   "modules-left": [
-    "hyprland/workspaces"
-    // "hyprland/window"
+    "hyprland/workspaces",
+    "hyprland/window"
   ],
   "modules-center": [],
   "modules-right": [

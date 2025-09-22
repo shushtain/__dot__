@@ -45,6 +45,10 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
       vim.wo.conceallevel = 2
       vim.wo.spell = false
     end
+
+    vim.o.title = true
+    local title = vim.fn.expand("%:~")
+    vim.o.titlestring = title ~= "" and title or "Neovim"
   end,
 })
 

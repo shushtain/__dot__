@@ -5,16 +5,13 @@
 }
 
 window#waybar {
-  background-color: #1a1a1a;
-  border-radius: 4px;
-  /* border-radius: 4px 4px 0 0; */
-  /* border: 2px solid #030303; */
+  background-color: #030303;
+  border-radius: 0;
 }
 
-tooltip {
-  background-color: #262626;
-  border: 0;
-  color: #b2b2b2;
+box.horizontal {
+  background-color: #1a1a1a;
+  border-radius: 4px;
 }
 
 .modules-left,
@@ -25,6 +22,12 @@ tooltip {
 
 .module {
   margin: 2px 8px;
+}
+
+tooltip {
+  background-color: #262626;
+  border: 0;
+  color: #b2b2b2;
 }
 
 #workspaces button {
@@ -62,7 +65,7 @@ tooltip {
 }
 
 #tray {
-  opacity: 0.7;
+  opacity: 0.6;
   margin-top: 1px;
   margin-bottom: -1px;
 }
