@@ -11,6 +11,11 @@ run = "enter"
 desc = "Enter the child directory"
 
 [[mgr.prepend_keymap]]
+on = ["g", "/"]
+run = "cd /"
+desc = "/"
+
+[[mgr.prepend_keymap]]
 on = ["g", "h"]
 run = "cd ~"
 desc = "~"
