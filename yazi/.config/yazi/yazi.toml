@@ -24,7 +24,7 @@ cursor_blink = false
 
 [opener]
 play = [
-  { run = 'app2unit -- celluloid "$@"', orphan = true, desc = "Celluloid" },
+  { run = 'app2unit -- mpv "$@"', orphan = true, desc = "MPV" },
   { run = 'app2unit -- brave file://"$@"', orphan = true, desc = "Brave" },
   { run = 'app2unit -- nvim "$@"', orphan = true, desc = "Neovim" },
 ]

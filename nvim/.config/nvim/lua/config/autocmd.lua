@@ -38,7 +38,7 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
       nbsp = "␣",
     }
 
-    if vim.bo.modifiable then
+    if vim.bo.modifiable and vim.bo.filetype ~= "oil" then
       vim.wo.conceallevel = 0
       vim.wo.spell = true
     else
