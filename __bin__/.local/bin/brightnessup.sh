@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-brightnessctl s 25%+
+brightnessctl s 20%+
 cur="$(brightnessctl g)"
 max="$(brightnessctl m)"
 value=$((cur * 100 / max))
