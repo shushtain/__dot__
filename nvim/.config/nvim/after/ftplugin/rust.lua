@@ -6,6 +6,14 @@ vim.keymap.set("n", "<Leader>;", function()
   vim.fn.cursor({ cur[2], cur[3], cur[4], cur[5] })
 end, { desc = "Append ;" })
 
+-- ~>: TEMP
+vim.keymap.set(
+  "n",
+  "<Leader>]",
+  "<C-w>way<CR><Esc><C-w>w",
+  { desc = "TEMP : Next Task", remap = true }
+)
+
 vim.keymap.set("n", "<Leader>.", function()
   vim.cmd("update")
   local cur = vim.api.nvim_get_current_win()
@@ -28,14 +36,25 @@ vim.keymap.set("n", "<Leader>,", function()
   vim.api.nvim_set_current_win(cur)
 end, { buffer = true, desc = "Test Code" })
 
+local check = {
+  command = "clippy",
+  overrideCommand = {
+    "cargo",
+    "clippy",
+    "--message-format=json",
+    "--",
+    "-W",
+    "clippy::pedantic",
+  },
+}
+
 vim.keymap.set("n", "<Leader>p.", function()
-  vim.diagnostic.enable(false)
-  if vim.lsp.is_enabled("rust_analyzer") then
-    vim.lsp.enable("rust_analyzer", false)
-    vim.lsp.enable("rust_penalizer")
-  else
-    vim.lsp.enable("rust_penalizer", false)
-    vim.lsp.enable("rust_analyzer")
-  end
-  vim.diagnostic.enable()
-end, { desc = "LSP : Toggle Pedantic" })
+  vim.g.rust_penalyzer = not vim.g.rust_penalyzer
+  vim.lsp.config("rust_analyzer", {
+    settings = {
+      ["rust-analyzer"] = { check = vim.g.rust_penalyzer and check or vim.NIL },
+    },
+  })
+  vim.lsp.enable("rust_analyzer", false)
+  vim.lsp.enable("rust_analyzer")
+end, { desc = "LSP : Clippy Pedantic" })

@@ -1,8 +1,10 @@
 [Default Applications]
-x-scheme-handler/mailto=brave-browser.desktop
 inode/directory=yazi.desktop
-x-scheme-handler/file=nvim.desktop
-application/x-shellscript=nvim.desktop
-application/xml=nvim.desktop
 text/plain=nvim.desktop
 text/html=nvim.desktop
+application/xml=nvim.desktop
+application/x-shellscript=nvim.desktop
+x-scheme-handler/mailto=brave-browser.desktop
+x-scheme-handler/magnet=webtorrent-desktop.desktop
+x-scheme-handler/stream-magnet=webtorrent-desktop.desktop
+application/x-bittorrent=webtorrent-desktop.desktop

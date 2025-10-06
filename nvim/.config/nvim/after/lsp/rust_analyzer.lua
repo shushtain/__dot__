@@ -15,6 +15,8 @@ local function is_library(fname)
   end
 end
 
+local meta_cache = {}
+
 ---@type vim.lsp.Config
 return {
   filetypes = { "rust" },
@@ -31,23 +33,6 @@ return {
           enable = true,
         },
       },
-      -- check = {
-      --   command = "clippy",
-      -- },
-      inlayHints = {
-        closingBraceHints = {
-          minLines = 15,
-        },
-        -- closureCaptureHints = {
-        --   enable = true,
-        -- },
-        -- closureReturnTypeHints = {
-        --   enable = "always",
-        -- },
-      },
-      -- typing = {
-      --   triggerChars = "=.{><",
-      -- },
     },
   },
   capabilities = {
@@ -77,6 +62,11 @@ return {
       return
     end
 
+    if cargo_crate_dir and meta_cache[cargo_crate_dir] then
+      on_dir(meta_cache[cargo_crate_dir])
+      return
+    end
+
     local cmd = {
       "cargo",
       "metadata",
@@ -96,7 +86,10 @@ return {
           end
         end
 
-        on_dir(cargo_workspace_root or cargo_crate_dir)
+        local final_root = cargo_workspace_root or cargo_crate_dir
+        meta_cache[cargo_crate_dir] = final_root
+
+        on_dir(final_root)
       else
         vim.schedule(function()
           vim.notify(

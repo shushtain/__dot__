@@ -31,9 +31,9 @@ require("lazy").setup({
 require("ide.lsp")
 require("ide.actions")
 
-P = function(tbl)
-  print(vim.inspect(tbl))
-  return tbl
+P = function(var)
+  print(vim.inspect(var))
+  return var
 end
 
 vim.api.nvim_set_hl(0, "NONE_Normal", {

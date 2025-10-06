@@ -40,6 +40,7 @@ vim.keymap.set(
   "0f{a<CR><Esc>P",
   { noremap = true, desc = "Paste Inside {}" }
 )
+
 vim.keymap.set("n", "<Leader>tk", function()
   if vim.o.keymap == "" then
     vim.o.keymap = "ukrainian-enhanced"
