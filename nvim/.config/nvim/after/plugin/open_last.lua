@@ -1,6 +1,6 @@
 local group = vim.api.nvim_create_augroup("uOpenLast", { clear = true })
 
-vim.api.nvim_create_autocmd("UIEnter", {
+vim.api.nvim_create_autocmd("VimEnter", {
   group = group,
   once = true,
   callback = function(env)
@@ -17,8 +17,10 @@ vim.api.nvim_create_autocmd("UIEnter", {
         if vim.fn.filereadable(filename) == 1 then
           vim.schedule(function()
             vim.cmd("e " .. filename)
+            vim.fn.bufload(filename)
             local curpos = { file[2], file[3] }
             vim.fn.cursor(curpos)
+            vim.cmd("normal! zz")
           end)
         end
       end
@@ -30,7 +32,8 @@ vim.api.nvim_create_autocmd("BufWinLeave", {
   group = group,
   callback = function(env)
     local bufname = vim.api.nvim_buf_get_name(env.buf)
-    if bufname ~= "" then
+    local buftype = vim.bo[env.buf].buftype
+    if bufname ~= "" and buftype == "" then
       local cache = vim.fn.stdpath("state") .. "/open_last/"
       if vim.fn.isdirectory(cache) == 0 then
         vim.fn.mkdir(cache, "p")
@@ -48,4 +51,5 @@ vim.keymap.set("n", "<Leader>z", function()
   local cache = vim.fn.stdpath("state") .. "/open_last/"
   vim.fn.delete(cache, "rf")
   -- vim.api.nvim_del_augroup_by_id(group)
-end, { desc = "Purge Sessions" })
+  vim.notify("Purged 'Open Last' cache", vim.log.levels.INFO)
+end, { desc = "Purge Open Last" })

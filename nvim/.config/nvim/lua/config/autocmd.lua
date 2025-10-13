@@ -66,7 +66,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
   end,
 })
 
-vim.api.nvim_create_autocmd("UIEnter", {
+vim.api.nvim_create_autocmd("VimEnter", {
   group = vim.api.nvim_create_augroup("uRustStarter", { clear = true }),
   once = true,
   callback = function(env)
