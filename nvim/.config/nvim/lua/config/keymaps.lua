@@ -489,6 +489,16 @@ vim.keymap.set("n", "<Leader>\\", function()
   vim.cmd("startinsert!")
 end, { desc = "Switch to Terminal" })
 
+vim.keymap.set("n", "<Leader><M-\\>", function()
+  if pcall(vim.api.nvim_set_current_win, vim.g.u_last_term) then
+    return
+  end
+  vim.g.u_last_term =
+    vim.api.nvim_open_win(0, true, { height = 8, split = "right" })
+  vim.cmd("term")
+  vim.cmd("startinsert!")
+end, { desc = "Switch to Terminal" })
+
 vim.keymap.set("n", "<Leader>|", function()
   pcall(vim.api.nvim_win_close, vim.g.u_last_term, false)
   vim.g.u_last_term = nil

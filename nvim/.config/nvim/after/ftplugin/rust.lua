@@ -6,14 +6,6 @@ vim.keymap.set("n", "<Leader>;", function()
   vim.fn.cursor({ cur[2], cur[3], cur[4], cur[5] })
 end, { desc = "Append ;" })
 
--- ~>: TEMP
-vim.keymap.set(
-  "n",
-  "<Leader>]",
-  "<C-w>way<CR><Esc><C-w>w",
-  { desc = "TEMP : Next Task", remap = true }
-)
-
 vim.keymap.set("n", "<Leader>.", function()
   vim.cmd("update")
   local cur = vim.api.nvim_get_current_win()
