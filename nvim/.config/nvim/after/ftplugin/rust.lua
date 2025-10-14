@@ -6,6 +6,17 @@ vim.keymap.set("n", "<Leader>;", function()
   vim.fn.cursor({ cur[2], cur[3], cur[4], cur[5] })
 end, { buffer = true, desc = "Append ;" })
 
+vim.keymap.set("n", "<Leader>:", function()
+  local cur = vim.fn.getcurpos()
+  local line = vim.fn.getline(cur[2])
+  if line:find(" mut ") then
+    line = line:gsub(" mut ", " ")
+  else
+    line = line:gsub("let ", "let mut ")
+  end
+  vim.fn.setline(cur[2], line)
+end, { buffer = true, desc = "Toggle mut" })
+
 vim.keymap.set("n", "<Leader>.", function()
   vim.cmd("update")
   local cur = vim.api.nvim_get_current_win()
