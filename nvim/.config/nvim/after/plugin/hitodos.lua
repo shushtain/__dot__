@@ -16,10 +16,10 @@ local comments = {
 
 for comment, color in pairs(comments) do
   local kind = comment:gsub("[^%w]", "_")
-  vim.api.nvim_set_hl(0, "HiTodos_" .. kind, { fg = color })
+  vim.api.nvim_set_hl(0, "HiTodos" .. kind, { fg = color })
   vim.fn.sign_define(
-    "HiTodos_" .. kind,
-    { text = "⧺", texthl = "HiTodos_" .. kind }
+    "HiTodos" .. kind,
+    { text = "⧺", texthl = "HiTodos" .. kind }
   )
 end
 
@@ -46,14 +46,14 @@ vim.api.nvim_create_autocmd({ "CursorHold", "BufEnter", "InsertLeave" }, {
             vim.fn.sign_place(
               0,
               "HiTodos",
-              "HiTodos_" .. kind,
+              "HiTodos" .. kind,
               "%",
               { lnum = row, priority = 8 }
             )
 
             vim.api.nvim_buf_set_extmark(0, ns, row - 1, spos + #pattern - 1, {
               end_col = #line,
-              hl_group = "HiTodos_" .. kind,
+              hl_group = "HiTodos" .. kind,
             })
             break
           end
