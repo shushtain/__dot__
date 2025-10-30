@@ -45,3 +45,6 @@ vim.api.nvim_set_hl(0, "NONE_Float", {
   fg = vim.g.farba.colors.general.gray.v15,
   bg = vim.g.farba.colors.general.gray.v15,
 })
+
+-- ~>: for fucking around
+-- require("temp")
