@@ -13,14 +13,12 @@ return {
 
     require("nvim-autopairs").add_rules({
       require("nvim-autopairs.rule").new("```", "```"),
-
       require("nvim-autopairs.ts-rule").endwise(
         "then$",
         "end",
         "lua",
         "if_statement"
       ),
-
       require("nvim-autopairs.ts-rule").endwise(
         "do$",
         "end",
