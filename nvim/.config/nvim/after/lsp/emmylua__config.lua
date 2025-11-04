@@ -16,6 +16,8 @@ return {
       },
       completion = {
         autoRequire = false,
+        callSnippet = true,
+        baseFunctionIncludesName = false,
       },
       diagnostics = {
         disable = {
