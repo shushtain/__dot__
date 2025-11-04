@@ -1,8 +1,12 @@
 vim.bo.shiftwidth = 2
 
-vim.lsp.enable("emmylua_nvim")
-vim.lsp.enable("emmylua_config")
-vim.lsp.enable("emmylua_snippets")
+vim.lsp.enable("emmylua__nvim")
+vim.lsp.enable("emmylua__config")
+vim.lsp.enable("emmylua__snippets")
+
+-- vim.lsp.enable("lua_ls__nvim")
+-- vim.lsp.enable("lua_ls__config")
+-- vim.lsp.enable("lua_ls__snippets")
 
 vim.keymap.set("n", "<Leader>.", function()
   vim.cmd("update")

@@ -25,7 +25,7 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
-vim.api.nvim_create_autocmd("BufWinEnter", {
+vim.api.nvim_create_autocmd("BufEnter", {
   group = vim.api.nvim_create_augroup("uOptsEnter", { clear = true }),
   callback = function()
     vim.opt_local.listchars = {
@@ -38,7 +38,7 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
       nbsp = "␣",
     }
 
-    if vim.bo.modifiable and vim.bo.filetype ~= "oil" then
+    if vim.bo.modifiable then
       vim.wo.conceallevel = 0
       vim.wo.spell = true
     else
@@ -87,19 +87,3 @@ vim.api.nvim_create_autocmd("VimEnter", {
     end
   end,
 })
-
-vim.api.nvim_create_user_command("E", function(cmd)
-  local result = vim.fn.execute(cmd.args)
-  local rows = vim.split(result, "\n")
-  local buf = vim.api.nvim_create_buf(true, true)
-  vim.api.nvim_buf_set_lines(buf, 0, -1, false, rows)
-  vim.api.nvim_open_win(buf, true, { split = "right" })
-end, { nargs = "+" })
-
-vim.api.nvim_create_user_command("P", function(cmd)
-  local result = vim.fn.execute("lua print(vim.inspect(" .. cmd.args .. "))")
-  local rows = vim.split(result, "\n")
-  local buf = vim.api.nvim_create_buf(true, true)
-  vim.api.nvim_buf_set_lines(buf, 0, -1, false, rows)
-  vim.api.nvim_open_win(buf, true, { split = "right" })
-end, { nargs = "+" })

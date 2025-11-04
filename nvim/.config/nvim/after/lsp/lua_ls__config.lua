@@ -5,37 +5,39 @@ return {
     Lua = {
       runtime = {
         version = "LuaJIT",
-        requirePattern = { "?.lua", "?/init.lua" },
+        path = { "?.lua", "?/init.lua" },
       },
       workspace = {
+        checkThirdParty = false,
         library = {
           vim.env.VIMRUNTIME,
+          vim.fn.stdpath("data"),
+        },
+        ignoreDir = {
+          ".vscode",
+          "**/lua/snippets",
         },
       },
+      -- diagnostics = {
+      --   disable = {}
+      -- }
       completion = {
-        autoRequire = false,
-      },
-      diagnostics = {
-        disable = {
-          "missing-fields",
-        },
+        callSnippet = "Replace",
       },
       format = {
-        externalTool = {
-          program = "stylua",
-          args = { "-", "--stdin-filepath", "${file}" },
-          timeout = 5000,
+        defaultConfig = {
+          indent_style = "space",
+          indent_size = 2,
         },
       },
     },
   },
-  cmd = { "emmylua_ls" },
+  cmd = { "lua-language-server" },
   root_dir = function(bufnr, on_dir)
     local fname = vim.fn.bufname(bufnr)
-    if fname:find(".config/nvim/") then
+    if not fname:find(".config/nvim/") then
       return
     end
-
     local root_markers = {
       ".emmyrc.json",
       ".emmyrc.jsonc",
@@ -49,9 +51,8 @@ return {
       ".git",
     }
     local project_root = vim.fs.root(bufnr, root_markers)
-    if not project_root then
-      return
+    if project_root then
+      on_dir(project_root)
     end
-    on_dir(project_root)
   end,
 }
