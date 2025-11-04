@@ -25,9 +25,13 @@ box.horizontal {
 }
 
 tooltip {
-  background-color: #262626;
-  border: 0;
+  background: #1a1a1a;
+  border: 2px solid #030303;
   color: #b2b2b2;
+}
+
+tooltip label {
+  background: #1a1a1a;
 }
 
 #workspaces button {
