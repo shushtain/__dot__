@@ -42,11 +42,11 @@ vim.keymap.set(
 )
 
 vim.keymap.set("n", "<Leader>tk", function()
-  if vim.o.keymap == "" then
-    vim.o.keymap = "ukrainian-enhanced"
-  else
-    vim.o.keymap = ""
-  end
+  vim.o.keymap = vim.o.keymap == "" and "ukrainian-enhanced" or ""
+end, { desc = "Toggle : Keymap" })
+
+vim.keymap.set("i", "<M-k>", function()
+  vim.o.keymap = vim.o.keymap == "" and "ukrainian-enhanced" or ""
 end, { desc = "Toggle : Keymap" })
 
 vim.keymap.set("n", "<Leader>tm", function()
