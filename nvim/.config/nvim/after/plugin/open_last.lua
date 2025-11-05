@@ -4,10 +4,11 @@ vim.api.nvim_create_autocmd("VimEnter", {
   group = group,
   once = true,
   callback = function(env)
-    local bufname = vim.api.nvim_buf_get_name(env.buf)
-    local line_count = vim.api.nvim_buf_line_count(env.buf)
-
-    if bufname == "" and line_count == 1 then
+    if
+      vim.bo[env.buf].buftype == ""
+      and vim.api.nvim_buf_get_name(env.buf) == ""
+      and vim.api.nvim_buf_line_count(env.buf) == 1
+    then
       local cache = vim.fn.stdpath("state") .. "/open_last/"
       local cwd = vim.fn.getcwd():gsub("/", "_")
       local path = cache .. cwd
