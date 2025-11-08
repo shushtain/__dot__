@@ -8,10 +8,7 @@
   "margin": "2 0 0 0",
   "fixed-center": true,
   "reload_style_on_change": true,
-  "modules-left": [
-    "hyprland/workspaces",
-    "hyprland/window"
-  ],
+  "modules-left": ["hyprland/workspaces", "hyprland/window"],
   "modules-center": [],
   "modules-right": [
     // "systemd-failed-units",
@@ -29,13 +26,7 @@
   ],
   "hyprland/workspaces": {
     "format": "{icon}",
-    "format-icons": {
-      "default": "∙",
-      "active": "●"
-    },
-    "persistent-workspaces": {
-      "*": 3
-    },
+    "format-icons": { "default": "∙", "active": "●" },
     "on-click": "activate"
   },
   "hyprland/window": {
@@ -69,26 +60,14 @@
     "icon-spacing": 8,
     "icon-size": 14,
     "modules": [
-      {
-        "type": "screenshare",
-        "tooltip-icon-size": 14
-      },
-      {
-        "type": "audio-in",
-        "tooltip-icon-size": 14
-      },
-      {
-        "type": "audio-out",
-        "tooltip-icon-size": 14
-      }
+      { "type": "screenshare", "tooltip-icon-size": 14 },
+      { "type": "audio-in", "tooltip-icon-size": 14 },
+      { "type": "audio-out", "tooltip-icon-size": 14 }
     ]
   },
   "idle_inhibitor": {
     "format": "{icon}",
-    "format-icons": {
-      "activated": "◉",
-      "deactivated": "◎"
-    },
+    "format-icons": { "activated": "◉", "deactivated": "◎" },
     "tooltip-format-activated": "sleepless on",
     "tooltip-format-deactivated": "sleepless off"
   },
@@ -112,10 +91,10 @@
     "tooltip-format": "{profile}",
     "tooltip": true,
     "format-icons": {
-      "default": "Ξ",
-      "performance": "Σ",
-      "balanced": "‡",
-      "power-saver": "ℓ"
+      "default": "",
+      "performance": "■",
+      "balanced": "◪",
+      "power-saver": "□"
     }
   },
   "clock": {
@@ -137,13 +116,7 @@
   "backlight": {
     "format": "{icon}",
     "tooltip": false,
-    "format-icons": [
-      "∙",
-      "○",
-      "◎",
-      "◉",
-      "●"
-    ],
+    "format-icons": [" ", " ", "∙", "∙", "○", "○", "◎", "◎", "◉", "◉", "●"],
     "scroll-step": 1.0,
     "reverse-scrolling": true
   },

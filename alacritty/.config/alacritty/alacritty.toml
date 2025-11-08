@@ -54,7 +54,7 @@ command = "alacritty-hints.sh"
 hyperlinks = true
 post_processing = true
 persist = false
-mouse.enabled = true
+mouse.enabled = false
 binding = { key = "O", mods = "Control|Shift" }
 regex = "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`\\\\]+"
 
@@ -63,6 +63,6 @@ action = "Copy"
 hyperlinks = true
 post_processing = true
 persist = false
-mouse.enabled = true
+mouse.enabled = false
 binding = { key = "H", mods = "Control|Shift" }
 regex = "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`\\\\]+"

@@ -15,7 +15,19 @@ return {
         typescript = { "prettier" },
         markdown = { "prettier" },
         yaml = { "prettier" },
+        json = { "prettier" },
+        jsonc = { "prettier" },
       },
     })
+
+    require("conform").formatters.prettier = {
+      append_args = function(_, ctx)
+        local ft = vim.bo[ctx.buf].filetype
+        if ft == "json" or ft == "jsonc" then
+          return { "--trailing-comma", "none" }
+        end
+        return {}
+      end,
+    }
   end,
 }
