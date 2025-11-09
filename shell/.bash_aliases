@@ -24,6 +24,9 @@ alias x='cd -'
 alias ..='cd ..'
 alias ...='cd ../../'
 
+zv() { z "$(wl-paste)"; }
+zg() { z "$(git rev-parse --show-toplevel)"; }
+
 alias n='nvim'
 alias xn='cd - && nvim'
 zn() { z "$@" && nvim; }
