@@ -22,9 +22,9 @@ return {
       diagnostics = {
         disable = {
           "missing-fields",
-          "param-type-not-match",
+          "param-type-mismatch",
           "assign-type-mismatch",
-          "unnecessary-if",
+          -- "unnecessary-if",
         },
       },
       format = {

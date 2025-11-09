@@ -56,11 +56,6 @@ run = "plugin chmod"
 desc = "Change permissions"
 
 [[mgr.prepend_keymap]]
-on = "M"
-run = "plugin mount"
-desc = "Mount"
-
-[[mgr.prepend_keymap]]
 on = ["g", "v"]
 run = "plugin vcs-files"
 desc = "Show Git file changes"
@@ -69,3 +64,55 @@ desc = "Show Git file changes"
 on = "\\"
 run = "plugin toggle-pane min-preview"
 desc = "Toggle preview"
+
+## # MOUNT
+
+[[mgr.prepend_keymap]]
+on = ["M", "/"]
+run = "plugin mount"
+desc = "Mount"
+
+[[mgr.prepend_keymap]]
+on = ["M", "m"]
+run = "plugin gvfs -- select-then-mount"
+desc = "Mount"
+
+[[mgr.prepend_keymap]]
+on = ["M", "M"]
+run = "plugin gvfs -- select-then-mount --jump"
+desc = "Mount and jump"
+
+[[mgr.prepend_keymap]]
+on = ["M", "R"]
+run = "plugin gvfs -- remount-current-cwd-device"
+desc = "Remount"
+
+[[mgr.prepend_keymap]]
+on = ["M", "u"]
+run = "plugin gvfs -- select-then-unmount --eject"
+desc = "Unmount"
+
+[[mgr.prepend_keymap]]
+on = ["M", "U"]
+run = "plugin gvfs -- select-then-unmount --eject --force"
+desc = "Force Unmount"
+
+[[mgr.prepend_keymap]]
+on = ["M", "g"]
+run = "plugin gvfs -- jump-to-device"
+desc = "Go to mounted"
+
+[[mgr.prepend_keymap]]
+on = ["M", "`"]
+run = "plugin gvfs -- jump-back-prev-cwd"
+desc = "Go back"
+
+[[mgr.prepend_keymap]]
+on = ["M", "A"]
+run = "plugin gvfs -- automount-when-cd"
+desc = "Enable automount"
+
+[[mgr.prepend_keymap]]
+on = ["M", "a"]
+run = "plugin gvfs -- automount-when-cd --disabled"
+desc = "Disable automount"

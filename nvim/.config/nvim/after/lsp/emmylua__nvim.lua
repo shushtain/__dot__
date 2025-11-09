@@ -11,6 +11,7 @@ return {
         library = {
           vim.env.VIMRUNTIME,
         },
+        ignoreDir = { ".config/nvim" },
       },
       completion = {
         autoRequire = false,
@@ -19,7 +20,7 @@ return {
       },
       diagnostics = {
         disable = {
-          "missing-fields",
+          -- "missing-fields",
         },
       },
       format = {

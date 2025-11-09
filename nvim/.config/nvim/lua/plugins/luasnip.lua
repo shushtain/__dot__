@@ -5,7 +5,7 @@ return {
   build = "make install_jsregexp",
   dependencies = { "rafamadriz/friendly-snippets" },
   config = function()
-    require("luasnip").config.setup({
+    require("luasnip").setup({
       keep_roots = true,
       link_roots = true,
       link_children = true,
