@@ -32,6 +32,7 @@ play = [
 edit = [
   { run = 'app2unit -- nvim "$@"', block = true, desc = "Neovim" },
   { run = 'app2unit -- nvim "$@"', orphan = true, desc = "Neovim (detached)" },
+  { run = 'app2unit -- nvim --clean "$@"', block = true, desc = "Neovim (clean)" },
   { run = 'app2unit -- brave file://"$@"', orphan = true, desc = "Brave" },
 ]
 open = [

@@ -11,6 +11,12 @@ vim.api.nvim_create_autocmd("FileType", {
 
     local ft = vim.bo.filetype
     local lang = vim.treesitter.language.get_lang(ft) or ft
+
+    -- local filename = vim.fn.bufname()
+    -- if filename:match("source/templates/.+%.html$") then
+    --   lang = "tera"
+    -- end
+
     if not vim.treesitter.language.add(lang) then
       require("nvim-treesitter").install(lang)
     end
@@ -54,12 +60,16 @@ vim.api.nvim_create_autocmd("BufEnter", {
 
 vim.api.nvim_create_autocmd("TextYankPost", {
   group = vim.api.nvim_create_augroup("uHighlightOnYank", { clear = true }),
-  callback = function() vim.hl.on_yank() end,
+  callback = function()
+    vim.hl.on_yank()
+  end,
 })
 
 vim.api.nvim_create_autocmd("TermOpen", {
   group = vim.api.nvim_create_augroup("uTermOpen", { clear = true }),
-  callback = function() vim.wo.spell = false end,
+  callback = function()
+    vim.wo.spell = false
+  end,
 })
 
 vim.api.nvim_create_autocmd("VimEnter", {
@@ -72,9 +82,13 @@ vim.api.nvim_create_autocmd("VimEnter", {
     if bufname == "" and line_count == 1 then
       local path = vim.fn.getcwd() .. "/src/"
       if vim.fn.filereadable(path .. "main.rs") == 1 then
-        vim.schedule(function() vim.cmd("e " .. path .. "main.rs") end)
+        vim.schedule(function()
+          vim.cmd("e " .. path .. "main.rs")
+        end)
       elseif vim.fn.filereadable(path .. "lib.rs") == 1 then
-        vim.schedule(function() vim.cmd("e " .. path .. "lib.rs") end)
+        vim.schedule(function()
+          vim.cmd("e " .. path .. "lib.rs")
+        end)
       end
     end
   end,
