@@ -136,12 +136,12 @@ end, { noremap = true })
 
 vim.keymap.set(
   "n",
-  "<Leader>'r",
+  "<Leader>:r",
   "<Cmd> ri <CR>",
   { silent = true, desc = "Format : Right" }
 )
 
-vim.keymap.set("n", "<Leader>'j", function()
+vim.keymap.set("n", "<Leader>:j", function()
   local tw = vim.o.textwidth
   tw = tw == 0 and 80 or tw
 

@@ -39,7 +39,7 @@ return {
       pcall(require("luasnip.extras.select_choice"))
     end, { silent = true, desc = "Snippets : Select Choice" })
 
-    vim.keymap.set("n", "<Leader>'s", function()
+    vim.keymap.set("n", '<Leader>"s', function()
       require("luasnip.loaders").edit_snippet_files()
     end, { desc = "Snippets : Edit" })
   end,

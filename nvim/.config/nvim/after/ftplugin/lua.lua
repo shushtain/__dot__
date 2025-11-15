@@ -23,7 +23,7 @@ vim.keymap.set(
 
 vim.keymap.set(
   "n",
-  "<Leader>:",
+  "<Leader>'",
   "<Plug>PlenaryTestFile",
   { buffer = true, desc = "Test with Plenary" }
 )
