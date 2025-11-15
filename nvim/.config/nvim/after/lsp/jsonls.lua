@@ -1,8 +1,7 @@
 local root_markers = {
-  "Cargo.toml",
   ".git",
 }
-local cargo_root = vim.fs.root(0, root_markers)
+local root = vim.fs.root(0, root_markers) or vim.fn.getcwd()
 
 ---@type vim.lsp.Config
 return {
@@ -14,8 +13,8 @@ return {
     json = {
       schemas = {
         {
-          fileMatch = { "data/**/*.json" },
-          url = cargo_root .. "/meta/data.schema.json",
+          fileMatch = { "**/*.json" },
+          url = root .. "/source/meta/data.schema.json",
         },
       },
       format = { enable = false },
