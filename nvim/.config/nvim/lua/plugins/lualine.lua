@@ -1,3 +1,4 @@
+-- TODO: Try native
 return {
   "nvim-lualine/lualine.nvim",
   -- enabled = false,
@@ -52,7 +53,7 @@ return {
         local stats = {
           smart_kbd = vim.g.smart_keyboard and "⌨" or "",
           keymap = vim.o.keymap == "" and "" or "⌥",
-          format = vim.g.u_manual_formatting and "⌇" or "",
+          format = vim.g.u_manual_formatting and "⨂" or "",
         }
         stats = vim.tbl_filter(function(val)
           return val ~= ""

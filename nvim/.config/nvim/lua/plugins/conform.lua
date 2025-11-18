@@ -21,6 +21,9 @@ return {
     })
 
     require("conform").formatters.prettier = {
+      condition = function()
+        return not vim.g.u_manual_formatting
+      end,
       append_args = function(_, ctx)
         local ft = vim.bo[ctx.buf].filetype
         if ft == "json" or ft == "jsonc" then

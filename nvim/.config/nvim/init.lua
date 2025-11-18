@@ -31,15 +31,5 @@ require("lazy").setup({
 require("ide.lsp")
 require("ide.actions")
 
-vim.api.nvim_set_hl(0, "NONE_Normal", {
-  fg = vim.g.farba.colors.general.gray.v10,
-  bg = "NONE",
-})
-
-vim.api.nvim_set_hl(0, "NONE_Float", {
-  fg = vim.g.farba.colors.general.gray.v15,
-  bg = vim.g.farba.colors.general.gray.v15,
-})
-
--- ~>: for fucking around
--- require("temp")
+-- ::: for fucking around
+require("temp")

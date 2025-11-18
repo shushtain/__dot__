@@ -39,6 +39,7 @@ vim.opt.fillchars = {
   fold = " ",
   eob = "·",
   lastline = "𜱃",
+  msgsep = "─",
 }
 
 vim.o.conceallevel = 0

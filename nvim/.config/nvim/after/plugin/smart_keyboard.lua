@@ -29,7 +29,7 @@ vim.keymap.set("n", "<Leader>tK", function()
     vim.api.nvim_set_hl(
       0,
       "CursorLine",
-      { bg = vim.g.farba.colors.general.yellow.v15 }
+      { bg = vim.g.farba.palette.general.yellow.v15 }
     )
   end
 end, { noremap = true, desc = "Toggle : Smart Keyboard" })

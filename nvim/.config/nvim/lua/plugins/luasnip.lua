@@ -6,22 +6,23 @@ return {
   -- dependencies = { "rafamadriz/friendly-snippets" },
   config = function()
     require("luasnip").setup({
-      keep_roots = true,
-      link_roots = true,
-      link_children = true,
-      exit_roots = false,
-      -- enable_autosnippets = true,
-      updateevents = "TextChanged, TextChangedI",
-      ext_opts = {
-        [require("luasnip.util.types").choiceNode] = {
-          active = {
-            hl_group = "LuasnipNodeActive",
-          },
-        },
-      },
+      link_children = true, -- jump between root and its children
+      link_roots = true, -- jump between root snippets
+      keep_roots = true, -- keep older snippets
+      exit_roots = false, -- exit snippets that reached $0
+      update_events = { "InsertLeave", "TextChanged", "TextChangedI" },
+      region_check_events = { "InsertEnter" },
+      -- delete_check_events = { "InsertLeave", "InsertEnter" },
+      -- ext_opts = {
+      --   [require("luasnip.util.types").choiceNode] = {
+      --     active = {
+      --       hl_group = "LuasnipNodeActive",
+      --     },
+      --   },
+      -- },
     })
 
-    vim.api.nvim_set_hl(0, "LuasnipNodeActive", { underline = true })
+    -- vim.api.nvim_set_hl(0, "LuasnipNodeActive", { underline = true })
 
     require("luasnip.loaders.from_lua").load({ paths = { "./lua/snippets" } })
     -- require("luasnip.loaders.from_vscode").lazy_load() -- for friendly-snippets

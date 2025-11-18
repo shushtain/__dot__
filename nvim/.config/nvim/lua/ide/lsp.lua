@@ -1,3 +1,5 @@
+-- vim.lsp.set_log_level("debug")
+
 ---@diagnostic disable-next-line
 vim.lsp.config("*", {
   capabilities = require("blink.cmp").get_lsp_capabilities({}, true),
@@ -10,7 +12,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("uLspAttach", { clear = true }),
   callback = function(ev)
     local client = vim.lsp.get_client_by_id(ev.data.client_id)
-    if not client then return end
+    if not client then
+      return
+    end
 
     vim.lsp.completion.enable(true, client.id, ev.buf, {
       autotrigger = false,

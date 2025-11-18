@@ -7,33 +7,35 @@ return {
   config = function()
     ---@type Farba.Config
     local flowerpot = {
-      light_mode = false,
-      background = false,
-      colors = {
+      transparency = { normal = true, float = false },
+      palette = {
         general = {
-          gray = { 0, 0 },
-          red = { 0, 100 },
-          green = { 80, 50 },
-          yellow = { 30, 75 },
-          blue = { 200, 50 },
-          magenta = { 280, 50 },
-          cyan = { 150, 50 },
+          gray = { hue = 0, sat = 0 },
+          red = { hue = 0, sat = 100 },
+          yellow = { hue = 30, sat = 75 },
+          green = { hue = 80, sat = 50 },
+          cyan = { hue = 150, sat = 50 },
+          blue = { hue = 200, sat = 50 },
+          magenta = { hue = 280, sat = 50 },
         },
         syntax = {
-          blue = { 80, 50 },
-          magenta = { 80, 35 },
-          cyan = { 0, 100 },
+          cyan = { hue = 0, sat = 100 },
+          blue = { hue = 80, sat = 50 },
+          magenta = { hue = 80, sat = 35 },
         },
       },
     }
 
-    local theme = flowerpot
-    require("farba").setup(theme)
+    require("farba").setup(flowerpot)
     vim.cmd("colorscheme farba")
 
+    vim.keymap.set("n", "<Leader>zb", function()
+      require("farba").purge()
+    end, { desc = "Toggle : Theme" })
+
     vim.keymap.set("n", "<Leader>tb", function()
-      theme.light_mode = not theme.light_mode
-      require("farba").setup(theme)
+      flowerpot.transparency.normal = not flowerpot.transparency.normal
+      require("farba").setup(flowerpot)
       vim.cmd("colorscheme farba")
     end, { desc = "Toggle : Theme" })
   end,

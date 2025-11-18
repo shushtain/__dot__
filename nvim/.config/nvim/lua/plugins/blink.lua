@@ -1,8 +1,8 @@
--- ~>: Gradually move away
+-- TODO: Gradually move away
 return {
   "Saghen/blink.cmp",
   version = "1.*",
-  dependencies = { "L3MON4D3/LuaSnip" },
+  dependencies = { { "L3MON4D3/LuaSnip", version = "v2.*" } },
   config = function()
     require("blink.cmp").setup({
       appearance = {
@@ -64,7 +64,18 @@ return {
         enabled = true,
         window = { winhighlight = "Normal:Pmenu" },
       },
-      snippets = { preset = "luasnip" },
+      snippets = {
+        preset = "luasnip",
+        -- active = function(_)
+        --   return (
+        --     not require("blink.cmp").is_visible()
+        --     and not require("luasnip").locally_jumpable(1)
+        --     and require("luasnip").expandable()
+        --   )
+        --     or require("luasnip").locally_jumpable(1)
+        --     or require("luasnip").locally_jumpable(-1)
+        -- end,
+      },
       sources = { default = { "lsp", "path", "snippets", "buffer" } },
       cmdline = {
         keymap = { preset = "inherit" },
