@@ -116,6 +116,7 @@ local handler = {
 }
 
 local function update()
+  local updated = false
   for module, _ in pairs(queue) do
     local tmp = handler["_" .. module]
     if tmp then
@@ -124,7 +125,9 @@ local function update()
       vim.notify_once("Statusline module " .. module .. " missing a callback")
     end
     queue[module] = nil
+    updated = true
   end
+  return updated
 end
 
 -- this redraws statusline
@@ -132,7 +135,9 @@ local function redraw()
   if vim.o.laststatus == 0 then
     return
   end
-  update()
+  if not update() then
+    return
+  end
 
   local theme = "%#StatusLine" .. (modes[state.mode] or "Error") .. "#"
   local sep = theme .. "  "
