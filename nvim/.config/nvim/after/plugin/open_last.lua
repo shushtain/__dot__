@@ -1,5 +1,10 @@
 local group = vim.api.nvim_create_augroup("uOpenLast", { clear = true })
 
+local state = vim.fn.stdpath("state") .. "/open_last/"
+local function hash()
+  return state .. vim.fn.sha256(vim.fn.getcwd()) .. ".data"
+end
+
 vim.api.nvim_create_autocmd("VimEnter", {
   group = group,
   once = true,
@@ -9,9 +14,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
       and vim.api.nvim_buf_get_name(env.buf) == ""
       and vim.api.nvim_buf_line_count(env.buf) == 1
     then
-      local state = vim.fn.stdpath("state") .. "/open_last/"
-      local hash = vim.fn.sha256(vim.fn.getcwd())
-      local path = state .. hash .. ".data"
+      local path = hash()
       if vim.fn.filereadable(path) == 1 then
         local file = vim.fn.readfile(path)
         local filename = file[1]
@@ -35,12 +38,10 @@ vim.api.nvim_create_autocmd("BufWinLeave", {
     local bufname = vim.api.nvim_buf_get_name(env.buf)
     local buftype = vim.bo[env.buf].buftype
     if bufname ~= "" and buftype == "" then
-      local state = vim.fn.stdpath("state") .. "/open_last/"
       if vim.fn.isdirectory(state) == 0 then
         vim.fn.mkdir(state, "p")
       end
-      local hash = vim.fn.sha256(vim.fn.getcwd())
-      local path = state .. hash .. ".data"
+      local path = hash()
       local curpos = vim.fn.getcurpos()
       local tbl = { bufname, curpos[2], curpos[3] }
       vim.fn.writefile(tbl, path)
@@ -48,9 +49,13 @@ vim.api.nvim_create_autocmd("BufWinLeave", {
   end,
 })
 
-vim.keymap.set("n", "<Leader>zz", function()
-  local cache = vim.fn.stdpath("state") .. "/open_last/"
-  vim.fn.delete(cache, "rf")
-  -- vim.api.nvim_del_augroup_by_id(group)
-  vim.notify("Purged 'Open Last' cache", vim.log.levels.INFO)
+vim.keymap.set("n", "<Leader>ze", function()
+  vim.api.nvim_del_augroup_by_id(group)
+  vim.fn.delete(hash())
+  vim.notify("'Open Last' is off")
 end, { desc = "Purge : Open Last" })
+
+vim.keymap.set("n", "<Leader>zo", function()
+  vim.fn.delete(state, "rf")
+  vim.notify("Purged 'Open Last' cache")
+end, { desc = "Purge : Open Last All" })

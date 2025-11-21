@@ -1,3 +1,7 @@
+-- if true then
+--   return nil
+-- end
+
 local group = vim.api.nvim_create_augroup("uHiTodos", { clear = true })
 local ns = vim.api.nvim_create_namespace("uHiTodos")
 

@@ -1,6 +1,7 @@
 vim.g.zen = { active = false }
 
 local function zenify(key, value)
+  ---@diagnostic disable-next-line: unnecessary-if
   if vim.g.zen.active then
     vim.api.nvim_set_option_value(key, vim.g.zen[key], {})
   else
@@ -23,11 +24,7 @@ vim.api.nvim_create_user_command("Zen", function()
   zenify("wrap", true)
   zenify("hlsearch", false)
   zenify("cmdheight", 0)
-
   zenify("laststatus", 0)
-  require("lualine").hide({
-    unhide = vim.g.zen.active,
-  })
 
   local zen = vim.g.zen
   zen.active = not zen.active
@@ -44,6 +41,7 @@ vim.keymap.set(
 vim.api.nvim_create_autocmd("VimLeavePre", {
   group = vim.api.nvim_create_augroup("uLeaveZen", { clear = true }),
   callback = function()
+    ---@diagnostic disable-next-line: unnecessary-if
     if vim.g.zen.active then
       vim.cmd("Zen")
     end

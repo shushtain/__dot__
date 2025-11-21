@@ -59,4 +59,7 @@ return {
     end
     on_dir(project_root)
   end,
+  on_attach = function(client, _bufnr)
+    client.server_capabilities.semanticTokensProvider = nil
+  end,
 }

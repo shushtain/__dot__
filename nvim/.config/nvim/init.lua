@@ -30,6 +30,4 @@ require("lazy").setup({
 
 require("ide.lsp")
 require("ide.actions")
-
--- ::: for fucking around
 require("temp")

@@ -3,10 +3,10 @@ return {
     "~derivecommon",
     fmta(
       [[
-        #[derive(Debug, Clone, Default, PartialEq, <>)]
+        #[derive(Debug, Clone, Default, PartialEq, PartialOrd, Hash, <>)]
       ]],
       {
-        i(1, "Copy"),
+        i(1, "Eq, Ord, Copy"),
       }
     )
   ),
