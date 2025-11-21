@@ -42,7 +42,14 @@ local handler = {
   end,
   _branch = function()
     local git = vim.b.gitsigns_status_dict or {}
-    return git.head or ""
+    local branch = git.head or ""
+    if
+      branch ~= ""
+      and (git.added or 0) + (git.changed or 0) + (git.removed or 0) > 0
+    then
+      return "~" .. branch .. "~"
+    end
+    return branch
   end,
   _filename = function()
     local filename = vim.fn.bufname()
@@ -130,7 +137,7 @@ local function redraw()
   local theme = "%#StatusLine" .. (modes[state.mode] or "Error") .. "#"
   local sep = theme .. "  "
 
-  local file = "%<" .. state.filename
+  local file = state.filename
   ---@diagnostic disable-next-line: unnecessary-if
   if state.filestatus ~= "" then
     file = file .. " " .. state.filestatus
@@ -144,12 +151,19 @@ local function redraw()
   local diagnostics = state.diagnostics
   local stats = state.stats
 
-  local statusline = {
+  local is_short = vim.go.columns < 60
+  if branch == "" or is_short then
+    file = "%<" .. file
+  else
+    branch = "%<" .. branch
+  end
+
+  local full = {
     theme,
     mode,
     branch,
     file,
-    " %=",
+    "%=",
     selection,
     diagnostics,
     stats,
@@ -158,6 +172,14 @@ local function redraw()
     "%*",
   }
 
+  local mini = {
+    theme,
+    file,
+    "%=",
+    diagnostics,
+  }
+
+  local statusline = is_short and mini or full
   statusline = vim.tbl_filter(function(v)
     return v and v ~= ""
   end, statusline)
@@ -192,7 +214,9 @@ vim.api.nvim_create_autocmd({
 }, {
   group = group,
   callback = function()
-    enqueue("branch")
+    vim.defer_fn(function()
+      enqueue("branch")
+    end, 100)
     enqueue("filename")
   end,
 })
