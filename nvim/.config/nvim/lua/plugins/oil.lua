@@ -1,83 +1,121 @@
--- TODO: Configure
 return {
   "stevearc/oil.nvim",
+  -- enabled = false,
   config = function()
-    require("oil").setup({
-      default_file_explorer = true,
-      columns = {
-        -- "icon",
-      },
-      buf_options = {
-        buflisted = false,
-        bufhidden = "hide",
-      },
-      win_options = {
-        wrap = false,
-        signcolumn = "no",
-        foldcolumn = "0",
-        spell = false,
-        list = false,
-      },
-      delete_to_trash = true,
-      skip_confirmation_for_simple_edits = true,
+    ---@type oil.SetupOpts
+    local opts = {
+      skip_confirm_for_simple_edits = true,
+      prompt_save_on_select_new_entry = true,
       set_default_keymaps = false,
+      delete_to_trash = true,
+      columns = {},
+      view_options = { show_hidden = true, case_insensitive = true },
+      confirmation = { border = "solid" },
+      progress = { border = "solid" },
+      ssh = { border = "solid" },
       keymaps = {
+        ["<Leader>ey"] = {
+          "actions.yank_entry",
+          desc = "Oil : Yank Filepath",
+        },
         ["<Leader>e?"] = {
           "actions.show_help",
           mode = "n",
-          desc = "Explorer : Keymaps",
+          desc = "Oil : Keymaps",
         },
-        ["<CR>"] = { "actions.select", desc = "Explorer : Open" },
-        ["<S-CR>"] = {
+        ["<CR>"] = {
+          "actions.select",
+          desc = "Oil : Open",
+        },
+        ["<M-CR>"] = {
           "actions.select",
           opts = { vertical = true },
-          desc = "Explorer : Open Split",
+          desc = "Oil : Open Split",
         },
-        ["<C-CR>"] = {
+        ["<M-BS>"] = {
           "actions.select",
           opts = { horizontal = true },
-          desc = "Explorer : Open Stacked",
+          desc = "Oil : Open Stacked",
         },
-        ["<Leader>ep"] = { "actions.preview", desc = "Explorer : Preview" },
+        ["<Leader>ep"] = {
+          "actions.preview",
+          opts = { vertical = true },
+          desc = "Oil : Preview",
+        },
+        ["<Leader>eP"] = {
+          "actions.preview",
+          opts = { horizontal = true },
+          desc = "Oil : Preview Stacked",
+        },
         ["<Leader>ee"] = {
           "actions.close",
           mode = "n",
-          desc = "Explorer : Toggle",
+          desc = "Oil : Toggle",
         },
-        ["<Leader>er"] = { "actions.refresh", desc = "Explorer : Refresh" },
-        ["-"] = { "actions.parent", mode = "n", desc = "Explorer : Parent" },
-        ["_"] = { "actions.open_cwd", mode = "n", desc = "Explorer : Root" },
-        ["`"] = { "actions.cd", mode = "n", desc = "Explorer : Set as Root" },
+        ["<Leader>er"] = {
+          "actions.refresh",
+          desc = "Oil : Refresh",
+        },
+        ["-"] = {
+          "actions.parent",
+          mode = "n",
+          desc = "Oil : Parent",
+        },
+        ["_"] = {
+          "actions.open_cwd",
+          mode = "n",
+          desc = "Oil : Root",
+        },
+        ["`"] = {
+          "actions.cd",
+          mode = "n",
+          opts = { scope = "tab" },
+          desc = "Oil : Root Tabbed",
+        },
+        ["~"] = {
+          "actions.cd",
+          mode = "n",
+          desc = "Oil : Root",
+        },
         ["<Leader>es"] = {
           "actions.change_sort",
           mode = "n",
-          desc = "Explorer : Sort",
+          desc = "Oil : Sort",
+        },
+        ["<Leader>eq"] = {
+          "actions.send_to_qflist",
+          opts = { action = "a" },
+          desc = "Oil : Quickfix Add",
+        },
+        ["<Leader>eQ"] = {
+          "actions.send_to_qflist",
+          opts = { action = "r" },
+          desc = "Oil : Quickfix Replace",
         },
         ["<Leader>et"] = {
           "actions.open_external",
-          desc = "Explorer : External",
+          desc = "Oil : External",
         },
         ["<Leader>eh"] = {
           "actions.toggle_hidden",
           mode = "n",
-          desc = "Explorer : Hidden",
+          desc = "Oil : Hidden",
         },
         ["<Leader>ex"] = {
           "actions.toggle_trash",
           mode = "n",
-          desc = "Explorer : Trash",
+          desc = "Oil : Trash",
         },
       },
-      view_options = {
-        show_hidden = true,
-      },
-    })
+    }
+
+    require("oil").setup(opts)
 
     vim.keymap.set(
       "n",
       "<Leader>ee",
       "<Cmd> Oil <CR>",
-      { noremap = true, desc = "Explorer : Toggle" }
+      { noremap = true, desc = "Oil : Toggle" }
     )
   end,
 }

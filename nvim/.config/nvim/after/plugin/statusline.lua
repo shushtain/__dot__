@@ -50,9 +50,9 @@ local handler = {
     return filename
   end,
   _filestatus = function()
-    if not vim.bo.modifiable then
-      return "∅"
-    end
+    -- if not vim.bo.modifiable then
+    --   return "∅"
+    -- end
     local readonly = vim.bo.readonly and "⦰" or ""
     local modified = vim.bo.modified and "🞸" or ""
     return readonly .. modified
@@ -174,7 +174,10 @@ run()
 
 local group = vim.api.nvim_create_augroup("uStatusline", { clear = false })
 
-vim.api.nvim_create_autocmd({ "ModeChanged", "BufEnter" }, {
+vim.api.nvim_create_autocmd({
+  "ModeChanged",
+  "BufEnter",
+}, {
   group = group,
   callback = function()
     enqueue("mode")
@@ -204,6 +207,7 @@ vim.api.nvim_create_autocmd({
   group = group,
   callback = function()
     enqueue("filestatus")
+    redraw()
   end,
 })
 
@@ -215,6 +219,7 @@ vim.api.nvim_create_autocmd({ "OptionSet" }, {
   group = group,
   callback = function()
     enqueue("filestatus")
+    redraw()
   end,
 })
 
@@ -244,6 +249,7 @@ vim.api.nvim_create_autocmd({
 vim.api.nvim_create_autocmd({
   "CursorMoved",
   "CursorMovedI",
+  "BufEnter",
 }, {
   group = group,
   callback = function()
@@ -252,7 +258,10 @@ vim.api.nvim_create_autocmd({
   end,
 })
 
-vim.api.nvim_create_autocmd({ "DiagnosticChanged", "BufEnter" }, {
+vim.api.nvim_create_autocmd({
+  "DiagnosticChanged",
+  "BufEnter",
+}, {
   group = group,
   callback = function()
     enqueue("diagnostics")

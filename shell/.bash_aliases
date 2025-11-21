@@ -59,7 +59,15 @@ alias gap='git add --patch'
 alias gc='git commit'
 alias gcm='git commit -m'
 alias gca='git add --all && git commit'
-alias gcam='git add --all && git commit -m'
+gcam() {
+    if [ "$#" -eq 0 ]; then
+        echo "Error: Commit message required."
+        return 1
+    fi
+    git add --all
+    git commit -m "$*"
+
+}
 
 alias gco='git checkout'
 alias gcob='git checkout -b'
