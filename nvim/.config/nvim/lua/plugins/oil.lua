@@ -66,6 +66,11 @@ return {
           mode = "n",
           desc = "Oil : Root",
         },
+        ["<Leader>ex"] = {
+          "actions.toggle_trash",
+          mode = "n",
+          desc = "Oil : Trash",
+        },
         ["`"] = {
           "actions.cd",
           mode = "n",
@@ -77,11 +82,6 @@ return {
           mode = "n",
           desc = "Oil : Root",
         },
-        ["<Leader>es"] = {
-          "actions.change_sort",
-          mode = "n",
-          desc = "Oil : Sort",
-        },
         ["<Leader>eq"] = {
           "actions.send_to_qflist",
           opts = { action = "a" },
@@ -92,19 +92,15 @@ return {
           opts = { action = "r" },
           desc = "Oil : Quickfix Replace",
         },
-        ["<Leader>et"] = {
-          "actions.open_external",
-          desc = "Oil : External",
+        ["<Leader>e,"] = {
+          "actions.change_sort",
+          mode = "n",
+          desc = "Oil : Sort",
         },
-        ["<Leader>eh"] = {
+        ["<Leader>e."] = {
           "actions.toggle_hidden",
           mode = "n",
           desc = "Oil : Hidden",
-        },
-        ["<Leader>ex"] = {
-          "actions.toggle_trash",
-          mode = "n",
-          desc = "Oil : Trash",
         },
       },
     }

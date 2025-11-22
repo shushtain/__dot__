@@ -1,4 +1,4 @@
--- TODO: Gradually move away
+-- TODO: Try native
 return {
   "Saghen/blink.cmp",
   version = "1.*",

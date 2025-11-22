@@ -14,9 +14,7 @@ return {
         "spectre_panel",
         "tsplayground",
       },
-      window = {
-        winblend = 0,
-      },
+      window = { winblend = 0 },
       keymaps = {
         ["j"] = "move_next",
         ["k"] = "move_prev",

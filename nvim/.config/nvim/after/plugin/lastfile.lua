@@ -1,6 +1,6 @@
-local group = vim.api.nvim_create_augroup("uOpenLast", { clear = true })
+local group = vim.api.nvim_create_augroup("uLastFile", { clear = true })
 
-local state = vim.fn.stdpath("state") .. "/open_last/"
+local state = vim.fn.stdpath("state") .. "/lastfile/"
 local function hash()
   return state .. vim.fn.sha256(vim.fn.getcwd()) .. ".data"
 end
@@ -52,10 +52,10 @@ vim.api.nvim_create_autocmd("BufWinLeave", {
 vim.keymap.set("n", "<Leader>ze", function()
   vim.api.nvim_del_augroup_by_id(group)
   vim.fn.delete(hash())
-  vim.notify("'Open Last' is off")
-end, { desc = "Purge : Open Last" })
+  vim.notify("LastFile is off")
+end, { desc = "Purge : LastFile" })
 
 vim.keymap.set("n", "<Leader>zo", function()
   vim.fn.delete(state, "rf")
-  vim.notify("Purged 'Open Last' cache")
-end, { desc = "Purge : Open Last All" })
+  vim.notify("Purged LastFile cache")
+end, { desc = "Purge : LastFile All" })

@@ -212,51 +212,61 @@ vim.api.nvim_create_autocmd({
   end,
 })
 
-vim.api.nvim_create_autocmd({
-  "BufEnter",
-  "FileChangedShellPost",
-  "BufWritePost",
-}, {
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
   group = group,
+  once = true,
   callback = function()
     vim.defer_fn(function()
       enqueue("branch")
     end, 100)
-    enqueue("filename")
   end,
 })
 
 vim.api.nvim_create_autocmd({
-  "BufModifiedSet",
   "BufEnter",
   "FileChangedShellPost",
   "BufWritePost",
-  -- "ModeChanged",
 }, {
   group = group,
   callback = function()
-    enqueue("filestatus")
+    enqueue("branch")
+    enqueue("filename")
     redraw()
   end,
 })
 
-vim.api.nvim_create_autocmd({ "OptionSet" }, {
-  pattern = {
-    "readonly",
-    "modifiable",
-  },
-  group = group,
-  callback = function()
-    enqueue("filestatus")
-    redraw()
-  end,
-})
+-- vim.api.nvim_create_autocmd({
+--   "BufModifiedSet",
+--   "BufEnter",
+--   "FileChangedShellPost",
+--   "BufWritePost",
+--   -- "ModeChanged",
+-- }, {
+--   group = group,
+--   callback = function()
+--     enqueue("filestatus")
+--     redraw()
+--   end,
+-- })
+
+-- vim.api.nvim_create_autocmd({ "OptionSet" }, {
+--   pattern = {
+--     "readonly",
+--     "modifiable",
+--   },
+--   group = group,
+--   callback = function()
+--     enqueue("filestatus")
+--     redraw()
+--   end,
+-- })
 
 vim.api.nvim_create_autocmd({
   "BufEnter",
   "FileChangedShellPost",
   "BufWritePost",
   "FileType",
+  "ModeChanged",
 }, {
   group = group,
   callback = function()
@@ -283,6 +293,7 @@ vim.api.nvim_create_autocmd({
   group = group,
   callback = function()
     enqueue("location")
+    enqueue("filestatus")
     redraw()
   end,
 })

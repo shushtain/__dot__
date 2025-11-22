@@ -1,6 +1,7 @@
 return {
   "lewis6991/gitsigns.nvim",
   config = function()
+    ---@diagnostic disable-next-line: need-check-nil
     require("gitsigns").setup({
       signs = {
         add = { text = "┃" },
@@ -18,11 +19,6 @@ return {
         changedelete = { text = "┃" },
         untracked = { text = "┆" },
       },
-      signs_staged_enable = true,
-      signcolumn = true,
-      numhl = false,
-      linehl = false,
-      word_diff = false,
     })
 
     vim.keymap.set(

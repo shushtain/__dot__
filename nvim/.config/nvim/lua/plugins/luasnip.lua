@@ -3,7 +3,6 @@ return {
   event = "VeryLazy",
   version = "v2.*",
   build = "make install_jsregexp",
-  -- dependencies = { "rafamadriz/friendly-snippets" },
   config = function()
     require("luasnip").setup({
       link_children = true, -- jump between root and its children
@@ -25,7 +24,6 @@ return {
     -- vim.api.nvim_set_hl(0, "LuasnipNodeActive", { underline = true })
 
     require("luasnip.loaders.from_lua").load({ paths = { "./lua/snippets" } })
-    -- require("luasnip.loaders.from_vscode").lazy_load() -- for friendly-snippets
     -- require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./vscode" } })
 
     vim.keymap.set({ "i", "s" }, "<C-n>", function()

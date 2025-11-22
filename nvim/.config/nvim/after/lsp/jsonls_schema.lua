@@ -8,13 +8,14 @@ return {
   init_options = { provideFormatter = false },
   settings = {
     json = {
+      schemas = { { fileMatch = { "**/*.json" }, url = schema } },
       format = { enable = false },
       validate = { enable = true },
     },
   },
   cmd = { "vscode-json-language-server", "--stdio" },
   root_dir = function(bufnr, on_dir)
-    if vim.fn.filereadable(schema) == 1 then
+    if vim.fn.filereadable(schema) == 0 then
       return
     end
     local project_root = vim.fs.root(bufnr, root_markers) or vim.fn.getcwd()
