@@ -23,13 +23,12 @@ local state = {
 }
 
 local function enqueue(module)
-  if not module then
+  if module then
+    queue[module] = true
+  else
     for mod, _ in pairs(state) do
       queue[mod] = true
     end
-  end
-  if not queue[module] then
-    queue[module] = true
   end
 end
 
@@ -201,18 +200,20 @@ run()
 
 local group = vim.api.nvim_create_augroup("uStatusline", { clear = false })
 
+-- ::: COMPLETE REDRAW
 vim.api.nvim_create_autocmd({
-  "ModeChanged",
   "BufEnter",
+  "BufWritePost",
 }, {
   group = group,
   callback = function()
-    enqueue("mode")
+    enqueue()
     redraw()
   end,
 })
 
-vim.api.nvim_create_autocmd({ "BufEnter" }, {
+-- HACK:
+vim.api.nvim_create_autocmd("BufEnter", {
   group = group,
   once = true,
   callback = function()
@@ -222,88 +223,64 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
   end,
 })
 
-vim.api.nvim_create_autocmd({
-  "BufEnter",
-  "FileChangedShellPost",
-  "BufWritePost",
-}, {
+vim.api.nvim_create_autocmd("CursorMoved", {
   group = group,
   callback = function()
-    enqueue("branch")
-    enqueue("filename")
+    enqueue("filestatus")
+    enqueue("selection")
+    enqueue("location")
     redraw()
   end,
 })
 
--- vim.api.nvim_create_autocmd({
---   "BufModifiedSet",
---   "BufEnter",
---   "FileChangedShellPost",
---   "BufWritePost",
---   -- "ModeChanged",
--- }, {
---   group = group,
---   callback = function()
---     enqueue("filestatus")
---     redraw()
---   end,
--- })
-
--- vim.api.nvim_create_autocmd({ "OptionSet" }, {
---   pattern = {
---     "readonly",
---     "modifiable",
---   },
---   group = group,
---   callback = function()
---     enqueue("filestatus")
---     redraw()
---   end,
--- })
-
-vim.api.nvim_create_autocmd({
-  "BufEnter",
-  "FileChangedShellPost",
-  "BufWritePost",
-  "FileType",
-  "ModeChanged",
-}, {
+vim.api.nvim_create_autocmd("CursorMovedI", {
   group = group,
   callback = function()
-    enqueue("filetype")
+    enqueue("filestatus")
+    enqueue("location")
+    redraw()
   end,
 })
 
-vim.api.nvim_create_autocmd({
-  "CursorMoved",
-  "ModeChanged",
-}, {
+vim.api.nvim_create_autocmd("DiagnosticChanged", {
   group = group,
   callback = function()
+    enqueue("diagnostics")
+  end,
+})
+
+vim.api.nvim_create_autocmd("ModeChanged", {
+  group = group,
+  callback = function()
+    enqueue("mode")
+    enqueue("filetype")
     enqueue("selection")
     redraw()
   end,
 })
 
-vim.api.nvim_create_autocmd({
-  "CursorMoved",
-  "CursorMovedI",
-  "BufEnter",
-}, {
+vim.api.nvim_create_autocmd("FileChangedShellPost", {
   group = group,
   callback = function()
-    enqueue("location")
-    enqueue("filestatus")
+    enqueue("branch")
+    enqueue("filename")
+    enqueue("filetype")
     redraw()
   end,
 })
 
-vim.api.nvim_create_autocmd({
-  "DiagnosticChanged",
-  "BufEnter",
-}, {
+vim.api.nvim_create_autocmd("FileType", {
   group = group,
   callback = function()
-    enqueue("diagnostics")
+    enqueue("filetype")
+    redraw()
+  end,
+})
+
+vim.api.nvim_create_autocmd("TermLeave", {
+  group = group,
+  callback = function()
+    enqueue("mode")
+    redraw()
   end,
 })

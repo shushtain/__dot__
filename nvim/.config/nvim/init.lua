@@ -1,5 +1,3 @@
--- TODO: add simple mode for writing and other stuff, no IDE.
-
 require("config.options")
 require("config.keymaps")
 require("config.autocmd")

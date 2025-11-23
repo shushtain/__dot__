@@ -209,3 +209,14 @@ vim.api.nvim_create_autocmd(
     end,
   }
 )
+
+local keywords = {}
+for _, group in pairs(groups) do
+  for _, keyword in ipairs(group.kinds) do
+    table.insert(keywords, keyword)
+  end
+end
+local grep = "(" .. table.concat(keywords, "|") .. "):"
+vim.keymap.set("n", "<Leader>ft", function()
+  require("fzf-lua").live_grep({ search = grep, no_esc = true })
+end, { desc = "Find : Grep" })
