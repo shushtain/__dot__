@@ -6,40 +6,37 @@ vim.keymap.set({ "n", "v" }, "<Space>", "<NOP>")
 
 -- [[ FIXES ]]
 
-vim.keymap.set(
-  { "n", "x" },
-  "j",
-  "gj",
-  { noremap = true, silent = true, desc = "Visual Down" }
-)
-vim.keymap.set(
-  { "n", "x" },
-  "k",
-  "gk",
-  { noremap = true, silent = true, desc = "Visual Up" }
-)
+vim.keymap.set({ "n", "x" }, "j", "gj", { desc = "Visual Down" })
+vim.keymap.set({ "n", "x" }, "k", "gk", { desc = "Visual Up" })
 
-vim.keymap.set({ "n", "x" }, "x", '"_x', { noremap = true, desc = "Cut" })
-vim.keymap.set({ "n", "x" }, "X", '"_X', { noremap = true, desc = "Cut" })
-vim.keymap.set("v", "<", "<gv", { noremap = true, desc = "Dedent" })
-vim.keymap.set("v", ">", ">gv", { noremap = true, desc = "Indent" })
-vim.keymap.set("x", "p", '"_dP', { noremap = true, desc = "Paste" })
+vim.keymap.set({ "n", "x" }, "x", '"_x', { desc = "Cut" })
+vim.keymap.set({ "n", "x" }, "X", '"_X', { desc = "Cut" })
+vim.keymap.set("v", "<", "<gv", { desc = "Dedent" })
+vim.keymap.set("v", ">", ">gv", { desc = "Indent" })
+vim.keymap.set("x", "p", '"_dP', { desc = "Paste" })
 
-vim.keymap.set("i", "<M-h>", "<C-o>h", { noremap = true, desc = "Move left" })
-vim.keymap.set("i", "<M-l>", "<C-o>l", { noremap = true, desc = "Move right" })
-vim.keymap.set("i", "<M-;>", "<C-o>A", { noremap = true, desc = "Edit end" })
+vim.keymap.set("i", "<M-h>", "<C-o>h", { desc = "Move left" })
+vim.keymap.set("i", "<M-l>", "<C-o>l", { desc = "Move right" })
+vim.keymap.set("i", "<M-;>", "<C-o>A", { desc = "Edit end" })
 
-vim.keymap.set("n", "<M-h>", "<<", { noremap = true })
-vim.keymap.set("n", "<M-l>", ">>", { noremap = true })
-vim.keymap.set("x", "<M-h>", "<gv", { noremap = true })
-vim.keymap.set("x", "<M-l>", ">gv", { noremap = true })
+vim.keymap.set("n", "<M-h>", "<<")
+vim.keymap.set("n", "<M-l>", ">>")
+vim.keymap.set("x", "<M-h>", "<gv")
+vim.keymap.set("x", "<M-l>", ">gv")
 
-vim.keymap.set(
-  "n",
-  "<M-p>",
-  "0f{a<CR><Esc>P",
-  { noremap = true, desc = "Paste Inside {}" }
-)
+vim.keymap.set("n", "<M-p>", "0f{a<CR><Esc>P", { desc = "Paste Inside {}" })
+
+vim.keymap.set("n", "M", function()
+  local ch = vim.fn.getcharstr()
+  if ch:match("^%w$") then
+    ch = ch:upper()
+    vim.cmd("normal! m" .. ch)
+  else
+    if ch ~= "\27" then
+      vim.notify("Invalid mark " .. vim.inspect(ch))
+    end
+  end
+end, { desc = "Set file mark" })
 
 vim.keymap.set("n", "<Leader>tk", function()
   vim.o.keymap = vim.o.keymap == "" and "ukrainian-enhanced" or ""
@@ -60,7 +57,7 @@ vim.keymap.set("n", "<M-j>", function()
   end
   vim.cmd('normal! "qdd"qp')
   vim.fn.cursor({ cur[2] + 1, cur[3], cur[4], cur[5] })
-end, { noremap = true })
+end)
 
 vim.keymap.set("n", "<M-k>", function()
   local cur = vim.fn.getcurpos()
@@ -74,20 +71,20 @@ vim.keymap.set("n", "<M-k>", function()
   end
   vim.cmd('normal! "qP')
   vim.fn.cursor({ cur[2] - 1, cur[3], cur[4], cur[5] })
-end, { noremap = true })
+end)
 
 vim.keymap.set("n", "<M-S-j>", function()
   local cur = vim.fn.getcurpos()
   vim.cmd('normal! "qyy"qp')
   vim.fn.cursor({ cur[2] + 1, cur[3], cur[4], cur[5] })
-end, { noremap = true })
+end)
 
 vim.keymap.set("n", "<M-S-k>", function()
   local cur = vim.fn.getcurpos()
   vim.cmd('normal! "qyy')
   vim.cmd('normal! "qP')
   vim.fn.cursor({ cur[2], cur[3], cur[4], cur[5] })
-end, { noremap = true })
+end)
 
 vim.keymap.set("x", "<M-j>", function()
   if vim.fn.mode() ~= "V" then
@@ -106,7 +103,7 @@ vim.keymap.set("x", "<M-j>", function()
   vim.fn.setpos("'>", { ri[1], ri[2] + 1, ri[3], ri[4] })
   vim.cmd("normal! gv")
   vim.fn.cursor({ cur[2] + 1, cur[3], cur[4], cur[5] })
-end, { noremap = true })
+end)
 
 vim.keymap.set("x", "<M-k>", function()
   if vim.fn.mode() ~= "V" then
@@ -130,16 +127,11 @@ vim.keymap.set("x", "<M-k>", function()
   vim.fn.setpos("'>", { ri[1], ri[2] - 1, ri[3], ri[4] })
   vim.cmd("normal! gv")
   vim.fn.cursor({ cur[2] - 1, cur[3], cur[4], cur[5] })
-end, { noremap = true })
+end)
 
 -- [[ SPECIAL ]]
 
-vim.keymap.set(
-  "n",
-  "<Leader>:r",
-  "<Cmd> ri <CR>",
-  { silent = true, desc = "Format : Right" }
-)
+vim.keymap.set("n", "<Leader>:r", "<Cmd>ri<CR>", { desc = "Format : Right" })
 
 vim.keymap.set("n", "<Leader>:j", function()
   local tw = vim.o.textwidth
@@ -158,7 +150,7 @@ vim.keymap.set("n", "<Leader>:j", function()
   local e4 = cmd .. "nohlsearch\r"
 
   vim.api.nvim_feedkeys(e1 .. e2 .. e3 .. e4, "n", false)
-end, { silent = true, desc = "Format : Split-Justify" })
+end, { desc = "Format : Split-Justify" })
 
 vim.keymap.set("n", "U", "<Cmd> redo <CR>", { desc = "Redo" })
 vim.keymap.set("n", "<M-u>", "<Cmd> redo <CR>", { desc = "Redo" })
@@ -176,19 +168,19 @@ vim.keymap.set("n", "gco", function()
   local comment = vim.bo.commentstring
   comment = comment:gsub("%%s", "")
   vim.fn.feedkeys("o" .. comment)
-end, { noremap = true, desc = "Comment : Below" })
+end, { desc = "Comment : Below" })
 
 vim.keymap.set("n", "gcO", function()
   local comment = vim.bo.commentstring
   comment = comment:gsub("%%s", "")
   vim.fn.feedkeys("O" .. comment)
-end, { noremap = true, desc = "Comment : Above" })
+end, { desc = "Comment : Above" })
 
 vim.keymap.set("n", "gc;", function()
   local comment = vim.bo.commentstring
   comment = comment:gsub("%%s", "")
   vim.fn.feedkeys("A " .. comment)
-end, { noremap = true, desc = "Comment : Append" })
+end, { desc = "Comment : Append" })
 
 -- end comments
 
@@ -196,59 +188,39 @@ vim.keymap.set("n", "<Leader>ts", function()
   vim.opt.spell = not vim.o.spell
   local ns = vim.api.nvim_get_namespaces()["vim.lsp.typos_lsp.1"]
   vim.diagnostic.enable(vim.o.spell, { ns_id = ns })
-end, { noremap = true, desc = "Toggle : Spelling" })
+end, { desc = "Toggle : Spelling" })
 
 vim.keymap.set("n", "<Leader>td", function()
   vim.diagnostic.enable(not vim.diagnostic.is_enabled())
-end, { noremap = true, desc = "Toggle : Diagnostics" })
+end, { desc = "Toggle : Diagnostics" })
 
-vim.keymap.set(
-  "n",
-  "<Tab>",
-  "<Cmd> b # <CR>",
-  { noremap = true, desc = "Buffer : Back" }
-)
-vim.keymap.set(
-  "n",
-  "H",
-  "<Cmd> bprevious <CR>",
-  { noremap = true, desc = "Buffer : Prev" }
-)
-vim.keymap.set(
-  "n",
-  "L",
-  "<Cmd> bnext <CR>",
-  { noremap = true, desc = "Buffer : Next" }
-)
-vim.keymap.set(
-  "n",
-  "<Leader>`",
-  "<Cmd> tabnew <CR>",
-  { noremap = true, desc = "Tab : New" }
-)
+vim.keymap.set("n", "<Tab>", "<Cmd> b # <CR>", { desc = "Buffer : Back" })
+vim.keymap.set("n", "H", "<Cmd> bprevious <CR>", { desc = "Buffer : Prev" })
+vim.keymap.set("n", "L", "<Cmd> bnext <CR>", { desc = "Buffer : Next" })
+vim.keymap.set("n", "<Leader>`", "<Cmd> tabnew <CR>", { desc = "Tab : New" })
 vim.keymap.set(
   "n",
   "<Leader>~",
   "<Cmd> tabclose <CR>",
-  { noremap = true, desc = "Tab : Close" }
+  { desc = "Tab : Close" }
 )
 vim.keymap.set(
   "n",
   "<Leader><Tab>",
   "<Cmd> tabnext <CR>",
-  { noremap = true, desc = "Tab : Next" }
+  { desc = "Tab : Next" }
 )
 vim.keymap.set(
   "n",
   "<Leader><S-Tab>",
   "<Cmd> tabprevious <CR>",
-  { noremap = true, desc = "Tab : Prev" }
+  { desc = "Tab : Prev" }
 )
 vim.keymap.set(
   "n",
   "<Leader>tw",
   "<Cmd> set wrap! <CR>",
-  { noremap = true, desc = "Toggle : Wrap" }
+  { desc = "Toggle : Wrap" }
 )
 vim.keymap.set("n", "<Leader>t|", function()
   if #vim.wo.colorcolumn > 0 then
@@ -256,43 +228,23 @@ vim.keymap.set("n", "<Leader>t|", function()
   else
     vim.cmd("set cc=+1")
   end
-end, { noremap = true, desc = "Toggle : ColorColumn" })
+end, { desc = "Toggle : ColorColumn" })
 
 -- [[ BUFFER : •b ]]
 
 vim.keymap.set("n", "<Leader>bb", function()
   vim.fn.setreg("+", vim.fn.expand("%:~"))
   print('["+] ' .. vim.fn.expand("%:~"))
-end, { noremap = true, desc = "Buffer : Copy Path" })
-vim.keymap.set(
-  "n",
-  "<Leader>by",
-  "ggVGy<C-o>",
-  { noremap = true, desc = "Buffer : Copy All" }
-)
-vim.keymap.set(
-  "n",
-  "<Leader>bv",
-  "ggVG",
-  { noremap = true, desc = "Buffer : Select All" }
-)
-vim.keymap.set(
-  "n",
-  "<Leader>bd",
-  "ggVGd",
-  { noremap = true, desc = "Buffer : Delete All" }
-)
-vim.keymap.set(
-  "n",
-  "<Leader>bq",
-  "<Cmd> bd <CR>",
-  { noremap = true, desc = "Buffer : Quit" }
-)
+end, { desc = "Buffer : Copy Path" })
+vim.keymap.set("n", "<Leader>by", "ggVGy<C-o>", { desc = "Buffer : Copy All" })
+vim.keymap.set("n", "<Leader>bv", "ggVG", { desc = "Buffer : Select All" })
+vim.keymap.set("n", "<Leader>bd", "ggVGd", { desc = "Buffer : Delete All" })
+vim.keymap.set("n", "<Leader>bq", "<Cmd> bd <CR>", { desc = "Buffer : Quit" })
 vim.keymap.set(
   "n",
   "<Leader>bQ",
   "<Cmd> %bd <CR>",
-  { noremap = true, desc = "Buffer : Quit All" }
+  { desc = "Buffer : Quit All" }
 )
 
 -- [[ WINDOW : •w ]]
@@ -301,113 +253,108 @@ vim.keymap.set(
   "n",
   "<Leader>wh",
   "<Cmd> abo vsplit <CR>",
-  { noremap = true, desc = "Window : Split Left" }
+  { desc = "Window : Split Left" }
 )
 vim.keymap.set(
   "n",
   "<Leader>wj",
   "<Cmd> bel split <CR>",
-  { noremap = true, desc = "Window : Split Down" }
+  { desc = "Window : Split Down" }
 )
 vim.keymap.set(
   "n",
   "<Leader>wk",
   "<Cmd> abo split <CR>",
-  { noremap = true, desc = "Window : Split Up" }
+  { desc = "Window : Split Up" }
 )
 vim.keymap.set(
   "n",
   "<Leader>wl",
   "<Cmd> bel vsplit <CR>",
-  { noremap = true, desc = "Window : Split Right" }
+  { desc = "Window : Split Right" }
 )
 vim.keymap.set(
   "n",
   "<Leader>wH",
   "<Cmd> to vsplit <CR>",
-  { noremap = true, desc = "Window : Attach Left" }
+  { desc = "Window : Attach Left" }
 )
 vim.keymap.set(
   "n",
   "<Leader>wJ",
   "<Cmd> bo split <CR>",
-  { noremap = true, desc = "Window : Attach Down" }
+  { desc = "Window : Attach Down" }
 )
 vim.keymap.set(
   "n",
   "<Leader>wK",
   "<Cmd> to split <CR>",
-  { noremap = true, desc = "Window : Attach Up" }
+  { desc = "Window : Attach Up" }
 )
 vim.keymap.set(
   "n",
   "<Leader>wL",
   "<Cmd> bo vsplit <CR>",
-  { noremap = true, desc = "Window : Attach Right" }
+  { desc = "Window : Attach Right" }
 )
 
 vim.keymap.set(
   "n",
   "<Leader>h",
   "<Cmd> wincmd h <CR>",
-  { noremap = true, desc = "Window : Left" }
+  { desc = "Window : Left" }
 )
 vim.keymap.set(
   "n",
   "<Leader>j",
   "<Cmd> wincmd j <CR>",
-  { noremap = true, desc = "Window : Down" }
+  { desc = "Window : Down" }
 )
 vim.keymap.set(
   "n",
   "<Leader>k",
   "<Cmd> wincmd k <CR>",
-  { noremap = true, desc = "Window : Up" }
+  { desc = "Window : Up" }
 )
 vim.keymap.set(
   "n",
   "<Leader>l",
   "<Cmd> wincmd l <CR>",
-  { noremap = true, desc = "Window : Right" }
+  { desc = "Window : Right" }
 )
 
 vim.keymap.set(
   "n",
   "<Leader>H",
   "<Cmd> wincmd H <CR>",
-  { noremap = true, desc = "Window : Move Left" }
+  { desc = "Window : Move Left" }
 )
 vim.keymap.set(
   "n",
   "<Leader>J",
   "<Cmd> wincmd J <CR>",
-  { noremap = true, desc = "Window : Move Down" }
+  { desc = "Window : Move Down" }
 )
 vim.keymap.set(
   "n",
   "<Leader>K",
   "<Cmd> wincmd K <CR>",
-  { noremap = true, desc = "Window : Move Up" }
+  { desc = "Window : Move Up" }
 )
 vim.keymap.set(
   "n",
   "<Leader>L",
   "<Cmd> wincmd L <CR>",
-  { noremap = true, desc = "Window : Move Right" }
+  { desc = "Window : Move Right" }
 )
 
 vim.keymap.set(
   "n",
   "<Leader>=",
   "<Cmd> wincmd = <CR>",
-  { noremap = true, desc = "Window : Equalize" }
+  { desc = "Window : Equalize" }
 )
-vim.keymap.set(
-  "n",
-  "<Leader>wq",
-  "<Cmd> q <CR>",
-  { noremap = true, desc = "Window : Quit" }
-)
+vim.keymap.set("n", "<Leader>wq", "<Cmd> q <CR>", { desc = "Window : Quit" })
 
 vim.keymap.set("n", "<C-h>", "<C-w>5<")
 vim.keymap.set("n", "<C-l>", "<C-w>5>")

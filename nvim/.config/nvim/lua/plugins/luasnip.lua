@@ -28,15 +28,15 @@ return {
 
     vim.keymap.set({ "i", "s" }, "<C-n>", function()
       pcall(require("luasnip").change_choice, 1)
-    end, { silent = true, desc = "Snippets : Next Choice" })
+    end, {  desc = "Snippets : Next Choice" })
 
     vim.keymap.set({ "i", "s" }, "<C-p>", function()
       pcall(require("luasnip").change_choice, -1)
-    end, { silent = true, desc = "Snippets : Previous Choice" })
+    end, {  desc = "Snippets : Previous Choice" })
 
     vim.keymap.set({ "i", "s" }, "<C-e>", function()
       pcall(require("luasnip.extras.select_choice"))
-    end, { silent = true, desc = "Snippets : Select Choice" })
+    end, {  desc = "Snippets : Select Choice" })
 
     vim.keymap.set("n", '<Leader>"s', function()
       require("luasnip.loaders").edit_snippet_files()

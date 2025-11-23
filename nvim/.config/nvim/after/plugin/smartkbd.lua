@@ -32,4 +32,4 @@ vim.keymap.set("n", "<Leader>tK", function()
       { bg = vim.g.farba.palette.general.yellow.v15 }
     )
   end
-end, { noremap = true, desc = "Toggle : Smart Keyboard" })
+end, {  desc = "Toggle : Smart Keyboard" })

@@ -107,11 +107,10 @@ return {
 
     require("oil").setup(opts)
 
-    vim.keymap.set(
-      "n",
-      "<Leader>ee",
-      "<Cmd> Oil <CR>",
-      { noremap = true, desc = "Oil : Toggle" }
-    )
+    vim.keymap.set("n", "<Leader>ee", function()
+      local width = vim.api.nvim_win_get_config(0).width
+      local preview = width > 100 and { vertical = true } or nil
+      require("oil").open(nil, { preview = preview })
+    end, { desc = "Oil : Toggle" })
   end,
 }
