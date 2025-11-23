@@ -1,3 +1,5 @@
+vim.g.u_todos = true
+
 local groups = {
   -- ERROR: 𜱃𜱃𜱃𜱃𜱃
   --   FIX: 𜱃𜱃𜱃𜱃𜱃
@@ -80,6 +82,9 @@ vim.api.nvim_create_autocmd(
   {
     group = augroup,
     callback = function(args)
+      if not vim.g.u_todos then
+        return nil
+      end
       vim.api.nvim_buf_clear_namespace(args.buf, ns, 0, -1)
       vim.fn.sign_unplace("uTodos", { buffer = args.buf })
 
@@ -220,3 +225,11 @@ local grep = "(" .. table.concat(keywords, "|") .. "):"
 vim.keymap.set("n", "<Leader>ft", function()
   require("fzf-lua").live_grep({ search = grep, no_esc = true })
 end, { desc = "Find : Grep" })
+
+vim.keymap.set("n", "<Leader>tt", function()
+  vim.g.u_todos = not vim.g.u_todos
+  if not vim.g.u_todos then
+    vim.api.nvim_buf_clear_namespace(0, ns, 0, -1)
+    vim.fn.sign_unplace("uTodos", { buffer = 0 })
+  end
+end, { desc = "Toggle : Todos" })

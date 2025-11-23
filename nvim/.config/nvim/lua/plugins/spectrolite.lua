@@ -176,5 +176,15 @@ return {
       str = sp.print(model, color)
       sp.write(sel, str)
     end, { desc = "Spectrolite : Antihue" })
+
+    vim.keymap.set({ "n", "x" }, "<Leader>c\\", function()
+      local sp = require("spectrolite")
+      local str, _ = assert(sp.read())
+      local color, model = assert(sp.parse(str))
+      local normal = sp.normalize(model, color)
+      local output = sp.denormalize(model, normal)
+      output = sp.format(model, color)
+      vim.print({ model, color, normal, output })
+    end, { desc = "Spectrolite : Debug" })
   end,
 }

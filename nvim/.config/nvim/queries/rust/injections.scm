@@ -11,9 +11,3 @@
 ;       (string_content) @injection.content
 ;       (#set! injection.language "sql"))
 ;     (_)?))
-; --- draft
-; (((line_comment) @todo
-;   (#match? @todo "TODO"))
-;   (line_comment)* @comment)
-; ((line_comment)+ @comment
-;   (#any-match? @comment "TODO"))

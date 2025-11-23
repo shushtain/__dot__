@@ -39,9 +39,5 @@ return {
       show_keys = false,
       plugins = { spelling = { suggestions = 10 } },
     })
-
-    -- require("which-key").add({
-    --   { "<Leader>f", group = "Find" },
-    -- })
   end,
 }

@@ -117,14 +117,17 @@ local handler = {
 local function update()
   local updated = false
   for module, _ in pairs(queue) do
-    local tmp = handler["_" .. module]
-    if tmp then
-      state[module] = tmp()
-    else
-      vim.notify_once("Statusline module " .. module .. " missing a callback")
+    if module ~= "diagnostics" or vim.fn.mode() == "n" then
+      local callback = handler["_" .. module]
+      ---@diagnostic disable-next-line: unnecessary-if
+      if callback then
+        state[module] = callback()
+      else
+        vim.notify_once("Statusline module " .. module .. " missing a callback")
+      end
+      queue[module] = nil
+      updated = true
     end
-    queue[module] = nil
-    updated = true
   end
   return updated
 end

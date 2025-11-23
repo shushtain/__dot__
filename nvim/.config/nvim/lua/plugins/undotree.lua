@@ -30,7 +30,7 @@ return {
       "n",
       "<Leader>u",
       require("undotree").toggle,
-      {   desc = "Undotree" }
+      { desc = "Undotree" }
     )
   end,
 }
