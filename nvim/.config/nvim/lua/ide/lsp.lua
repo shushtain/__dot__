@@ -1,8 +1,24 @@
 -- vim.lsp.set_log_level("debug")
 
 vim.lsp.config("*", {
-  capabilities = require("blink.cmp").get_lsp_capabilities({}, true),
+  capabilities = require("blink.cmp").get_lsp_capabilities({
+    workspace = { didChangeConfiguration = { dynamicRegistration = true } },
+  }, true),
 })
+
+-- vim.lsp.config("*", {
+--   capabilities = vim.tbl_deep_extend(
+--     "force",
+--     vim.lsp.protocol.make_client_capabilities(),
+--     {
+--       workspace = {
+--         didChangeWatchedFiles = {
+--           dynamicRegistration = true,
+--         },
+--       },
+--     }
+--   ),
+-- })
 
 vim.lsp.enable("typos_lsp")
 -- vim.lsp.enable("ltex_enus")
