@@ -28,17 +28,17 @@ vim.keymap.set("x", "<M-l>", ">gv")
 
 vim.keymap.set("n", "<M-p>", "0f{a<CR><Esc>P", { desc = "Paste Inside {}" })
 
-vim.keymap.set("n", "M", function()
-  local ch = vim.fn.getcharstr()
-  if ch:match("^%w$") then
-    ch = ch:upper()
-    vim.cmd("normal! m" .. ch)
-  else
-    if ch ~= "\27" then
-      vim.notify("Invalid mark " .. vim.inspect(ch))
-    end
-  end
-end, { desc = "Set file mark" })
+-- vim.keymap.set("n", "M", function()
+--   local ch = vim.fn.getcharstr()
+--   if ch:match("^%w$") then
+--     ch = ch:upper()
+--     vim.cmd("normal! m" .. ch)
+--   else
+--     if ch ~= "\27" then
+--       vim.notify("Invalid mark " .. vim.inspect(ch))
+--     end
+--   end
+-- end, { desc = "Set file mark" })
 
 vim.keymap.set("n", "<Leader>tk", function()
   vim.o.keymap = vim.o.keymap == "" and "ukrainian-enhanced" or ""

@@ -119,7 +119,6 @@ end
 
 function handler.stats()
   local stats = {
-    smart_kbd = vim.g.smart_keyboard and "⌨" or "",
     keymap = vim.o.keymap ~= "" and "⌥" or "",
     format = vim.g.u_manual_formatting and "⨂" or "",
   }
