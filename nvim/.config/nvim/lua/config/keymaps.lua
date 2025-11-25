@@ -6,6 +6,8 @@ vim.keymap.set({ "n", "v" }, "<Space>", "<NOP>")
 
 -- [[ FIXES ]]
 
+vim.keymap.set("n", "<Leader>-", "<Cmd>messages<CR>")
+
 vim.keymap.set({ "n", "x" }, "j", "gj", { desc = "Visual Down" })
 vim.keymap.set({ "n", "x" }, "k", "gk", { desc = "Visual Up" })
 

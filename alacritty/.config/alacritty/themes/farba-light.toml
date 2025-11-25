@@ -8,31 +8,31 @@ cursor = "CellForeground"
 
 [colors.vi_mode_cursor]
 text = "#E6E6E6"
-cursor = "#C93F2A"
+cursor = "#B83F56"
 
 [colors.search.matches]
 foreground = "#E6E6E6"
-background = "#955D18"
+background = "#B83F56"
 
 [colors.search.focused_match]
 foreground = "#E6E6E6"
-background = "#754408"
+background = "#B83F56"
 
 [colors.hints.start]
 foreground = "#E6E6E6"
-background = "#754408"
+background = "#B83F56"
 
 [colors.hints.end]
 foreground = "#E6E6E6"
-background = "#754408"
+background = "#B83F56"
 
 [colors.line_indicator]
 foreground = "#E6E6E6"
-background = "#955D18"
+background = "#B83F56"
 
 [colors.footer_bar]
 foreground = "#E6E6E6"
-background = "#955D18"
+background = "#B83F56"
 
 [colors.selection]
 text = "CellForeground"

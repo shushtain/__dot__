@@ -102,6 +102,7 @@ function handler.diagnostics()
     end, 1000)
     return "𜱃"
   end
+
   local hl, sym = "DiagnosticSign", "█"
   local ndiags = vim.diagnostic.count(0)
   local errors = (ndiags[1] or 0) > 0

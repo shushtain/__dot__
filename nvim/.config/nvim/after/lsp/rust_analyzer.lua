@@ -42,6 +42,11 @@ return {
   },
   cmd = { "rust-analyzer" },
   root_dir = function(bufnr, on_dir)
+    local cwd = vim.fn.getcwd()
+    if vim.fn.filereadable(cwd .. "/.ignore") == 1 then
+      return
+    end
+
     local fname = vim.api.nvim_buf_get_name(bufnr)
     local reused_dir = is_library(fname)
     if reused_dir then

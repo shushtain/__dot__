@@ -5,23 +5,16 @@ vim.lsp.enable("emmylua__config")
 vim.lsp.enable("emmylua__snippets")
 
 vim.keymap.set("n", "<Leader>.", function()
+  vim.notify(". " .. vim.fn.expand("%"), vim.log.levels.INFO)
   vim.cmd("update")
   vim.cmd("source")
-  vim.notify(". " .. vim.fn.expand("%"), vim.log.levels.INFO)
-end, { buffer = true, desc = "Source File" })
+end, { buffer = true, desc = "Run : File" })
 
 vim.keymap.set(
   "n",
   "<Leader>,",
   "<Cmd> .lua <CR>",
-  { buffer = true, desc = "Run current line in Lua" }
-)
-
-vim.keymap.set(
-  "n",
-  "<Leader>'",
-  "<Plug>PlenaryTestFile",
-  { buffer = true, desc = "Test with Plenary" }
+  { buffer = true, desc = "Run : Line" }
 )
 
 vim.keymap.set("n", "<Leader>;", function()

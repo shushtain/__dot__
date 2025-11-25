@@ -2,7 +2,10 @@
 
 vim.lsp.config("*", {
   capabilities = require("blink.cmp").get_lsp_capabilities({
-    workspace = { didChangeConfiguration = { dynamicRegistration = true } },
+    workspace = {
+      didChangeConfiguration = { dynamicRegistration = true },
+      didChangeWatchedFiles = { dynamicRegistration = true },
+    },
   }, true),
 })
 

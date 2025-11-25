@@ -11,6 +11,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
   callback = function(env)
     if
       vim.bo[env.buf].buftype == ""
+      and vim.bo[env.buf].filetype == ""
       and vim.api.nvim_buf_get_name(env.buf) == ""
       and vim.api.nvim_buf_line_count(env.buf) == 1
     then
@@ -35,9 +36,10 @@ vim.api.nvim_create_autocmd("VimEnter", {
 vim.api.nvim_create_autocmd("BufWinLeave", {
   group = group,
   callback = function(env)
+    local filetype = vim.bo[env.buf].filetype
     local bufname = vim.api.nvim_buf_get_name(env.buf)
     local buftype = vim.bo[env.buf].buftype
-    if bufname ~= "" and buftype == "" then
+    if bufname ~= "" and buftype == "" and filetype ~= "gitcommit" then
       if vim.fn.isdirectory(state) == 0 then
         vim.fn.mkdir(state, "p")
       end
