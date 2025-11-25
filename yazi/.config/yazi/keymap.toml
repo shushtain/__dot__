@@ -6,6 +6,16 @@ run = 'shell "$SHELL" --block'
 desc = "Open $SHELL here"
 
 [[mgr.prepend_keymap]]
+on = "<A-A>"
+run = "toggle_all --state=on"
+desc = "Select all (force)"
+
+[[mgr.prepend_keymap]]
+on = "<A-a>"
+run = "toggle_all"
+desc = "Select all"
+
+[[mgr.prepend_keymap]]
 on = "<Enter>"
 run = "enter"
 desc = "Enter the child directory"

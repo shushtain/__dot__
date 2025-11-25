@@ -16,7 +16,7 @@ return {
       vim.fn.stdpath("data") .. "/site/parser",
     },
   },
-  on_attach = function(_, buf)
-    vim.bo[buf].omnifunc = "v:lua.vim.lsp.omnifunc"
-  end,
+  -- on_attach = function(_, buf)
+  --   vim.bo[buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+  -- end,
 }

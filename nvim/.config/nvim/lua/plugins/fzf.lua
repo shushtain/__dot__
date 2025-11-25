@@ -232,6 +232,13 @@ return {
     vim.keymap.set(
       "n",
       "<Leader>f'",
+      require("fzf-lua").marks,
+      { desc = "Find : Mark" }
+    )
+
+    vim.keymap.set(
+      "n",
+      '<Leader>f"',
       require("fzf-lua").registers,
       { desc = "Find : Register" }
     )
@@ -247,7 +254,7 @@ return {
       "n",
       "<Leader>fv",
       require("fzf-lua").nvim_options,
-      { desc = "Find : Neovim Options" }
+      { desc = "Find : Options" }
     )
 
     vim.keymap.set(
@@ -261,7 +268,7 @@ return {
       "n",
       "<Leader>fK",
       require("fzf-lua").spellcheck,
-      { desc = "Find : Spelling" }
+      { desc = "Find : Spellings" }
     )
 
     vim.keymap.set(

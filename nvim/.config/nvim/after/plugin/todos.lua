@@ -224,7 +224,7 @@ end
 local grep = "(" .. table.concat(keywords, "|") .. "):"
 vim.keymap.set("n", "<Leader>ft", function()
   require("fzf-lua").live_grep({ search = grep, no_esc = true })
-end, { desc = "Find : Grep" })
+end, { desc = "Find : Todos" })
 
 vim.keymap.set("n", "<Leader>tt", function()
   vim.g.u_todos = not vim.g.u_todos
