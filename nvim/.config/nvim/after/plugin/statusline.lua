@@ -1,11 +1,11 @@
 local modes = {
   ["N"] = "",
   ["I"] = "Insert",
+  ["S"] = "Insert",
   ["V"] = "Visual",
   ["C"] = "Command",
   ["O"] = "Command",
   ["R"] = "Replace",
-  ["S"] = "Replace",
   ["T"] = "Terminal",
 }
 

@@ -7,6 +7,7 @@ return {
   config = function()
     ---@type Farba.Config
     local flowerpot = {
+      cache = true,
       transparency = { normal = true, float = false },
       palette = {
         general = {

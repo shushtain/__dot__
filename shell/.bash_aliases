@@ -168,6 +168,14 @@ purge() {
     trash-empty
 }
 
+trash() {
+    if [[ $# -eq 0 ]]; then
+        trash-restore
+    else
+        trash-put "$@"
+    fi
+}
+
 pad() {
     local name="pad"
     if [[ $# -ge 1 ]]; then

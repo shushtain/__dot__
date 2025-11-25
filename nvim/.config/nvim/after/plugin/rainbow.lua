@@ -8,6 +8,7 @@ local function rainbow_loop()
 
   ---@type Farba.Config
   local theme = {
+    cache = true,
     transparency = { normal = true },
     palette = {
       general = {
@@ -52,6 +53,7 @@ vim.keymap.set("n", "<Leader>:w", function()
 
   if not vim.g.u_rainbow then
     local flowerpot = {
+      cache = true,
       transparency = { normal = true, float = false },
       palette = {
         general = {
