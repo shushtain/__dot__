@@ -74,9 +74,12 @@ vim.keymap.set("n", "K", function()
   vim.lsp.buf.hover({ max_width = 80, border = "solid" })
 end, { desc = "LSP : Documentation" })
 
-vim.keymap.set("i", "<C-k>", function()
-  vim.lsp.buf.signature_help()
-end, { desc = "LSP : Signature" })
+vim.keymap.set(
+  "i",
+  "<C-k>",
+  vim.lsp.buf.signature_help,
+  { desc = "LSP : Signature" }
+)
 
 vim.keymap.set("n", "<Leader>th", function()
   vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
@@ -87,14 +90,13 @@ vim.keymap.set("n", "<Leader>tv", function()
   vim.diagnostic.config({ virtual_lines = new_config })
 end, { desc = "Toggle : Virtual Lines" })
 
-vim.keymap.set("n", "<Leader>pf", function()
-  vim.lsp.buf.format()
-end, { desc = "LSP : Format" })
+vim.keymap.set(
+  { "n", "x" },
+  "<Leader>pf",
+  vim.lsp.buf.format,
+  { desc = "LSP : Format" }
+)
 
 vim.keymap.set("n", "<Leader>tf", function()
-  if not vim.g.u_manual_formatting then
-    vim.g.u_manual_formatting = true
-  else
-    vim.g.u_manual_formatting = false
-  end
+  vim.g.u_manual_formatting = not vim.g.u_manual_formatting
 end, { desc = "Toggle : Formatting" })
