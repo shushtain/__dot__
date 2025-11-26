@@ -1,0 +1,125 @@
+─ border solid L0 R0
+━ border solid L1 R1
+│ border solid U0 D0
+┃ border solid U1 D1
+╌ border dash2 L0 R0
+╍ border dash2 L1 R1
+╎ border dash2 U0 D0
+╏ border dash2 U1 D1
+┄ border dash3 L0 R0
+┅ border dash3 L1 R1
+┆ border dash3 U0 D0
+┇ border dash3 U1 D1
+┈ border dash4 L0 R0
+┉ border dash4 L1 R1
+┊ border dash4 U0 D0
+┋ border dash4 U1 D1
+┌ border solid R0 D0
+┍ border solid R1 D0
+┎ border solid R0 D1
+┏ border solid R1 D1
+┐ border solid L0 D0
+┑ border solid L1 D0
+┒ border solid L0 D1
+┓ border solid L1 D1
+└ border solid U0 R0
+┕ border solid U0 R1
+┖ border solid U1 R0
+┗ border solid U1 R1
+┘ border solid U0 L0
+┙ border solid U0 L1
+┚ border solid U1 L0
+┛ border solid U1 L1
+├ border solid U0 R0 D0
+┝ border solid U0 R1 D0
+┞ border solid U1 R0 D0
+┟ border solid U0 R0 D1
+┠ border solid U1 R0 D1
+┡ border solid U1 R1 D0
+┢ border solid U0 R1 D1
+┣ border solid U1 R1 D1
+┤ border solid U0 L0 D0
+┥ border solid U0 L1 D0
+┦ border solid U1 L0 D0
+┧ border solid U0 L0 D1
+┨ border solid U1 L0 D1
+┩ border solid U1 L1 D0
+┪ border solid U0 L1 D1
+┫ border solid U1 L1 D1
+┬ border solid L0 R0 D0
+┭ border solid L1 R0 D0
+┮ border solid L0 R1 D0
+┯ border solid L1 R1 D0
+┰ border solid L0 R0 D1
+┱ border solid L1 R0 D1
+┲ border solid L0 R1 D1
+┳ border solid L1 R1 D1
+┴ border solid L0 R0 U0
+┵ border solid L1 R0 U0
+┶ border solid L0 R1 U0
+┷ border solid L1 R1 U0
+┸ border solid L0 R0 U1
+┹ border solid L1 R0 U1
+┺ border solid L0 R1 U1
+┻ border solid L1 R1 U1
+┼ border solid U0 D0 L0 R0
+┽ border solid U0 D0 L1 R0
+┾ border solid U0 D0 L0 R1
+┿ border solid U0 D0 L1 R1
+╀ border solid U1 D0 L0 R0
+╁ border solid U0 D1 L0 R0
+╂ border solid U1 D1 L0 R0
+╃ border solid U1 D0 L1 R0
+╄ border solid U1 D0 L0 R1
+╅ border solid U0 D1 L1 R0
+╆ border solid U0 D1 L0 R1
+╇ border solid U1 D0 L1 R1
+╈ border solid U0 D1 L1 R1
+╉ border solid U1 D1 L1 R0
+╊ border solid U1 D1 L0 R1
+╋ border solid U1 D1 L1 R1
+═ border solid L2 R2
+║ border solid U2 D2
+╒ border solid R2 D0
+╓ border solid R0 D2
+╔ border solid R2 D2
+╕ border solid L2 D0
+╖ border solid L0 D2
+╗ border solid L2 D2
+╘ border solid U0 R2
+╙ border solid U2 R0
+╚ border solid U2 R2
+╛ border solid U0 L2
+╜ border solid U2 L0
+╝ border solid U2 L2
+╞ border solid U0 R2 D0
+╟ border solid U2 R0 D2
+╠ border solid U2 R2 D2
+╡ border solid U0 L2 D0
+╢ border solid U2 L0 D2
+╣ border solid U2 L2 D2
+╤ border solid L2 R2 D0
+╥ border solid L0 R0 D2
+╦ border solid L2 R2 D2
+╧ border solid U0 L2 R2
+╨ border solid U2 L0 R0
+╩ border solid U2 L2 R2
+╪ border solid U0 D0 L2 R2
+╫ border solid U2 D2 L0 R0
+╬ border solid U2 D2 L2 R2
+╭ border round R0 D0
+╮ border round L0 D0
+╯ border round U0 L0
+╰ border round U0 R0
+╴ border solid L0
+╵ border solid U0
+╶ border solid R0
+╷ border solid D0
+╸ border solid L1
+╹ border solid U1
+╺ border solid R1
+╻ border solid D1
+╼ border solid L0 R1
+╽ border solid U0 D1
+╾ border solid L1 R0
+╿ border solid U1 D0

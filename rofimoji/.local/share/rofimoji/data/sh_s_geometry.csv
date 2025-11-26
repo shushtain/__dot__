@@ -1,0 +1,49 @@
+■ geometry square black
+□ geometry square white
+⊞ geometry square white cross
+⊟ geometry square white minus
+⊠ geometry square white plus
+⊡ geometry square white dot
+▪ geometry square small black
+▫ geometry square small white
+▲ geometry triangle up black
+△ geometry triangle up white
+▴ geometry triangle up small black
+▵ geometry triangle up small white
+▶ geometry triangle right black
+▷ geometry triangle right white
+▸ geometry triangle right small black
+▹ geometry triangle right small white
+▼ geometry triangle down black
+▽ geometry triangle down white
+▾ geometry triangle down small black
+▿ geometry triangle down small white
+◀ geometry triangle left black
+◁ geometry triangle left white
+◂ geometry triangle left small black
+◃ geometry triangle left small white
+◆ geometry diamond black
+◇ geometry diamond white
+● geometry circle black
+○ geometry circle white
+⊕ geometry circle white plus
+⊖ geometry circle white minus
+⊗ geometry circle white cross
+⊘ geometry circle white slash
+⊙ geometry circle white dot
+⊝ geometry circle white dash
+◌ geometry circle white dotted
+◜ geometry arc left up
+◝ geometry arc up right
+◞ geometry arc right down
+◟ geometry arc down left
+◠ geometry arc left up right
+◡ geometry arc right down left
+◢ geometry corner down right
+◣ geometry corner down left
+◤ geometry corner up left
+◥ geometry corner up right
+◧ geometry square half left
+◨ geometry square half right
+◩ geometry square half up left
+◪ geometry square half down right
