@@ -64,7 +64,7 @@ function handler.filestatus()
   --   return "∅"
   -- end
   local readonly = vim.bo.readonly and "⌀" or ""
-  local modified = vim.bo.modified and "🞸" or ""
+  local modified = vim.bo.modified and "🞷" or ""
   return readonly .. modified
 end
 

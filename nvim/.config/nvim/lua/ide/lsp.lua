@@ -27,7 +27,6 @@ vim.lsp.enable("typos_lsp")
 -- vim.lsp.enable("ltex_enus")
 
 vim.api.nvim_create_autocmd("LspAttach", {
-  group = vim.api.nvim_create_augroup("uLspAttach", { clear = true }),
   callback = function(ev)
     local client = vim.lsp.get_client_by_id(ev.data.client_id)
     if not client then
@@ -53,21 +52,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
         buffer = ev.buf,
         group = group,
         callback = vim.lsp.buf.clear_references,
-      })
-    end
-
-    if
-      not client:supports_method("textDocument/willSaveWaitUntil")
-      and client:supports_method("textDocument/formatting")
-    then
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        group = vim.api.nvim_create_augroup("uLspFormat", { clear = false }),
-        buffer = ev.buf,
-        callback = function()
-          if not vim.g.u_manual_formatting then
-            vim.lsp.buf.format({ bufnr = ev.buf, id = client.id })
-          end
-        end,
       })
     end
   end,

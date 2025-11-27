@@ -1,6 +1,6 @@
--- TODO: Try native
 return {
   "Saghen/blink.cmp",
+  -- enabled = false,
   version = "1.*",
   dependencies = { { "L3MON4D3/LuaSnip", version = "v2.*" } },
   config = function()
