@@ -22,6 +22,7 @@ vim.keymap.set("n", "<Leader>'m", function()
     return
   end
   vim.cmd("nohlsearch")
+  vim.fn.cursor({ cur[2], cur[3], cur[4], cur[5] })
 end, { buffer = true, desc = "Toggle mut" })
 
 vim.keymap.set("n", "<Leader>'p", function()

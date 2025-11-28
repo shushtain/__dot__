@@ -73,7 +73,7 @@ local function get_query(node, group)
   end
 end
 
-local augroup = vim.api.nvim_create_augroup("uTodos", { clear = true })
+local augroup = vim.api.nvim_create_augroup("uTodos", { clear = false })
 local ns = vim.api.nvim_create_namespace("uTodos")
 local queries = {}
 

@@ -33,7 +33,6 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.api.nvim_create_autocmd("BufEnter", {
-  group = vim.api.nvim_create_augroup("uOptsEnter", { clear = true }),
   callback = function()
     vim.opt_local.listchars = {
       -- tab = "▏ ⇥",
@@ -60,21 +59,18 @@ vim.api.nvim_create_autocmd("BufEnter", {
 })
 
 vim.api.nvim_create_autocmd("TextYankPost", {
-  group = vim.api.nvim_create_augroup("uHighlightOnYank", { clear = true }),
   callback = function()
     vim.hl.on_yank()
   end,
 })
 
 vim.api.nvim_create_autocmd("TermOpen", {
-  group = vim.api.nvim_create_augroup("uTermOpen", { clear = true }),
   callback = function()
     vim.wo.spell = false
   end,
 })
 
 vim.api.nvim_create_autocmd("VimEnter", {
-  group = vim.api.nvim_create_augroup("uRustStarter", { clear = true }),
   once = true,
   callback = function(env)
     local bufname = vim.api.nvim_buf_get_name(env.buf)

@@ -1,4 +1,4 @@
-local group = vim.api.nvim_create_augroup("uLastFile", { clear = true })
+local group = vim.api.nvim_create_augroup("uLastFile", { clear = false })
 
 local state = vim.fn.stdpath("state") .. "/lastfile/"
 local function hash()

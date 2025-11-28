@@ -15,6 +15,7 @@ end
 vim.api.nvim_create_user_command("Zen", function()
   zenify("number", false)
   zenify("relativenumber", false)
+  zenify("cursorline", false)
   zenify("signcolumn", "no")
   zenify("scrolloff", 999)
   zenify("showmode", false)
@@ -38,7 +39,6 @@ vim.keymap.set(
 )
 
 vim.api.nvim_create_autocmd("VimLeavePre", {
-  group = vim.api.nvim_create_augroup("uLeaveZen", { clear = true }),
   callback = function()
     ---@diagnostic disable-next-line: unnecessary-if
     if vim.g.zen.active then
