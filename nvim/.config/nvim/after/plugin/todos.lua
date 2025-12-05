@@ -4,42 +4,49 @@ local groups = {
   -- ERROR: 𜱃𜱃𜱃𜱃𜱃
   --   FIX: 𜱃𜱃𜱃𜱃𜱃
   error = {
+    important = true,
     kinds = { "ERROR", "FIX", "BUG", "ISSUE", "FIXME", "FIXIT" },
     color = "#FF4A20",
   },
   -- WARN:  𜱃𜱃𜱃𜱃𜱃
   -- :XXX:  𜱃𜱃𜱃𜱃𜱃
   warn = {
+    important = true,
     kinds = { "WARN", "WARNING", "XXX", "HACK" },
     color = "#FF8000",
   },
   -- INFO:  𜱃𜱃𜱃𜱃𜱃
   -- other  𜱃𜱃𜱃𜱃𜱃
   info = {
+    important = false,
     kinds = { "INFO", "NOTE" },
     color = "#81AE64",
   },
   -- TEST:  𜱃𜱃𜱃𜱃𜱃
   --    --  𜱃𜱃𜱃𜱃𜱃
   test = {
+    important = true,
     kinds = { "TEST", "TESTING", "PASSED", "FAILED", "PASS", "FAIL" },
     color = "#47DDAA",
   },
   -- TODO:  𜱃𜱃𜱃𜱃𜱃
   --        𜱃𜱃𜱃𜱃𜱃
   todo = {
+    important = true,
     kinds = { "TODO" },
     color = "#1AB9D1",
   },
   -- PERF:  𜱃𜱃𜱃𜱃𜱃
   --        𜱃𜱃𜱃𜱃𜱃
   perf = {
+    important = true,
     kinds = { "PERF", "OPTIM", "PERFORMANCE", "OPTIMIZE" },
     color = "#B575FF",
   },
   -- :::    𜱃𜱃𜱃𜱃𜱃
   --    ~>: 𜱃𜱃𜱃𜱃𜱃
   mark = {
+    important = false,
     kinds = { "::", "~>" },
     pattern = "(::|\\\\~\\\\>):",
     color = "#FF6299",
@@ -221,9 +228,22 @@ for _, group in pairs(groups) do
     table.insert(keywords, keyword)
   end
 end
-local grep = "(" .. table.concat(keywords, "|") .. "):"
+local prompt_keywords = "(" .. table.concat(keywords, "|") .. "):"
+vim.keymap.set("n", "<Leader>fT", function()
+  require("fzf-lua").live_grep({ search = prompt_keywords, no_esc = true })
+end, { desc = "Find : Todos All" })
+
+local important = {}
+for _, group in pairs(groups) do
+  if group.important then
+    for _, keyword in ipairs(group.kinds) do
+      table.insert(important, keyword)
+    end
+  end
+end
+local prompt_important = "(" .. table.concat(important, "|") .. "):"
 vim.keymap.set("n", "<Leader>ft", function()
-  require("fzf-lua").live_grep({ search = grep, no_esc = true })
+  require("fzf-lua").live_grep({ search = prompt_important, no_esc = true })
 end, { desc = "Find : Todos" })
 
 vim.keymap.set("n", "<Leader>tt", function()

@@ -70,27 +70,6 @@ vim.api.nvim_create_autocmd("TermOpen", {
   end,
 })
 
-vim.api.nvim_create_autocmd("VimEnter", {
-  once = true,
-  callback = function(env)
-    local bufname = vim.api.nvim_buf_get_name(env.buf)
-    local line_count = vim.api.nvim_buf_line_count(env.buf)
-
-    if bufname == "" and line_count == 1 then
-      local path = vim.fn.getcwd() .. "/src/"
-      if vim.fn.filereadable(path .. "main.rs") == 1 then
-        vim.schedule(function()
-          vim.cmd("e " .. path .. "main.rs")
-        end)
-      elseif vim.fn.filereadable(path .. "lib.rs") == 1 then
-        vim.schedule(function()
-          vim.cmd("e " .. path .. "lib.rs")
-        end)
-      end
-    end
-  end,
-})
-
 vim.api.nvim_create_user_command("I", function(cmd)
   local result = vim.fn.execute(cmd.args)
   local rows = vim.split(result, "\n")

@@ -20,14 +20,25 @@ vim.api.nvim_create_autocmd("VimEnter", {
         local file = vim.fn.readfile(path)
         local filename = file[1]
         if vim.fn.filereadable(filename) == 1 then
+          local curpos = { file[2], file[3] }
           vim.schedule(function()
-            vim.cmd("e " .. filename)
-            vim.fn.bufload(filename)
-            local curpos = { file[2], file[3] }
-            vim.fn.cursor(curpos)
-            vim.cmd("normal! zz")
+            pcall(vim.cmd, "e " .. filename)
+            pcall(vim.fn.cursor, curpos)
+            pcall(vim.cmd, "normal! zz")
           end)
         end
+        return
+      end
+
+      path = vim.fn.getcwd() .. "/src/"
+      if vim.fn.filereadable(path .. "main.rs") == 1 then
+        vim.schedule(function()
+          vim.cmd("e " .. path .. "main.rs")
+        end)
+      elseif vim.fn.filereadable(path .. "lib.rs") == 1 then
+        vim.schedule(function()
+          vim.cmd("e " .. path .. "lib.rs")
+        end)
       end
     end
   end,
@@ -39,7 +50,13 @@ vim.api.nvim_create_autocmd("BufWinLeave", {
     local filetype = vim.bo[env.buf].filetype
     local bufname = vim.api.nvim_buf_get_name(env.buf)
     local buftype = vim.bo[env.buf].buftype
-    if bufname ~= "" and buftype == "" and filetype ~= "gitcommit" then
+    local cwd = vim.fn.getcwd()
+    if
+      bufname ~= ""
+      and buftype == ""
+      and filetype ~= "gitcommit"
+      and cwd ~= vim.fn.getenv("HOME")
+    then
       if vim.fn.isdirectory(state) == 0 then
         vim.fn.mkdir(state, "p")
       end

@@ -22,6 +22,9 @@ return {
   filetypes = { "rust" },
   settings = {
     ["rust-analyzer"] = {
+      cargo = {
+        features = "all",
+      },
       assist = {
         preferSelf = true,
       },

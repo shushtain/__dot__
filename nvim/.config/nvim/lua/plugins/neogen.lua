@@ -10,35 +10,10 @@ return {
       },
     })
 
-    vim.keymap.set(
-      "n",
-      "<Leader>yy",
-      "<Cmd> Neogen <CR>",
-      {   }
-    )
-    vim.keymap.set(
-      "n",
-      "<Leader>yf",
-      "<Cmd> Neogen func <CR>",
-      {   }
-    )
-    vim.keymap.set(
-      "n",
-      "<Leader>yc",
-      "<Cmd> Neogen class <CR>",
-      {   }
-    )
-    vim.keymap.set(
-      "n",
-      "<Leader>yt",
-      "<Cmd> Neogen type <CR>",
-      {   }
-    )
-    vim.keymap.set(
-      "n",
-      "<Leader>yb",
-      "<Cmd> Neogen file <CR>",
-      {   }
-    )
+    vim.keymap.set("n", "<Leader>yy", "<Cmd> Neogen <CR>", {})
+    vim.keymap.set("n", "<Leader>yf", "<Cmd> Neogen func <CR>", {})
+    vim.keymap.set("n", "<Leader>yc", "<Cmd> Neogen class <CR>", {})
+    vim.keymap.set("n", "<Leader>yt", "<Cmd> Neogen type <CR>", {})
+    vim.keymap.set("n", "<Leader>yb", "<Cmd> Neogen file <CR>", {})
   end,
 }

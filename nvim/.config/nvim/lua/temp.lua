@@ -18,3 +18,25 @@
 --     end
 --   end,
 -- })
+
+-- local function scratch()
+--   local buf = vim.api.nvim_create_buf(false, false)
+--   vim.bo[buf].buftype = "nofile"
+--   vim.bo[buf].bufhidden = "hide"
+--   vim.bo[buf].swapfile = false
+--   vim.bo[buf].filetype = "lua"
+--   vim.api.nvim_set_current_buf(buf)
+-- end
+--
+-- vim.keymap.set("n", "<leader>Y", scratch, { desc = "Scratch" })
+
+-- vim.lsp.config('jsonls', {
+-- 	name = "jsonls",
+-- 	cmd = { 'vscode-json-language-server', '--stdio' },
+-- 	filetypes = { 'json', 'jsonc' },
+-- 	init_options = {
+-- 		provideFormatter = true,
+-- 	},
+-- 	root_markers = { '.git' },
+-- })
+-- vim.lsp.enable({ "jsonls" })

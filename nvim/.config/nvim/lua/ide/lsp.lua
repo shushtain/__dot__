@@ -40,6 +40,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
       end,
     })
 
+    -- vim.keymap.set("i", "<C-Space>", "<C-x><C-o>")
+
     if client:supports_method("textDocument/documentHighlight") then
       local group =
         vim.api.nvim_create_augroup("uLspHighlight", { clear = false })

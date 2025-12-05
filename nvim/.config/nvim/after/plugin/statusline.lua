@@ -217,7 +217,7 @@ run()
 
 local group = vim.api.nvim_create_augroup("uStatusline", { clear = false })
 
--- ::: COMPLETE REDRAW
+-- ::: events for complete redraw
 vim.api.nvim_create_autocmd({
   "BufEnter",
   "BufWritePost",
@@ -229,7 +229,7 @@ vim.api.nvim_create_autocmd({
   end,
 })
 
--- HACK:
+-- ::: initial branch
 vim.api.nvim_create_autocmd("BufEnter", {
   group = group,
   once = true,

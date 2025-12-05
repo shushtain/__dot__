@@ -1,4 +1,3 @@
--- TEST: emmet_ls instead?
 ---@type vim.lsp.Config
 return {
   filetypes = {
