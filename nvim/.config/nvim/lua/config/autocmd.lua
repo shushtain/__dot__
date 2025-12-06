@@ -35,11 +35,10 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("BufEnter", {
   callback = function()
     vim.opt_local.listchars = {
-      -- tab = "▏ ⇥",
       tab = "▎ ",
       multispace = "·",
       lead = "·",
-      leadmultispace = "▏" .. string.rep(" ", vim.bo.shiftwidth - 1),
+      leadmultispace = "▏" .. (" "):rep(vim.fn.shiftwidth() - 1),
       trail = "·",
       nbsp = "␣",
     }

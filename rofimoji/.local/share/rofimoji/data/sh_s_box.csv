@@ -1,0 +1,125 @@
+─ box solid L0 R0
+━ box solid L1 R1
+│ box solid U0 D0
+┃ box solid U1 D1
+╌ box dash2 L0 R0
+╍ box dash2 L1 R1
+╎ box dash2 U0 D0
+╏ box dash2 U1 D1
+┄ box dash3 L0 R0
+┅ box dash3 L1 R1
+┆ box dash3 U0 D0
+┇ box dash3 U1 D1
+┈ box dash4 L0 R0
+┉ box dash4 L1 R1
+┊ box dash4 U0 D0
+┋ box dash4 U1 D1
+┌ box solid R0 D0
+┍ box solid R1 D0
+┎ box solid R0 D1
+┏ box solid R1 D1
+┐ box solid L0 D0
+┑ box solid L1 D0
+┒ box solid L0 D1
+┓ box solid L1 D1
+└ box solid U0 R0
+┕ box solid U0 R1
+┖ box solid U1 R0
+┗ box solid U1 R1
+┘ box solid U0 L0
+┙ box solid U0 L1
+┚ box solid U1 L0
+┛ box solid U1 L1
+├ box solid U0 R0 D0
+┝ box solid U0 R1 D0
+┞ box solid U1 R0 D0
+┟ box solid U0 R0 D1
+┠ box solid U1 R0 D1
+┡ box solid U1 R1 D0
+┢ box solid U0 R1 D1
+┣ box solid U1 R1 D1
+┤ box solid U0 L0 D0
+┥ box solid U0 L1 D0
+┦ box solid U1 L0 D0
+┧ box solid U0 L0 D1
+┨ box solid U1 L0 D1
+┩ box solid U1 L1 D0
+┪ box solid U0 L1 D1
+┫ box solid U1 L1 D1
+┬ box solid L0 R0 D0
+┭ box solid L1 R0 D0
+┮ box solid L0 R1 D0
+┯ box solid L1 R1 D0
+┰ box solid L0 R0 D1
+┱ box solid L1 R0 D1
+┲ box solid L0 R1 D1
+┳ box solid L1 R1 D1
+┴ box solid L0 R0 U0
+┵ box solid L1 R0 U0
+┶ box solid L0 R1 U0
+┷ box solid L1 R1 U0
+┸ box solid L0 R0 U1
+┹ box solid L1 R0 U1
+┺ box solid L0 R1 U1
+┻ box solid L1 R1 U1
+┼ box solid U0 D0 L0 R0
+┽ box solid U0 D0 L1 R0
+┾ box solid U0 D0 L0 R1
+┿ box solid U0 D0 L1 R1
+╀ box solid U1 D0 L0 R0
+╁ box solid U0 D1 L0 R0
+╂ box solid U1 D1 L0 R0
+╃ box solid U1 D0 L1 R0
+╄ box solid U1 D0 L0 R1
+╅ box solid U0 D1 L1 R0
+╆ box solid U0 D1 L0 R1
+╇ box solid U1 D0 L1 R1
+╈ box solid U0 D1 L1 R1
+╉ box solid U1 D1 L1 R0
+╊ box solid U1 D1 L0 R1
+╋ box solid U1 D1 L1 R1
+═ box solid L2 R2
+║ box solid U2 D2
+╒ box solid R2 D0
+╓ box solid R0 D2
+╔ box solid R2 D2
+╕ box solid L2 D0
+╖ box solid L0 D2
+╗ box solid L2 D2
+╘ box solid U0 R2
+╙ box solid U2 R0
+╚ box solid U2 R2
+╛ box solid U0 L2
+╜ box solid U2 L0
+╝ box solid U2 L2
+╞ box solid U0 R2 D0
+╟ box solid U2 R0 D2
+╠ box solid U2 R2 D2
+╡ box solid U0 L2 D0
+╢ box solid U2 L0 D2
+╣ box solid U2 L2 D2
+╤ box solid L2 R2 D0
+╥ box solid L0 R0 D2
+╦ box solid L2 R2 D2
+╧ box solid U0 L2 R2
+╨ box solid U2 L0 R0
+╩ box solid U2 L2 R2
+╪ box solid U0 D0 L2 R2
+╫ box solid U2 D2 L0 R0
+╬ box solid U2 D2 L2 R2
+╭ box round R0 D0
+╮ box round L0 D0
+╯ box round U0 L0
+╰ box round U0 R0
+╴ box solid L0
+╵ box solid U0
+╶ box solid R0
+╷ box solid D0
+╸ box solid L1
+╹ box solid U1
+╺ box solid R1
+╻ box solid D1
+╼ box solid L0 R1
+╽ box solid U0 D1
+╾ box solid L1 R0
+╿ box solid U1 D0

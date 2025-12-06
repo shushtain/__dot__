@@ -229,6 +229,7 @@ end, { desc = "Buffer : Copy Path" })
 vim.keymap.set("n", "<Leader>by", "ggVGy<C-o>", { desc = "Buffer : Copy All" })
 vim.keymap.set("n", "<Leader>bv", "ggVG", { desc = "Buffer : Select All" })
 vim.keymap.set("n", "<Leader>bd", "ggVGd", { desc = "Buffer : Delete All" })
+vim.keymap.set("n", "<Leader>bn", "<Cmd> enew <CR>", { desc = "Buffer : New" })
 vim.keymap.set("n", "<Leader>bq", "<Cmd> bd <CR>", { desc = "Buffer : Quit" })
 vim.keymap.set(
   "n",
