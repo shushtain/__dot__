@@ -11,7 +11,7 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.formatoptions:remove("o")
 
     local ft = vim.bo.filetype
-    local lang = vim.treesitter.language.get_lang(ft) or ft
+    local lang = vim.treesitter.language.get_lang(ft)
 
     -- local filename = vim.fn.bufname()
     -- if filename:match("source/templates/.+%.html$") then
@@ -20,6 +20,8 @@ vim.api.nvim_create_autocmd("FileType", {
 
     if not vim.treesitter.language.add(lang) then
       require("nvim-treesitter").install(lang)
+    else
+      require("nvim-treesitter").update(lang)
     end
 
     if vim.treesitter.language.add(lang) then

@@ -1,6 +1,6 @@
 return {
   "shushtain/nvim-treesitter-incremental-selection",
-  -- enabled = false,
+  enabled = false,
   dir = vim.fn.expand("~/box/tsis.nvim"),
   dev = true,
   config = function()

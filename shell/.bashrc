@@ -61,7 +61,7 @@ __ps1() {
     __ps1_vspace="\n"
 
     # for alacritty
-    echo -e -n "\\x1b[0 q"
+    printf "\x1b[0 q"
 }
 PROMPT_COMMAND=__ps1
 PS0="\[\e[0m\]"

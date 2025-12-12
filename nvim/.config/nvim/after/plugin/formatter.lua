@@ -23,10 +23,10 @@ vim.api.nvim_create_autocmd("BufWritePre", {
       return
     end
 
-    local filepath = vim.api.nvim_buf_get_name(args.buf)
+    -- local filepath = vim.api.nvim_buf_get_name(args.buf)
     local cmd = (filetype == "json" or filetype == "jsonc")
-        and { "prettier", "--trailing-comma", "none", filepath }
-      or { "prettier", filepath }
+        and { "prettier", "--trailing-comma", "none", "--parser", filetype }
+      or { "prettier", "--parser", filetype }
 
     local lines = vim.api.nvim_buf_get_lines(args.buf, 0, -1, false)
     local result = vim.system(cmd, { text = true, stdin = lines }):wait(500)
