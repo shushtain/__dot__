@@ -1,5 +1,6 @@
 return {
   "mfussenegger/nvim-lint",
+  -- enabled = vim.env.NVIM_NOIDE == nil,
   enabled = false,
   config = function()
     require("lint").linters_by_ft = {

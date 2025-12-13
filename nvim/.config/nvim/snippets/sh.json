@@ -1,0 +1,48 @@
+{
+  "case": {
+    "prefix": "~case",
+    "body": [
+      "case \"\\$${1:VAR}\" in",
+      "\t${2:1}) echo 1",
+      "\t;;",
+      "\t${3:2|3}) echo 2 or 3",
+      "\t;;",
+      "\t*) echo default",
+      "\t;;",
+      "esac"
+    ]
+  },
+  "if": {
+    "prefix": "~if",
+    "body": ["if [[ ${1:condition} ]]; then", "\t${0}", "fi"]
+  },
+  "elseif": {
+    "prefix": "~elseif",
+    "body": ["elif [[ ${1:condition} ]]; then", "\t${0}"]
+  },
+  "forin": {
+    "prefix": "~forin",
+    "body": ["for ${1:VAR} in ${0:LIST}; do", "\techo \"\\$${1:VAR}\"", "done"]
+  },
+  "fori": {
+    "prefix": "~fori",
+    "body": [
+      "for ((${1:i} = 0; ${1:i} < ${0:10}; ${1:i}++)); do",
+      "\techo \"\\$${1:i}\"",
+      "done",
+      ""
+    ]
+  },
+  "while": {
+    "prefix": "~while",
+    "body": ["while [[ ${1:condition} ]]; do", "\t${0}", "done", ""]
+  },
+  "until": {
+    "prefix": "~until",
+    "body": ["until [[ ${1:condition} ]]; do", "\t${0}", "done", ""]
+  },
+  "shebang": {
+    "prefix": "#!",
+    "body": ["#!/usr/bin/env ${1:bash}"]
+  }
+}

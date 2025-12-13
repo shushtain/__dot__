@@ -1,7 +1,5 @@
 vim.bo.shiftwidth = 2
 
-vim.lsp.enable("emmylua")
-
 vim.keymap.set("n", "<Leader>.", function()
   vim.notify(". " .. vim.fn.expand("%"), vim.log.levels.INFO)
   vim.cmd("update")
@@ -25,3 +23,10 @@ vim.keymap.set("n", "<Leader>;", function()
   end
   vim.fn.cursor({ cur[2], cur[3], cur[4], cur[5] })
 end, { buffer = true, desc = "Toggle ," })
+
+-- ::: IDE
+if vim.env.NVIM_NOIDE then
+  return
+end
+
+vim.lsp.enable("emmylua_ls")

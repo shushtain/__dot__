@@ -1,6 +1,6 @@
 return {
   "saecki/crates.nvim",
-  -- enabled = false,
+  enabled = vim.env.NVIM_NOIDE == nil,
   tag = "stable",
   event = { "BufRead Cargo.toml" },
   config = function()

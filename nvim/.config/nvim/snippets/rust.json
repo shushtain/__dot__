@@ -1,12 +1,28 @@
 {
-  "derive_debug": {
+  "derivedebug": {
     "prefix": "~derivedebug",
     "body": ["#[derive(Debug)]"]
   },
-  "derive_common": {
+  "derivecommon": {
     "prefix": "~derivecommon",
     "body": [
       "#[derive(Debug, Clone, Default, PartialEq, PartialOrd, Hash${1:, Eq, Ord, Copy})]"
     ]
+  },
+  "modtest": {
+    "prefix": "~modtest",
+    "body": [
+      "#[cfg(test)]",
+      "mod test {",
+      "\t#[test]",
+      "\tfn ${1:name}() {",
+      "\t\t${2:todo!();}",
+      "\t}",
+      "}"
+    ]
+  },
+  "test": {
+    "prefix": "~test",
+    "body": ["#[test]", "fn ${1:name}() {", "\t${2:todo!();}", "}"]
   }
 }

@@ -1,5 +1,6 @@
 ---@type vim.lsp.Config
 return {
+  cmd = { "emmet-language-server", "--stdio" },
   filetypes = {
     "astro",
     "css",
@@ -17,6 +18,5 @@ return {
     "typescriptreact",
     "vue",
   },
-  cmd = { "emmet-language-server", "--stdio" },
   root_markers = { ".git" },
 }

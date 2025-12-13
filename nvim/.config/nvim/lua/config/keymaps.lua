@@ -78,7 +78,7 @@ end)
 
 vim.keymap.set("x", "<M-j>", function()
   if vim.fn.mode() ~= "V" then
-    return
+    vim.cmd("normal! V")
   end
   local cur = vim.fn.getcurpos()
   vim.cmd("normal! \27")
@@ -97,7 +97,7 @@ end)
 
 vim.keymap.set("x", "<M-k>", function()
   if vim.fn.mode() ~= "V" then
-    return
+    vim.cmd("normal! V")
   end
   local cur = vim.fn.getcurpos()
   vim.cmd("normal! \27")
@@ -175,9 +175,13 @@ end, { desc = "Comment : Append" })
 -- end comments
 
 vim.keymap.set("n", "<Leader>ts", function()
-  vim.opt.spell = not vim.o.spell
-  local ns = vim.api.nvim_get_namespaces()["vim.lsp.typos_lsp.1"]
-  vim.diagnostic.enable(vim.o.spell, { ns_id = ns })
+  vim.o.spell = not vim.o.spell
+  vim.diagnostic.enable(vim.o.spell, {
+    ns_id = vim.api.nvim_get_namespaces()["vim.lsp.typos_lsp.1"],
+  })
+  vim.diagnostic.enable(vim.o.spell, {
+    ns_id = vim.api.nvim_get_namespaces()["vim.lsp.harper_ls.1"],
+  })
 end, { desc = "Toggle : Spelling" })
 
 vim.keymap.set("n", "<Leader>td", function()

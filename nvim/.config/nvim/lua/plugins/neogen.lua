@@ -1,6 +1,6 @@
 return {
   "danymat/neogen",
-  enabled = false,
+  enabled = vim.env.NVIM_NOIDE == nil,
   config = function()
     require("neogen").setup({
       input_after_comment = true,

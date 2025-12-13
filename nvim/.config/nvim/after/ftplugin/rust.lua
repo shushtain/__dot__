@@ -1,5 +1,3 @@
-vim.lsp.enable("rust_analyzer")
-
 vim.keymap.set("n", "<Leader>;", function()
   local cur = vim.fn.getcurpos()
   local line = vim.fn.getline(cur[2])
@@ -91,13 +89,34 @@ vim.keymap.set("n", "<Leader><Lt>", function()
   end)
 end, { buffer = true, desc = "Test Code" })
 
+-- ::: IDE
+if vim.env.NVIM_NOIDE then
+  return
+end
+
+vim.lsp.enable("rust_analyzer")
+
+vim.keymap.set("n", "<Leader>p,", function()
+  local clients = vim.lsp.get_clients({ bufnr = 0, name = "rust_analyzer" })
+  for _, client in ipairs(clients) do
+    client:request("rust-analyzer/reloadWorkspace", nil, function(err)
+      if err then
+        vim.notify(tostring(err), vim.log.levels.WARN)
+      else
+        vim.notify("rust-analyzer: reloadWorkspace")
+      end
+    end)
+  end
+end, { buffer = true, desc = "LSP : Reload" })
+
 local function toggle_lsp(opts)
   vim.lsp.config(
     "rust_analyzer",
     ---@diagnostic disable-next-line: param-type-mismatch
     { settings = { ["rust-analyzer"] = { check = opts } } }
   )
-  for _, client in ipairs(vim.lsp.get_clients({ name = "rust_analyzer" })) do
+  local clients = vim.lsp.get_clients({ name = "rust_analyzer" })
+  for _, client in ipairs(clients) do
     ---@diagnostic disable-next-line: undefined-field
     client.settings = vim.lsp.config.rust_analyzer.settings
     client:notify("workspace/didChangeConfiguration", { settings = {} })

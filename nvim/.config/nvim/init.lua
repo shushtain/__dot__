@@ -1,6 +1,3 @@
--- TODO: lsp configs
--- TODO: snippets
-
 require("config.options")
 require("config.keymaps")
 require("config.autocmd")
@@ -26,6 +23,9 @@ require("lazy").setup({
   spec = { { import = "plugins" } },
 })
 
-require("ide.lsp")
-require("ide.actions")
+if not vim.env.NVIM_NOIDE then
+  require("ide.lsp")
+  require("ide.actions")
+end
+
 require("temp")

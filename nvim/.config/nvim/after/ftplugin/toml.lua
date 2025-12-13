@@ -1,5 +1,4 @@
 vim.bo.shiftwidth = 2
-vim.lsp.enable("tombi")
 
 vim.keymap.set("n", "<Leader>;", function()
   local lnum = vim.fn.line(".")
@@ -16,3 +15,10 @@ vim.keymap.set("n", "<Leader>;", function()
     vim.fn.setline(lnum, line)
   end
 end, { buffer = true, desc = "Toggle Inline Table" })
+
+-- ::: IDE
+if vim.env.NVIM_NOIDE then
+  return
+end
+
+vim.lsp.enable("tombi")

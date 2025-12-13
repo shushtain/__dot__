@@ -1,5 +1,6 @@
 -- vim.lsp.set_log_level("debug")
 
+---@diagnostic disable-next-line: param-type-mismatch
 vim.lsp.config("*", {
   capabilities = require("blink.cmp").get_lsp_capabilities({
     workspace = {
@@ -24,7 +25,7 @@ vim.lsp.config("*", {
 -- })
 
 vim.lsp.enable("typos_lsp")
--- vim.lsp.enable("ltex_enus")
+vim.lsp.enable("harper_ls")
 
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(ev)

@@ -1,6 +1,6 @@
 ---@type vim.lsp.Config
 return {
-  filetypes = { "hyprlang" },
   cmd = { "hyprls", "--stdio" },
+  filetypes = { "hyprlang" },
   root_markers = { ".git" },
 }

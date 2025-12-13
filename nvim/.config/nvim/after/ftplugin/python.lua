@@ -1,6 +1,3 @@
-vim.lsp.enable("ruff")
-vim.lsp.enable("ty")
-
 vim.keymap.set("n", "<Leader>.", function()
   vim.cmd("update")
   local cur = vim.api.nvim_get_current_win()
@@ -11,3 +8,11 @@ vim.keymap.set("n", "<Leader>.", function()
   vim.bo.bufhidden = "wipe"
   vim.api.nvim_set_current_win(cur)
 end, { buffer = true, desc = "Run Code" })
+
+-- ::: IDE
+if vim.env.NVIM_NOIDE then
+  return
+end
+
+vim.lsp.enable("ruff")
+vim.lsp.enable("ty")

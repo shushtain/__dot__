@@ -1,6 +1,6 @@
 ---@type vim.lsp.Config
 return {
-  filetypes = { "ebnf" },
   cmd = { "ebnfer" },
+  filetypes = { "ebnf" },
   root_markers = { ".git" },
 }

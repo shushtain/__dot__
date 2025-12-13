@@ -1,7 +1,3 @@
-#
-# ~/.bashrc
-#
-
 [[ $- != *i* ]] && return
 [[ -f $HOME/.profile ]] && . "$HOME/.profile"
 [[ -f $HOME/.secrets ]] && . "$HOME/.secrets"

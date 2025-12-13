@@ -1,6 +1,4 @@
 vim.bo.shiftwidth = 2
-vim.lsp.enable("jsonls")
-vim.lsp.enable("jsonls_schema")
 
 vim.keymap.set("n", "<Leader>;", function()
   local cur = vim.fn.getcurpos()
@@ -12,3 +10,10 @@ vim.keymap.set("n", "<Leader>;", function()
   end
   vim.fn.cursor({ cur[2], cur[3], cur[4], cur[5] })
 end, { buffer = true, desc = "Toggle ," })
+
+-- ::: IDE
+if vim.env.NVIM_NOIDE then
+  return
+end
+
+vim.lsp.enable("jsonls")

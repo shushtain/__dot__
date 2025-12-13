@@ -1,6 +1,14 @@
 ---@type vim.lsp.Config
 return {
+  cmd = { "emmylua_ls" },
   filetypes = { "lua" },
+  root_markers = {
+    ".emmyrc.json",
+    ".luarc.json",
+    ".luacheckrc",
+    ".git",
+  },
+  workspace_required = false,
   settings = {
     Lua = {
       runtime = {
@@ -26,15 +34,6 @@ return {
         },
       },
     },
-  },
-  cmd = { "emmylua_ls" },
-  root_markers = {
-    ".emmyrc.json",
-    ".emmyrc.jsonc",
-    ".luarc.json",
-    ".luarc.jsonc",
-    ".luacheckrc",
-    ".git",
   },
   on_attach = function(client, _bufnr)
     client.server_capabilities.semanticTokensProvider = nil

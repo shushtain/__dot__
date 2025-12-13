@@ -1,9 +1,5 @@
 ---@type vim.lsp.Config
 return {
-  init_options = {
-    diagnosticSeverity = "Hint",
-    -- config = "~/.config/nvim/typos.toml",
-  },
   cmd = { "typos-lsp" },
   root_markers = {
     "typos.toml",
@@ -11,5 +7,9 @@ return {
     ".typos.toml",
     "pyproject.toml",
     "Cargo.toml",
+  },
+  init_options = {
+    diagnosticSeverity = "Hint",
+    -- config = "~/.config/nvim/typos.toml",
   },
 }

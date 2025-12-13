@@ -1,5 +1,3 @@
-vim.lsp.enable("bashls")
-
 vim.keymap.set("n", "<Leader>.", function()
   vim.cmd("update")
   local cur = vim.api.nvim_get_current_win()
@@ -21,3 +19,10 @@ vim.keymap.set("n", "<Leader>;", function()
   end
   vim.fn.cursor({ cur[2], cur[3], cur[4], cur[5] })
 end, { buffer = true, desc = "Toggle ;" })
+
+-- ::: IDE
+if vim.env.NVIM_NOIDE then
+  return
+end
+
+vim.lsp.enable("bashls")

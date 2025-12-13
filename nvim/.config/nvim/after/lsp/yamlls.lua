@@ -1,25 +1,18 @@
 ---@type vim.lsp.Config
 return {
+  cmd = { "yaml-language-server", "--stdio" },
   filetypes = {
     "yaml",
     "yaml.docker-compose",
     "yaml.gitlab",
     "yaml.helm-values",
   },
+  root_markers = { ".git" },
   settings = {
     redhat = { telemetry = { enabled = false } },
-    yaml = {
-      format = { enable = true },
-      -- schemas = {
-      --   ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
-      --   ["../path/relative/to/file.yml"] = "/.github/workflows/*",
-      --   ["/path/from/root/of/project"] = "/.github/workflows/*",
-      -- },
-    },
+    -- yaml = { format = { enable = true } },
   },
-  cmd = { "yaml-language-server", "--stdio" },
-  root_markers = { ".git" },
-  on_init = function(client)
-    client.server_capabilities.documentFormattingProvider = true
-  end,
+  -- on_init = function(client)
+  --   client.server_capabilities.documentFormattingProvider = true
+  -- end,
 }

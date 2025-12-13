@@ -1,23 +1,13 @@
-local root_markers = { ".git" }
-local root = vim.fs.root(0, root_markers) or vim.fn.getcwd()
-local schema = root .. "/source/meta/data.schema.json"
-
 ---@type vim.lsp.Config
 return {
+  cmd = { "vscode-json-language-server", "--stdio" },
   filetypes = { "json", "jsonc" },
   init_options = { provideFormatter = false },
+  root_markers = { ".git" },
   settings = {
     json = {
       format = { enable = false },
       validate = { enable = true },
     },
   },
-  cmd = { "vscode-json-language-server", "--stdio" },
-  root_dir = function(bufnr, on_dir)
-    if vim.fn.filereadable(schema) == 1 then
-      return
-    end
-    local project_root = vim.fs.root(bufnr, root_markers) or vim.fn.getcwd()
-    on_dir(project_root)
-  end,
 }
