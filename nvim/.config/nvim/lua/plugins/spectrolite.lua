@@ -5,29 +5,7 @@ return {
   dev = true,
   config = function()
     require("spectrolite").setup({
-      hexa = {
-        uppercase = true,
-        symbol = true,
-      },
-      hsla = {
-        round = { h = 0, s = 0, l = 0, a = 2 },
-        percents = { s = false, l = false, a = false },
-        separators = { regular = " ", alpha = " / " },
-      },
-      hxla = {
-        round = { h = 0, x = 0, l = 0, a = 2 },
-        percents = { x = false, l = false, a = false },
-        separators = { regular = " ", alpha = " / " },
-      },
-      rgba = {
-        round = { r = 0, g = 0, b = 0, a = 2 },
-        percents = { a = false },
-        separators = { regular = " ", alpha = " / " },
-      },
-      highlighter = {
-        -- limit_models = { "hex", "rgba" },
-        limit_models = false,
-      },
+      hexa = { uppercase = true },
     })
 
     -- #CC0000FF
@@ -36,10 +14,10 @@ return {
     -- rgb(255 180 0)
     -- hsla(90 90 50 / 1)
     -- hsl(90 90 50)
-    -- hxla(180 150 50 / 1)
+    -- hxla(180 149 50 / 1)
     -- hxl(180 150 50)
 
-    vim.keymap.set({ "n", "v" }, "<Leader>tc", function()
+    vim.keymap.set({ "n", "x" }, "<Leader>tc", function()
       require("spectrolite.highlighter").toggle()
     end, { desc = "Toggle : Colorize" })
 
@@ -49,56 +27,48 @@ return {
       "<Cmd> Spectrolite <CR>",
       { desc = "Spectrolite : Select" }
     )
-
     vim.keymap.set(
       { "n", "x" },
       "<Leader>ch",
       "<Cmd> Spectrolite hex <CR>",
       { desc = "Spectrolite : HEX" }
     )
-
     vim.keymap.set(
       { "n", "x" },
       "<Leader>cr",
       "<Cmd> Spectrolite rgb <CR>",
       { desc = "Spectrolite : RGB" }
     )
-
     vim.keymap.set(
       { "n", "x" },
       "<Leader>cs",
       "<Cmd> Spectrolite hsl <CR>",
       { desc = "Spectrolite : HSL" }
     )
-
     vim.keymap.set(
       { "n", "x" },
       "<Leader>cx",
       "<Cmd> Spectrolite hxl <CR>",
       { desc = "Spectrolite : HXL" }
     )
-
     vim.keymap.set(
       { "n", "x" },
       "<Leader>cH",
       "<Cmd> Spectrolite hexa <CR>",
       { desc = "Spectrolite : HEX" }
     )
-
     vim.keymap.set(
       { "n", "x" },
       "<Leader>cR",
       "<Cmd> Spectrolite rgba <CR>",
       { desc = "Spectrolite : RGB" }
     )
-
     vim.keymap.set(
       { "n", "x" },
       "<Leader>cS",
       "<Cmd> Spectrolite hsla <CR>",
       { desc = "Spectrolite : HSL" }
     )
-
     vim.keymap.set(
       { "n", "x" },
       "<Leader>cX",
@@ -111,17 +81,17 @@ return {
       local str, sel = assert(sp.read())
       local color, model = assert(sp.parse(str))
 
-      local uni = "hxl"
+      local uni = "hsl"
       if model[#model] == "a" then
-        uni = "hxla"
+        uni = "hsla"
       end
 
       local normal = sp.normalize(model, color)
-      local hxl = sp.denormalize(uni, normal)
+      local hsl = sp.denormalize(uni, normal)
 
-      hxl.l = 100 - hxl.l
+      hsl.l = 100 - hsl.l
 
-      normal = sp.normalize(uni, hxl)
+      normal = sp.normalize(uni, hsl)
       color = sp.denormalize(model, normal)
       color = sp.format(model, color)
       str = sp.print(model, color)

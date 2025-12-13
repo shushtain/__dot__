@@ -1,7 +1,7 @@
 return {
   "nvim-treesitter/nvim-treesitter-textobjects",
+  enabled = false,
   branch = "main",
-  -- enabled = false,
   config = function()
     require("nvim-treesitter-textobjects").setup({
       select = { lookahead = true },

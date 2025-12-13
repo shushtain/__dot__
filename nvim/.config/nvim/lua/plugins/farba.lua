@@ -35,6 +35,7 @@ return {
     end, { desc = "Toggle : Theme" })
 
     vim.keymap.set("n", "<Leader>tb", function()
+      ---@diagnostic disable-next-line: need-check-nil
       flowerpot.transparency.normal = not flowerpot.transparency.normal
       require("farba").setup(flowerpot)
       vim.cmd("colorscheme farba")

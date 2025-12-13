@@ -1,3 +1,6 @@
+-- TODO: lsp configs
+-- TODO: snippets
+
 require("config.options")
 require("config.keymaps")
 require("config.autocmd")
@@ -19,11 +22,8 @@ vim.opt.rtp:prepend(lazypath)
 ---@diagnostic disable-next-line
 require("lazy").setup({
   ui = { border = "solid", backdrop = 100 },
-  checker = { enabled = true, notify = false },
   change_detection = { enabled = true, notify = false },
-  spec = {
-    { import = "plugins" },
-  },
+  spec = { { import = "plugins" } },
 })
 
 require("ide.lsp")

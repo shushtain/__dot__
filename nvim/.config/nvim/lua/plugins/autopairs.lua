@@ -1,7 +1,6 @@
 return {
   "windwp/nvim-autopairs",
   -- enabled = false,
-  event = { "InsertEnter" },
   config = function()
     require("nvim-autopairs").setup({
       disable_filetype = { "query" },
@@ -13,7 +12,6 @@ return {
     })
 
     require("nvim-autopairs").add_rules({
-      require("nvim-autopairs.rule").new("```", "```"),
       require("nvim-autopairs.ts-rule").endwise(
         "then$",
         "end",
@@ -24,7 +22,7 @@ return {
         "do$",
         "end",
         "lua",
-        "for_statement"
+        { "for_statement", "while_statement" }
       ),
     })
   end,

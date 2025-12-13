@@ -2,7 +2,7 @@
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-vim.keymap.set({ "n", "v" }, "<Space>", "<NOP>")
+vim.keymap.set({ "n", "x" }, "<Space>", "<Nop>")
 
 -- [[ FIXES ]]
 
@@ -13,8 +13,8 @@ vim.keymap.set({ "n", "x" }, "k", "gk", { desc = "Visual Up" })
 
 vim.keymap.set({ "n", "x" }, "x", '"_x', { desc = "Cut" })
 vim.keymap.set({ "n", "x" }, "X", '"_X', { desc = "Cut" })
-vim.keymap.set("v", "<", "<gv", { desc = "Dedent" })
-vim.keymap.set("v", ">", ">gv", { desc = "Indent" })
+vim.keymap.set("x", "<", "<gv", { desc = "Dedent" })
+vim.keymap.set("x", ">", ">gv", { desc = "Indent" })
 vim.keymap.set("x", "p", '"_dP', { desc = "Paste" })
 
 vim.keymap.set("i", "<M-h>", "<C-o>h", { desc = "Move left" })

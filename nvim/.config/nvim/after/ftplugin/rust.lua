@@ -91,10 +91,11 @@ vim.keymap.set("n", "<Leader><Lt>", function()
   end)
 end, { buffer = true, desc = "Test Code" })
 
-local function toggle_lint(settings)
+local function toggle_lsp(opts)
   vim.lsp.config(
     "rust_analyzer",
-    { settings = { ["rust-analyzer"] = { check = settings } } }
+    ---@diagnostic disable-next-line: param-type-mismatch
+    { settings = { ["rust-analyzer"] = { check = opts } } }
   )
   for _, client in ipairs(vim.lsp.get_clients({ name = "rust_analyzer" })) do
     ---@diagnostic disable-next-line: undefined-field
@@ -104,20 +105,20 @@ local function toggle_lint(settings)
 end
 
 vim.keymap.set("n", "<Leader>p..", function()
-  toggle_lint(vim.NIL)
-  vim.notify("Linter: cargo check")
+  toggle_lsp(vim.NIL)
+  vim.notify("cargo check : default")
 end, { buffer = true, desc = "LSP : Lint : Default" })
 
 vim.keymap.set("n", "<Leader>p.c", function()
-  toggle_lint({
+  toggle_lsp({
     command = "clippy",
     overrideCommand = { "cargo", "clippy", "--message-format=json" },
   })
-  vim.notify("Linter: clippy")
+  vim.notify("cargo check : clippy")
 end, { buffer = true, desc = "LSP : Lint : Clippy" })
 
 vim.keymap.set("n", "<Leader>p.p", function()
-  toggle_lint({
+  toggle_lsp({
     command = "clippy",
     overrideCommand = {
       "cargo",
@@ -128,5 +129,5 @@ vim.keymap.set("n", "<Leader>p.p", function()
       "clippy::pedantic",
     },
   })
-  vim.notify("Linter: clippy::pedantic")
+  vim.notify("cargo check : clippy::pedantic")
 end, { buffer = true, desc = "LSP : Lint : Clippy Pedantic" })

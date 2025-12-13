@@ -1,0 +1,8 @@
+{
+  "notify": {
+    "prefix": "~notify",
+    "body": [
+      "vim.notify(\"${1:!}\", vim.log.levels.${2|WARN,INFO,ERROR,DEBUG,TRACE,OFF|})"
+    ]
+  }
+}

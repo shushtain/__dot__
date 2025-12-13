@@ -1,8 +1,6 @@
 vim.bo.shiftwidth = 2
 
-vim.lsp.enable("emmylua__nvim")
-vim.lsp.enable("emmylua__config")
-vim.lsp.enable("emmylua__snippets")
+vim.lsp.enable("emmylua")
 
 vim.keymap.set("n", "<Leader>.", function()
   vim.notify(". " .. vim.fn.expand("%"), vim.log.levels.INFO)

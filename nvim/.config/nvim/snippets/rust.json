@@ -1,0 +1,12 @@
+{
+  "derive_debug": {
+    "prefix": "~derivedebug",
+    "body": ["#[derive(Debug)]"]
+  },
+  "derive_common": {
+    "prefix": "~derivecommon",
+    "body": [
+      "#[derive(Debug, Clone, Default, PartialEq, PartialOrd, Hash${1:, Eq, Ord, Copy})]"
+    ]
+  }
+}
