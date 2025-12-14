@@ -34,12 +34,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
       return
     end
 
-    vim.lsp.completion.enable(true, client.id, ev.buf, {
-      autotrigger = false,
-      convert = function(item)
-        return { abbr = item.label:gsub("%b()", "") }
-      end,
-    })
+    -- vim.lsp.completion.enable(true, client.id, ev.buf, {
+    --   autotrigger = false,
+    --   convert = function(item)
+    --     return { abbr = item.label:gsub("%b()", "") }
+    --   end,
+    -- })
 
     -- vim.keymap.set("i", "<C-Space>", "<C-x><C-o>")
 

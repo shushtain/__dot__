@@ -16,7 +16,7 @@ return {
     ["harper-ls"] = {
       linters = {
         PossessiveNoun = true,
-        BoringWords = true,
+        -- BoringWords = true,
         UseGenitive = true,
         --
         SentenceCapitalization = false,
