@@ -18,5 +18,16 @@
       "|----|----|----|----|",
       "| $5 | $6 | $7 | $8 |"
     ]
+  },
+  "details": {
+    "prefix": ["~details", "~collapse", "~fold", "~summary"],
+    "body": [
+      "<details>",
+      "<summary>${1:more}</summary>",
+      "",
+      "$0",
+      "",
+      "</details>"
+    ]
   }
 }
