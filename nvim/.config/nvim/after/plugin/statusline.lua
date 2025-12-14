@@ -69,7 +69,11 @@ function handler.filestatus()
 end
 
 function handler.filetype()
-  return vim.bo.filetype
+  local ft = vim.bo.filetype
+  if ft:find("blink%-cmp") then
+    return state.filetype
+  end
+  return ft
 end
 
 function handler.location()
