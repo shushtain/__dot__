@@ -19,7 +19,7 @@ vim.opt.rtp:prepend(lazypath)
 ---@diagnostic disable-next-line
 require("lazy").setup({
   ui = { border = "solid", backdrop = 100 },
-  change_detection = { enabled = true, notify = false },
+  change_detection = { enabled = false, notify = false },
   spec = { { import = "plugins" } },
 })
 

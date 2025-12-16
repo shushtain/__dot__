@@ -2,8 +2,8 @@
 # https://git-cliff.org/docs/configuration
 
 [bump]
-features_always_bump_minor = true
-breaking_always_bump_major = true
+features_always_bump_minor = false
+breaking_always_bump_major = false
 initial_tag = "0.1.0"
 
 [changelog]
@@ -32,7 +32,7 @@ postprocessors = []
 
 [git]
 conventional_commits = true
-filter_unconventional = true
+filter_unconventional = false
 require_conventional = false
 split_commits = false
 sort_commits = "newest"

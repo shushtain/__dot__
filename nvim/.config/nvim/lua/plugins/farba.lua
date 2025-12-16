@@ -20,6 +20,7 @@ return {
           magenta = { hue = 280, sat = 50 },
         },
         syntax = {
+          yellow = { hue = 25, sat = 75 },
           cyan = { hue = 0, sat = 100 },
           blue = { hue = 80, sat = 50 },
           magenta = { hue = 80, sat = 35 },
@@ -27,7 +28,8 @@ return {
       },
     }
 
-    require("farba").setup(flowerpot)
+    local theme = flowerpot
+    require("farba").setup(theme)
     vim.cmd("colorscheme farba")
 
     vim.keymap.set("n", "<Leader>zb", function()
@@ -35,9 +37,9 @@ return {
     end, { desc = "Toggle : Theme" })
 
     vim.keymap.set("n", "<Leader>tb", function()
-      ---@diagnostic disable-next-line: need-check-nil
-      flowerpot.transparency.normal = not flowerpot.transparency.normal
-      require("farba").setup(flowerpot)
+      ---@diagnostic disable-next-line: undefined-field
+      theme.transparency.normal = not theme.transparency.normal
+      require("farba").setup(theme)
       vim.cmd("colorscheme farba")
     end, { desc = "Toggle : Theme" })
   end,

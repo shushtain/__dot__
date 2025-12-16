@@ -30,6 +30,7 @@ local function rainbow_loop()
         magenta = { hue = 280, sat = 50 },
       },
       syntax = {
+        yellow = { hue = dyn + 25, sat = 75 },
         cyan = { hue = dyn, sat = 100 },
         blue = { hue = dyn + 80, sat = 50 },
         magenta = { hue = dyn + 80, sat = 35 },

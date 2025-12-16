@@ -91,7 +91,7 @@ These GLOBAL keymaps are created unconditionally when Nvim starts:
 - CTRL-S is mapped in Insert mode to |vim.lsp.buf.signature_help()|
 ```
 
-If you plan to use native completion, you may want to map it to something more convenient:
+If you plan on using native completion, you may want to map it to something more convenient:
 
 ```lua
 vim.keymap.set("i", "<C-Space>", "<C-x><C-o>")
@@ -114,7 +114,7 @@ Before debugging further and asking for help, at the very least you need to know
 
 ### Completion and snippets
 
-Native completion becomes more and more powerful. I believe, one day it will have everything you need and more. Until then, [blink.cmp](https://github.com/Saghen/blink.cmp) is probably the most sensible option. It adds missing snippet engine (for snippet expansion on completion) and many other, quality of life features. By default, it uses native capabilities to set up snippet support, but can also support external snippet engines: [mini.snippets](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-snippets.md) and [LuaSnip](https://github.com/L3MON4D3/LuaSnip).
+Native completion becomes more and more powerful. I believe, one day it will have everything you need and more. Until then, [blink.cmp](https://github.com/Saghen/blink.cmp) is probably the most sensible option. It covers some edge cases with [snippet expansion](https://github.com/olrtg/emmet-language-server/issues/55) and [dynamic completions](https://github.com/neovim/neovim/discussions/36823); and delivers many quality-of-life features on top of that. By default, it provides snippet support through native `vim.snippet`, but can also work with external engines: [mini.snippets](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-snippets.md) and [LuaSnip](https://github.com/L3MON4D3/LuaSnip).
 
 ### Formatting
 
