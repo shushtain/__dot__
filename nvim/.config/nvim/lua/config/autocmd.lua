@@ -10,13 +10,8 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function(env)
     vim.opt_local.formatoptions:remove("o")
 
-    local ft = vim.bo.filetype
+    local ft = vim.bo[env.buf].filetype
     local lang = vim.treesitter.language.get_lang(ft)
-
-    -- local filename = vim.fn.bufname()
-    -- if filename:match("source/templates/.+%.html$") then
-    --   lang = "tera"
-    -- end
 
     if not vim.treesitter.language.add(lang) then
       require("nvim-treesitter").install(lang)
@@ -74,7 +69,10 @@ vim.api.nvim_create_autocmd("TermOpen", {
 vim.api.nvim_create_user_command("I", function(cmd)
   local result = vim.fn.execute(cmd.args)
   local rows = vim.split(result, "\n")
+  if rows[1] == "" then
+    table.remove(rows, 1)
+  end
   local buf = vim.api.nvim_create_buf(true, true)
   vim.api.nvim_buf_set_lines(buf, 0, -1, false, rows)
   vim.api.nvim_open_win(buf, true, { split = "right" })
-end, { nargs = "+" })
+end, { nargs = "+", complete = "command" })
