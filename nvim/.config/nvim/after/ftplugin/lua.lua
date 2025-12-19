@@ -30,3 +30,4 @@ if vim.env.NVIM_NOIDE then
 end
 
 vim.lsp.enable("emmylua_ls")
+vim.lsp.enable("stylua")

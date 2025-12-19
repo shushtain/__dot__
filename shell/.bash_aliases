@@ -195,3 +195,7 @@ pad() {
     cd "$project" || return 1
     nvim
 }
+
+bit() {
+    rqbit download --exit-on-finish -o ~/desk/ -- "$@"
+}

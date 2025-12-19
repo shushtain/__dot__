@@ -10,6 +10,6 @@ return {
   },
   init_options = {
     diagnosticSeverity = "Hint",
-    -- config = "~/.config/nvim/typos.toml",
+    config = vim.fn.stdpath("config") .. "/.typos.toml",
   },
 }

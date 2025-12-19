@@ -38,7 +38,7 @@ return {
 
     vim.keymap.set("n", "<Leader>tb", function()
       local theme = vim.g.u_theme
-      ---@diagnostic disable-next-line: undefined-field
+      ---@diagnostic disable-next-line: undefined-field, need-check-nil
       theme.transparency.normal = not theme.transparency.normal
       vim.g.u_theme = theme
 
