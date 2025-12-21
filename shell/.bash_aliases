@@ -33,7 +33,7 @@ zn() { z "$@" && nvim; }
 zin() { zi "$@" && nvim; }
 
 nsfw() { NVIM_APPNAME="$1" nvim "${@:2}"; }
-sfw() { NVIM_NOIDE=1 nvim "$@"; }
+noide() { NVIM_NOIDE=1 nvim "$@"; }
 
 alias e='yazi'
 alias xe='cd - && yazi'

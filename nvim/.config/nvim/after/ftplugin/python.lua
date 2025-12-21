@@ -14,5 +14,6 @@ if vim.env.NVIM_NOIDE then
   return
 end
 
+-- vim.lsp.enable("zuban")
 vim.lsp.enable("ruff")
 vim.lsp.enable("ty")

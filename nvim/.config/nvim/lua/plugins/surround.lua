@@ -3,28 +3,6 @@ return {
   -- enabled = false,
   event = "VeryLazy",
   config = function()
-    vim.keymap.set({ "x", "o" }, "iA", function()
-      local sel =
-        require("nvim-surround.config").get_selection({ pattern = "«.-»" })
-      if sel then
-        ---@diagnostic disable-next-line: need-check-nil
-        vim.fn.setpos("'<", { 0, sel.first_pos[1], sel.first_pos[2] + 2 })
-        ---@diagnostic disable-next-line: need-check-nil
-        vim.fn.setpos("'>", { 0, sel.last_pos[1], sel.last_pos[2] - 2 })
-        vim.cmd("normal! gv")
-      end
-    end, { desc = "«» block" })
-
-    vim.keymap.set({ "x", "o" }, "aA", function()
-      local sel =
-        require("nvim-surround.config").get_selection({ pattern = "«.-»" })
-      if sel then
-        vim.fn.setpos("'<", { 0, sel.first_pos[1], sel.first_pos[2] })
-        vim.fn.setpos("'>", { 0, sel.last_pos[1], sel.last_pos[2] })
-        vim.cmd("normal! gv")
-      end
-    end, { desc = "«» block" })
-
     require("nvim-surround").setup({
       keymaps = {
         insert = false,
@@ -63,20 +41,6 @@ return {
       highlight = { duration = 0 },
       move_cursor = "sticky",
     })
-
-    vim.keymap.set(
-      "i",
-      "<C-g>s",
-      "<Plug>(nvim-surround-insert)",
-      { desc = "Surround" }
-    )
-
-    vim.keymap.set(
-      "i",
-      "<C-g>S",
-      "<Plug>(nvim-surround-insert-line)",
-      { desc = "Surround Line" }
-    )
 
     vim.keymap.set(
       "n",

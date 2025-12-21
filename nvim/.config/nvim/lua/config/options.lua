@@ -143,7 +143,7 @@ vim.opt.sessionoptions = {
   "localoptions",
 }
 
--- vim.opt.shortmess:append("c")
+vim.opt.shortmess:append("c")
 vim.opt.shortmess:append("I")
 vim.opt.shortmess:append("a")
 

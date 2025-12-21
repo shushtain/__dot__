@@ -122,6 +122,7 @@ function handler.stats()
   local stats = {
     keymap = vim.o.keymap ~= "" and "⌥" or "",
     format = vim.g.u_manual_formatting and "⨂" or "",
+    macro = vim.fn.reg_recording() ~= "" and "⏺" or "",
   }
   stats = vim.tbl_filter(function(v)
     return v ~= ""
