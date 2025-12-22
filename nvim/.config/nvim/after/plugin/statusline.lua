@@ -102,6 +102,7 @@ function handler.diagnostics()
       enqueue("diagnostics")
     end, 1000)
     state.diagnostics = "𜱃"
+    return
   end
 
   local hl, sym = "DiagnosticSign", "█"
