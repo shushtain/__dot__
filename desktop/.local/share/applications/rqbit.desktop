@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=rqbit
+Exec=rqbit.sh
+MimeType=x-scheme-handler/magnet
+Terminal=true
+NoDisplay=true

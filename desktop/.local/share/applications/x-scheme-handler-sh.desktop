@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=x-scheme-handler-sh
+Exec=x-scheme-handler-sh.sh
+MimeType=x-scheme-handler/sh
+NoDisplay=true
