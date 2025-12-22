@@ -26,6 +26,7 @@ return {
         ["q"] = "quit",
       },
     })
+
     vim.keymap.set(
       "n",
       "<Leader>u",

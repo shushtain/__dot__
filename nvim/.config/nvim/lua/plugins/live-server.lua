@@ -1,7 +1,7 @@
 return {
   "barrett-ruth/live-server.nvim",
+  enabled = vim.env.NVIM_NOIDE == nil,
   build = "npm install -g live-server",
-  -- cmd = { "LiveServerStart", "LiveServerStop", "LiveServerToggle" },
   config = function()
     require("live-server").setup({
       args = {

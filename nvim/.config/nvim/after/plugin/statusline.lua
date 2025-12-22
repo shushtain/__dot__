@@ -38,7 +38,7 @@ function handler.mode()
   local mode = vim.fn.mode()
   mode = mode:upper()
   mode = mode:gsub("\22", "V")
-  return mode
+  state.mode = mode
 end
 
 function handler.branch()
@@ -48,40 +48,40 @@ function handler.branch()
     branch ~= ""
     and (git.added or 0) + (git.changed or 0) + (git.removed or 0) > 0
   then
-    return "~" .. branch .. "~"
+    branch = "~" .. branch .. "~"
   end
-  return branch
+  state.branch = branch
 end
 
 function handler.filename()
   local filename = vim.fn.bufname()
   filename = filename == "" and "⋯" or vim.fn.fnamemodify(filename, ":~:.")
-  return filename
+  state.filename = filename
 end
 
 function handler.filestatus()
   local readonly = vim.bo.readonly and "⌀" or ""
   local modified = vim.bo.modified and "🞷" or ""
-  return readonly .. modified
+  state.filestatus = readonly .. modified
 end
 
 function handler.filetype()
-  local ft = vim.bo.filetype
-  if ft:find("blink%-cmp") then
-    return state.filetype
+  if vim.bo.buftype == "" or vim.bo.buflisted then
+    local ft = vim.bo.filetype
+    state.filetype = ft
   end
-  return ft
 end
 
 function handler.location()
   local pos = vim.fn.getcursorcharpos()
-  return ("%2d:%-2d"):format(pos[2], pos[3])
+  state.location = ("%2d:%-2d"):format(pos[2], pos[3])
 end
 
 function handler.selection()
   local mode = vim.fn.mode()
   if mode ~= "v" and mode ~= "V" and mode ~= "\22" then
-    return ""
+    state.selection = ""
+    return
   end
 
   local sel, cur = vim.fn.getpos("v"), vim.fn.getpos(".")
@@ -93,7 +93,7 @@ function handler.selection()
 
   local range = mode == "\22" and (lnum .. ":" .. cnum)
     or ((mode == "V" or lnum > 1) and lnum or cnum)
-  return "<" .. range .. ">"
+  state.selection = "<" .. range .. ">"
 end
 
 function handler.diagnostics()
@@ -101,7 +101,7 @@ function handler.diagnostics()
     vim.defer_fn(function()
       enqueue("diagnostics")
     end, 1000)
-    return "𜱃"
+    state.diagnostics = "𜱃"
   end
 
   local hl, sym = "DiagnosticSign", "█"
@@ -115,7 +115,7 @@ function handler.diagnostics()
   warns = warns and ("%#" .. hl .. "Warn#" .. sym) or ""
   infos = infos and ("%#" .. hl .. "Info#" .. sym) or ""
   hints = hints and ("%#" .. hl .. "Hint#" .. sym) or ""
-  return errors .. warns .. infos .. hints
+  state.diagnostics = errors .. warns .. infos .. hints
 end
 
 function handler.stats()
@@ -127,20 +127,14 @@ function handler.stats()
   stats = vim.tbl_filter(function(v)
     return v ~= ""
   end, stats)
-  return vim.fn.join(stats, " ")
+  state.stats = vim.fn.join(stats, " ")
 end
 
 local function update()
   local updated = false
   for module, _ in pairs(queue) do
     if module ~= "diagnostics" or vim.fn.mode() == "n" then
-      local callback = handler[module]
-      ---@diagnostic disable-next-line: unnecessary-if
-      if callback then
-        state[module] = callback()
-      else
-        vim.notify_once("Statusline module " .. module .. " missing a callback")
-      end
+      handler[module]()
       queue[module] = nil
       updated = true
     end
@@ -206,6 +200,7 @@ local function redraw()
   statusline = vim.tbl_filter(function(v)
     return v and v ~= ""
   end, statusline)
+  ---@diagnostic disable-next-line: assign-type-mismatch
   statusline = table.concat(statusline, sep)
   vim.wo.statusline = statusline
 end
