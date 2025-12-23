@@ -3,63 +3,56 @@
 [[ -f $HOME/.secrets ]] && . "$HOME/.secrets"
 [[ -f $HOME/.bash_aliases ]] && . "$HOME/.bash_aliases"
 
-hyprctl switchxkblayout at-translated-set-2-keyboard 0 >/dev/null
-
 HISTCONTROL=ignorespace:erasedups
 
 __ps1_vspace=""
 __ps1() {
+    local c0="\[\e[1;90m\]"
+    local c1="\[\e[1;91m\]"
+    local c2="\[\e[1;92m\]"
+    local c3="\[\e[1;93m\]"
+    local c4="\[\e[1;94m\]"
+    local c5="\[\e[1;95m\]"
+    local c6="\[\e[1;96m\]"
+
     local title="\[\e]0;\w\a\]"
+    local dir="$c2\w "
+    local symbol="$c0\\$ "
+    local input="$c6"
 
-    local dir_raw="\w"
-    local dir="\[\e[1;92m\]$dir_raw\[\e[0m\] "
-
-    local symbol_raw="\\$"
-    local symbol="\[\e[1;90m\]$symbol_raw\[\e[0m\] "
-
-    local vspace_check
-    vspace_check=$(history 1 | awk '{$1=""; print $0}' | xargs)
-    if [[ "$vspace_check" == "clear"* || "$vspace_check" == "reset"* || "$vspace_check" == "c" ]]; then
-        __ps1_vspace=""
-    fi
-
-    local jobs_raw=""
     local jobs=""
     if [ -n "$(jobs -s)" ]; then
-        jobs_raw="&"
-        jobs="\[\e[1;91m\]$jobs_raw\[\e[0m\] "
+        jobs="$c1& "
     fi
 
-    local venv_raw=""
     local venv=""
     if [ -n "$VIRTUAL_ENV" ]; then
-        venv_raw="$(basename "$VIRTUAL_ENV")"
-        venv="\[\e[1;95m\]$venv_raw\[\e[0m\] "
+        venv="$c5${VIRTUAL_ENV##*/} "
     fi
 
-    local git_raw=""
     local git=""
     local git_branch
     git_branch="$(git branch --show-current 2>/dev/null)"
     if [ -n "$git_branch" ]; then
-        local git_color="\[\e[1;94m\]"
         if [ -n "$(git status --porcelain 2>/dev/null)" ]; then
-            git_color="\[\e[1;93m\]"
-        elif [ -n "$(git rev-list '@{u}'.. 2>/dev/null)" ]; then
-            git_color="\[\e[1;95m\]"
+            git="$c3~$git_branch~ "
+        elif [ -n "$(git rev-list '@{u}..' 2>/dev/null)" ]; then
+            git="$c3$git_branch "
+        else
+            git="$c4$git_branch "
         fi
-        git_raw="$git_branch"
-        git="$git_color$git_raw\[\e[0m\] "
     fi
 
-    local style="\[\e[1;96m\]"
+    if [[ "$(history 1)" =~ ^[[:space:]]*[0-9]+[[:space:]]+(clear|reset|c)([[:space:]]|$) ]]; then
+        __ps1_vspace=""
+    fi
 
-    PS1="$title$__ps1_vspace$jobs$dir$git$venv\n$symbol$style"
+    local line1="$jobs$dir$git$venv"
+    local line2="$symbol$input"
+    PS1="$title$__ps1_vspace$line1\n$line2"
+    printf "\x1b[0 q"
 
     __ps1_vspace="\n"
-
-    # for alacritty
-    printf "\x1b[0 q"
 }
 PROMPT_COMMAND=__ps1
 PS0="\[\e[0m\]"
