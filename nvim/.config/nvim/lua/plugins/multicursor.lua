@@ -4,7 +4,7 @@ return {
   config = function()
     require("multicursor-nvim").setup()
 
-    vim.keymap.set("n", "<Esc><Esc>", function()
+    vim.keymap.set("n", "<Esc>", function()
       require("multicursor-nvim").clearCursors()
       vim.cmd("nohlsearch")
     end, { desc = "Cursor : Clear" })

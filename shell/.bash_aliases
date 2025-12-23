@@ -16,7 +16,7 @@ alias systui='systemctl-tui'
 alias ff='fastfetch'
 
 alias parui='parui -p=yay'
-bay() {
+gay() {
     yay -Qi "$@" | rg "^URL\s*:\s*(.*)\s*$" -r '$1' | xargs -r xdg-open
 }
 
@@ -116,20 +116,6 @@ gsum() {
     SHUSH_GSUM="$(aichat -r gsum "$__gsum")"
     export SHUSH_GSUM
     echo "[${#SHUSH_GSUM}] $SHUSH_GSUM"
-}
-
-push() {
-    git add --all
-    if [ "$#" -eq 0 ]; then
-        git commit || return 1
-    elif [ "$*" == "." ]; then
-        git commit -m "." || return 1
-    elif [ "$1" == "gsum" ]; then
-        git commit -m "$SHUSH_GSUM" || return 1
-    else
-        git commit "$@" || return 1
-    fi
-    git push
 }
 
 venv() {
