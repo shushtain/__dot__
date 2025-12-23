@@ -45,6 +45,8 @@ __ps1() {
         local git_color="\[\e[1;94m\]"
         if [ -n "$(git status --porcelain 2>/dev/null)" ]; then
             git_color="\[\e[1;93m\]"
+        elif [ -n "$(git rev-list '@{u}'.. 2>/dev/null)" ]; then
+            git_color="\[\e[1;95m\]"
         fi
         git_raw="$git_branch"
         git="$git_color$git_raw\[\e[0m\] "
