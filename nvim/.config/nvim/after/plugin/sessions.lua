@@ -22,7 +22,11 @@ vim.api.nvim_create_autocmd("VimEnter", {
     local session = hash()
     if vim.fn.filereadable(session) == 1 then
       vim.schedule(function()
-        vim.cmd("silent! source " .. vim.fn.fnameescape(session))
+        local fname = vim.fn.fnameescape(session)
+        if fname == "" then
+          return
+        end
+        vim.cmd("source " .. fname)
       end)
       return
     end
@@ -54,15 +58,20 @@ vim.api.nvim_create_autocmd("VimLeavePre", {
       if vim.api.nvim_buf_is_valid(buf) then
         local name = vim.api.nvim_buf_get_name(buf)
         if name:match("Cargo.toml$") then
-          vim.cmd("silent! bwipeout " .. buf)
+          -- vim.cmd("silent! bwipeout " .. buf)
+          vim.cmd("bwipeout " .. buf)
         end
       end
     end
 
+    local fname = vim.fn.fnameescape(hash())
+    if fname == "" then
+      return
+    end
     if vim.fn.isdirectory(sessions) == 0 then
       vim.fn.mkdir(sessions, "p")
     end
-    vim.cmd("mksession! " .. vim.fn.fnameescape(hash()))
+    vim.cmd("mksession! " .. fname)
   end,
 })
 
