@@ -25,7 +25,7 @@ vim.lsp.config("*", {
 -- })
 
 vim.lsp.enable("typos_lsp")
-vim.lsp.enable("harper_ls")
+-- vim.lsp.enable("harper_ls")
 
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(ev)

@@ -5,11 +5,8 @@ return {
   config = function()
     require("typst-preview").setup({
       invert_colors = "never",
-      open_cmd = "brave %s",
+      open_cmd = "brave --new-window %s",
+      -- port = 8081,
     })
-
-    vim.keymap.set("n", "<Leader>tp", function()
-      vim.cmd("TypstPreviewToggle")
-    end, { desc = "Toggle : Typst Preview" })
   end,
 }
