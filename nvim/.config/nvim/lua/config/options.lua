@@ -140,7 +140,7 @@ vim.opt.sessionoptions = {
   "tabpages",
   "winsize",
   -- "terminal",
-  "localoptions",
+  -- "localoptions",
 }
 
 vim.opt.shortmess:append("c")

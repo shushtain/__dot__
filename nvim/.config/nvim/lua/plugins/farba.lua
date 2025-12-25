@@ -32,9 +32,9 @@ return {
     require("farba").setup(vim.g.u_theme)
     vim.cmd("colorscheme farba")
 
-    vim.keymap.set("n", "<Leader>zb", function()
+    vim.keymap.set("n", "<Leader>zt", function()
       require("farba").purge()
-    end, { desc = "Toggle : Theme" })
+    end, { desc = "Purge : Themes" })
 
     vim.keymap.set("n", "<Leader>tb", function()
       local theme = vim.g.u_theme

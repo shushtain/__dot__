@@ -96,4 +96,4 @@ end, { desc = "AI : Improve" })
 
 vim.keymap.set("n", "<Leader>ir", function()
   ai_improve(true)
-end, { desc = "AI : Resume" })
+end, { desc = "AI : Retry" })
