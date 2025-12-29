@@ -1,0 +1,6 @@
+{
+  "mod": {
+    "prefix": "~mod",
+    "body": ["#let mod(body$0) = {", "\tbody", "}"]
+  }
+}

@@ -5,7 +5,7 @@ return {
   dev = true,
   config = function()
     require("spectrolite").setup({
-      hexa = { uppercase = true },
+      hexa = { uppercase = false },
     })
 
     -- #CC0000FF

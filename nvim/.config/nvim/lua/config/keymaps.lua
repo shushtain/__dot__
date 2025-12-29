@@ -6,6 +6,29 @@ vim.keymap.set({ "n", "x" }, "<Space>", "<Nop>")
 
 -- [[ FIXES ]]
 
+vim.keymap.set("n", "-", function()
+  local polars = {
+    ["true"] = "false",
+    ["True"] = "False",
+  }
+  for k, v in pairs(polars) do
+    polars[v] = k
+  end
+  vim.cmd("normal! viw")
+  local _, srow, scol, _ = unpack(vim.fn.getpos("v"))
+  local _, erow, ecol, _ = unpack(vim.fn.getpos("."))
+  vim.cmd("normal! \27")
+  local word =
+    vim.api.nvim_buf_get_text(0, srow - 1, scol - 1, erow - 1, ecol, {})
+  if #word == 1 then
+    local repl = polars[word[1]]
+    if repl then
+      vim.api.nvim_buf_set_text(0, srow - 1, scol - 1, erow - 1, ecol, { repl })
+    end
+    vim.fn.cursor(srow, scol)
+  end
+end)
+
 vim.keymap.set("n", "<Leader>-", "<Cmd>messages<CR>")
 
 vim.keymap.set({ "n", "x" }, "j", "gj", { desc = "Visual Down" })

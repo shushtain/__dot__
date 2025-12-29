@@ -12,12 +12,12 @@ return {
     outputPath = "$root/target/$dir/$name",
     exportPdf = "never", -- onType|onSave|never
     -- systemFonts = false,
-    semanticTokens = "disable",
+    -- semanticTokens = "disable",
     formatterMode = "typstyle",
     formatterPrintWidth = 80,
     lint = {
       enabled = true,
-      when = "onType",
+      when = "onSave",
     },
   },
   on_attach = function(client, bufnr)

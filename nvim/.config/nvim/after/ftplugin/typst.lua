@@ -1,6 +1,4 @@
 vim.bo.shiftwidth = 2
--- vim.bo.textwidth = 80
--- vim.wo.colorcolumn = "+1"
 
 vim.keymap.set("n", "<Leader>;", function()
   local cur = vim.fn.getcurpos()
@@ -20,6 +18,10 @@ end
 
 vim.keymap.set("n", "<Leader>,", function()
   vim.cmd("TypstPreviewToggle")
+end, { desc = "Toggle : Typst Preview" })
+
+vim.keymap.set("n", "<Leader>>", function()
+  vim.cmd("!typst compile %")
 end, { desc = "Toggle : Typst Preview" })
 
 vim.lsp.enable("tinymist")
