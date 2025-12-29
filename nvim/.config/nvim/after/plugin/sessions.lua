@@ -26,7 +26,10 @@ vim.api.nvim_create_autocmd("VimEnter", {
         if fname == "" then
           return
         end
-        vim.cmd("source " .. fname)
+        vim.cmd("silent source " .. fname)
+        pcall(function()
+          vim.cmd("e")
+        end)
       end)
       return
     end
