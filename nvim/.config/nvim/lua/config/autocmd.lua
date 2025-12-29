@@ -21,10 +21,10 @@ vim.api.nvim_create_autocmd("FileType", {
 
     if vim.treesitter.language.add(lang) then
       vim.treesitter.start(env.buf, lang)
-      vim.wo.foldmethod = "expr"
+      vim.wo[0][0].foldmethod = "expr"
     end
 
-    vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+    vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
     -- vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
   end,
 })
@@ -41,11 +41,11 @@ vim.api.nvim_create_autocmd("BufEnter", {
     }
 
     if vim.bo.modifiable then
-      vim.wo.conceallevel = 0
-      vim.wo.spell = true
+      vim.wo[0][0].conceallevel = 0
+      vim.wo[0][0].spell = true
     else
-      vim.wo.conceallevel = 2
-      vim.wo.spell = false
+      vim.wo[0][0].conceallevel = 2
+      vim.wo[0][0].spell = false
     end
 
     vim.o.title = true
@@ -62,7 +62,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 vim.api.nvim_create_autocmd("TermOpen", {
   callback = function()
-    vim.wo.spell = false
+    vim.wo[0][0].spell = false
   end,
 })
 

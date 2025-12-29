@@ -60,7 +60,7 @@ vim.keymap.set("i", "<M-k>", function()
 end, { desc = "Toggle : Keymap" })
 
 vim.keymap.set("n", "<Leader>tm", function()
-  vim.wo.conceallevel = vim.wo.conceallevel ~= 0 and 0 or 2
+  vim.wo[0][0].conceallevel = vim.wo.conceallevel ~= 0 and 0 or 2
 end, { desc = "Toggle : Conceal" })
 
 vim.keymap.set("n", "<M-j>", function()
@@ -199,12 +199,17 @@ end, { desc = "Comment : Append" })
 
 vim.keymap.set("n", "<Leader>ts", function()
   vim.o.spell = not vim.o.spell
-  vim.diagnostic.enable(vim.o.spell, {
-    ns_id = vim.api.nvim_get_namespaces()["vim.lsp.typos_lsp.1"],
-  })
-  vim.diagnostic.enable(vim.o.spell, {
-    ns_id = vim.api.nvim_get_namespaces()["vim.lsp.harper_ls.1"],
-  })
+  local namespaces = vim.api.nvim_get_namespaces()
+
+  local typos = namespaces["vim.lsp.typos_lsp.1"]
+  if typos then
+    vim.diagnostic.enable(vim.o.spell, { ns_id = typos })
+  end
+
+  local harper = namespaces["vim.lsp.harper_ls.1"]
+  if harper then
+    vim.diagnostic.enable(vim.o.spell, { ns_id = harper })
+  end
 end, { desc = "Toggle : Spelling" })
 
 vim.keymap.set("n", "<Leader>td", function()
@@ -240,7 +245,7 @@ vim.keymap.set(
   { desc = "Toggle : Wrap" }
 )
 vim.keymap.set("n", "<Leader>t|", function()
-  if #vim.wo.colorcolumn > 0 then
+  if #vim.o.colorcolumn > 0 then
     vim.cmd("set cc=")
   else
     vim.cmd("set cc=+1")
