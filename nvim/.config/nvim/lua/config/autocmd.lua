@@ -15,8 +15,6 @@ vim.api.nvim_create_autocmd("FileType", {
 
     if not vim.treesitter.language.add(lang) then
       require("nvim-treesitter").install(lang)
-    else
-      require("nvim-treesitter").update(lang)
     end
 
     if vim.treesitter.language.add(lang) then
