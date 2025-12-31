@@ -1,0 +1,65 @@
+default partial alphanumeric_keys modifier_keys
+xkb_symbols "basic" {
+
+    name[Group1]= "Ukrainian (Shush)";
+    key.type[Group1]="FOUR_LEVEL";
+
+    key <TLDE> {[ U0027, U007e, U0301, U20b4 ]}; // ', ~, _́, ₴
+    key <AE01> {[ U0031, U0021, U2018, U201c ]}; // 1, !, ‘, “
+    key <AE02> {[ U0032, U0022, U2019, U201d ]}; // 2, ", ’, ”
+    key <AE03> {[ U0033, U2116, U0023, U221a ]}; // 3, №, #, √
+    key <AE04> {[ U0034, U003b, U0024, U20ac ]}; // 4, ;, $, €
+    key <AE05> {[ U0035, U0025, U2300, U2030 ]}; // 5, %, ⌀, ‰
+    key <AE06> {[ U0036, U003a, U005e, U00b0 ]}; // 6, :, ^, °
+    key <AE07> {[ U0037, U003f, U0026, U203d ]}; // 7, ?, &, ‽
+    key <AE08> {[ U0038, U002a, U2219, U2022 ]}; // 8, *, ∙, •
+    key <AE09> {[ U0039, U0028, U00a7, U2039 ]}; // 9, (, §, ‹
+    key <AE10> {[ U0030, U0029, U00b6, U203a ]}; // 0, ), ¶, ›
+    key <AE11> {[ U002d, U005f, U2013, U2014 ]}; // -, _, –, —
+    key <AE12> {[ U003d, U002b, U2260, U00b1 ]}; // =, +, ≠, ±
+
+    key <AD01> {[ U0439, U0419, NoSymbol, NoSymbol ]}; // й, Й
+    key <AD02> {[ U0446, U0426, NoSymbol, NoSymbol ]}; // ц, Ц
+    key <AD03> {[ U0443, U0423, NoSymbol, NoSymbol ]}; // у, У
+    key <AD04> {[ U043a, U041a, NoSymbol, NoSymbol ]}; // к, К
+    key <AD05> {[ U0435, U0415, NoSymbol, NoSymbol ]}; // е, Е
+    key <AD06> {[ U043d, U041d, NoSymbol, NoSymbol ]}; // н, Н
+    key <AD07> {[ U0433, U0413, NoSymbol, NoSymbol ]}; // г, Г
+    key <AD08> {[ U0448, U0428, NoSymbol, NoSymbol ]}; // ш, Ш
+    key <AD09> {[ U0449, U0429, NoSymbol, NoSymbol ]}; // щ, Щ
+    key <AD10> {[ U0437, U0417, NoSymbol, NoSymbol ]}; // з, З
+    key <AD11> {[ U0445, U0425, U005b, U007b ]}; // х, Х, [, {
+    key <AD12> {[ U0457, U0407, U005d, U007d ]}; // ї, Ї, ], }
+
+    key <AC01> {[ U0444, U0424, NoSymbol, NoSymbol ]}; // ф, Ф
+    key <AC02> {[ U0456, U0406, U044b, U042b ]}; // і, І, ы, Ы
+    key <AC03> {[ U0432, U0412, NoSymbol, NoSymbol ]}; // в, В
+    key <AC04> {[ U0430, U0410, NoSymbol, NoSymbol ]}; // а, А
+    key <AC05> {[ U043f, U041f, NoSymbol, NoSymbol ]}; // п, П
+    key <AC06> {[ U0440, U0420, U2190, U21d0 ]}; // р, Р, ←, ⇐
+    key <AC07> {[ U043e, U041e, U2193, U21d3 ]}; // о, О, ↓, ⇓
+    key <AC08> {[ U043b, U041b, U2191, U21d1 ]}; // л, Л, ↑, ⇑
+    key <AC09> {[ U0434, U0414, U2192, U21d2 ]}; // д, Д, →, ⇒
+    key <AC10> {[ U0436, U0416, NoSymbol, NoSymbol ]}; // ж, Ж
+    key <AC11> {[ U0454, U0404, U044d, U042d ]}; // є, Є, э, Э
+    key <BKSL> {[ U0491, U0490, U005c, U007c ]}; // ґ, Ґ, \, |
+    key <LSGT> {[ U0491, U0490, U005c, U007c ]}; // ґ, Ґ, \, |
+
+    key <AB01> {[ U044f, U042f, NoSymbol, NoSymbol ]}; // я, Я
+    key <AB02> {[ U0447, U0427, U00d7, U00f7 ]}; // ч, Ч, ×, ÷
+    key <AB03> {[ U0441, U0421, U00a9, NoSymbol ]}; // с, С, ©
+    key <AB04> {[ U043c, U041c, NoSymbol, NoSymbol ]}; // м, М
+    key <AB05> {[ U0438, U0418, U2588, NoSymbol ]}; // и, И, █
+    key <AB06> {[ U0442, U0422, U2122, NoSymbol ]}; // т, Т, ™
+    key <AB07> {[ U044c, U042c, U044a, U042a ]}; // ь, Ь, ъ, Ъ
+    key <AB08> {[ U0431, U0411, U003c, U00ab ]}; // б, Б, <, «
+    key <AB09> {[ U044e, U042e, U003e, U00bb ]}; // ю, Ю, >, »
+    key <AB10> {[ U002e, U002c, U2026, U002f ]}; // ., ,, …, /
+
+    key <SPCE> {[ U0020, U0020, U00a0, U00a0 ]}; //  ,  ,  ,  
+
+    key <RALT> {[ ISO_Level3_Shift ]};
+    modifier_map Mod5 { ISO_Level3_Shift };
+};
+
+// vim:ft=xkb
