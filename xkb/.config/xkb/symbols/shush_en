@@ -4,61 +4,64 @@ xkb_symbols "basic" {
     name[Group1]= "English (Shush)";
     key.type[Group1]="FOUR_LEVEL";
 
-    key <TLDE> {[ U0060, U007e, U0301, U0300 ]}; // `, ~, _́, _̀
-    key <AE01> {[ U0031, U0021, U2018, U201c ]}; // 1, !, ‘, “
-    key <AE02> {[ U0032, U0040, U2019, U201d ]}; // 2, @, ’, ”
-    key <AE03> {[ U0033, U0023, U2116, U221a ]}; // 3, #, №, √
-    key <AE04> {[ U0034, U0024, U20ac, U20b4 ]}; // 4, $, €, ₴
-    key <AE05> {[ U0035, U0025, U2300, U2030 ]}; // 5, %, ⌀, ‰
-    key <AE06> {[ U0036, U005e, U00b0, NoSymbol ]}; // 6, ^, °
-    key <AE07> {[ U0037, U0026, NoSymbol, NoSymbol ]}; // 7, &
-    key <AE08> {[ U0038, U002a, U2219, U2022 ]}; // 8, *, ∙, •
-    key <AE09> {[ U0039, U0028, U00a7, NoSymbol ]}; // 9, (, §
-    key <AE10> {[ U0030, U0029, U00b6, NoSymbol ]}; // 0, ), ¶
-    key <AE11> {[ U002d, U005f, U2013, U2014 ]}; // -, _, –, —
-    key <AE12> {[ U003d, U002b, U2260, U00b1 ]}; // =, +, ≠, ±
+    key <TLDE> {[ U0060, U007e, U0301, U0300 ]};
+    key <AE01> {[ U0031, U0021, U2018, U201c ]};
+    key <AE02> {[ U0032, U0040, U2019, U201d ]};
+    key <AE03> {[ U0033, U0023, U2116, U221a ]};
+    key <AE04> {[ U0034, U0024, U20ac, U20b4 ]};
+    key <AE05> {[ U0035, U0025, U2300, U2030 ]};
+    key <AE06> {[ U0036, U005e, U00b0, U220e ]};
+    key <AE07> {[ U0037, U0026, U00a1, U00bf ]};
+    key <AE08> {[ U0038, U002a, U2219, U2022 ]};
+    key <AE09> {[ U0039, U0028, U00a7, NoSymbol ]};
+    key <AE10> {[ U0030, U0029, U00b6, NoSymbol ]};
+    key <AE11> {[ U002d, U005f, U2013, U2014 ]};
+    key <AE12> {[ U003d, U002b, U2260, U00b1 ]};
 
-    key <AD01> {[ U0071, U0051, NoSymbol, NoSymbol ]}; // q, Q
-    key <AD02> {[ U0077, U0057, NoSymbol, NoSymbol ]}; // w, W
-    key <AD03> {[ U0065, U0045, U00eb, U00cb ]}; // e, E, ë, Ë
-    key <AD04> {[ U0072, U0052, NoSymbol, NoSymbol ]}; // r, R
-    key <AD05> {[ U0074, U0054, U2122, NoSymbol ]}; // t, T, ™
-    key <AD06> {[ U0079, U0059, NoSymbol, NoSymbol ]}; // y, Y
-    key <AD07> {[ U0075, U0055, NoSymbol, NoSymbol ]}; // u, U
-    key <AD08> {[ U0069, U0049, U00ef, U00cf ]}; // i, I, ï, Ï
-    key <AD09> {[ U006f, U004f, NoSymbol, NoSymbol ]}; // o, O
-    key <AD10> {[ U0070, U0050, U03c0, NoSymbol ]}; // p, P, π
-    key <AD11> {[ U005b, U007b, NoSymbol, NoSymbol ]}; // [, {
-    key <AD12> {[ U005d, U007d, NoSymbol, NoSymbol ]}; // ], }
+    key <AD01> {[ U0071, U0051, NoSymbol, NoSymbol ]};
+    key <AD02> {[ U0077, U0057, NoSymbol, NoSymbol ]};
+    key <AD03> {[ U0065, U0045, U00eb, U00cb ]};
+    key <AD04> {[ U0072, U0052, NoSymbol, NoSymbol ]};
+    key <AD05> {[ U0074, U0054, U2122, NoSymbol ]};
+    key <AD06> {[ U0079, U0059, NoSymbol, NoSymbol ]};
+    key <AD07> {[ U0075, U0055, NoSymbol, NoSymbol ]};
+    key <AD08> {[ U0069, U0049, U00ef, U00cf ]};
+    key <AD09> {[ U006f, U004f, U2205, U29b0 ]};
+    key <AD10> {[ U0070, U0050, U03c0, NoSymbol ]};
+    key <AD11> {[ U005b, U007b, NoSymbol, NoSymbol ]};
+    key <AD12> {[ U005d, U007d, NoSymbol, NoSymbol ]};
 
-    key <AC01> {[ U0061, U0041, U2200, NoSymbol ]}; // a, A, ∀
-    key <AC02> {[ U0073, U0053, NoSymbol, NoSymbol ]}; // s, S
-    key <AC03> {[ U0064, U0044, NoSymbol, NoSymbol ]}; // d, D
-    key <AC04> {[ U0066, U0046, NoSymbol, NoSymbol ]}; // f, F
-    key <AC05> {[ U0067, U0047, NoSymbol, NoSymbol ]}; // g, G
-    key <AC06> {[ U0068, U0048, U2190, U21d0 ]}; // h, H, ←, ⇐
-    key <AC07> {[ U006a, U004a, U2193, U21d3 ]}; // j, J, ↓, ⇓
-    key <AC08> {[ U006b, U004b, U2191, U21d1 ]}; // k, K, ↑, ⇑
-    key <AC09> {[ U006c, U004c, U2192, U21d2 ]}; // l, L, →, ⇒
-    key <AC10> {[ U003b, U003a, NoSymbol, NoSymbol ]}; // ;, :
-    key <AC11> {[ U0027, U0022, NoSymbol, NoSymbol ]}; // ', "
-    key <BKSL> {[ U005c, U007c, NoSymbol, NoSymbol ]}; // \, |
-    key <LSGT> {[ U005c, U007c, NoSymbol, NoSymbol ]}; // \, |
+    key <AC01> {[ U0061, U0041, U2200, NoSymbol ]};
+    key <AC02> {[ U0073, U0053, NoSymbol, NoSymbol ]};
+    key <AC03> {[ U0064, U0044, NoSymbol, NoSymbol ]};
+    key <AC04> {[ U0066, U0046, NoSymbol, NoSymbol ]};
+    key <AC05> {[ U0067, U0047, NoSymbol, NoSymbol ]};
+    key <AC06> {[ U0068, U0048, U2190, U21d0 ]};
+    key <AC07> {[ U006a, U004a, U2193, U21d3 ]};
+    key <AC08> {[ U006b, U004b, U2191, U21d1 ]};
+    key <AC09> {[ U006c, U004c, U2192, U21d2 ]};
+    key <AC10> {[ U003b, U003a, NoSymbol, NoSymbol ]};
+    key <AC11> {[ U0027, U0022, NoSymbol, NoSymbol ]};
+    key <BKSL> {[ U005c, U007c, NoSymbol, NoSymbol ]};
+    key <LSGT> {[ U005c, U007c, NoSymbol, NoSymbol ]};
 
-    key <AB01> {[ U007a, U005a, NoSymbol, NoSymbol ]}; // z, Z
-    key <AB02> {[ U0078, U0058, U00d7, U00f7 ]}; // x, X, ×, ÷
-    key <AB03> {[ U0063, U0043, U00a9, NoSymbol ]}; // c, C, ©
-    key <AB04> {[ U0076, U0056, NoSymbol, NoSymbol ]}; // v, V
-    key <AB05> {[ U0062, U0042, U2588, NoSymbol ]}; // b, B, █
-    key <AB06> {[ U006e, U004e, NoSymbol, NoSymbol ]}; // n, N
-    key <AB07> {[ U006d, U004d, NoSymbol, NoSymbol ]}; // m, M
-    key <AB08> {[ U002c, U003c, U2039, U00ab ]}; // ,, <, ‹, «
-    key <AB09> {[ U002e, U003e, U203a, U00bb ]}; // ., >, ›, »
-    key <AB10> {[ U002f, U003f, U2026, U203d ]}; // /, ?, …, ‽
+    key <AB01> {[ U007a, U005a, NoSymbol, NoSymbol ]};
+    key <AB02> {[ U0078, U0058, U00d7, U00f7 ]};
+    key <AB03> {[ U0063, U0043, U00a9, NoSymbol ]};
+    key <AB04> {[ U0076, U0056, NoSymbol, NoSymbol ]};
+    key <AB05> {[ U0062, U0042, U2588, NoSymbol ]};
+    key <AB06> {[ U006e, U004e, U03bd, NoSymbol ]};
+    key <AB07> {[ U006d, U004d, U03bc, NoSymbol ]};
+    key <AB08> {[ U002c, U003c, U2039, U00ab ]};
+    key <AB09> {[ U002e, U003e, U203a, U00bb ]};
+    key <AB10> {[ U002f, U003f, U2026, U203d ]};
 
-    key <SPCE> {[ U0020, U0020, U00a0, U00a0 ]}; //  ,  ,  ,  
+    key <SPCE> {[ U0020, U0020, U00a0, U00a0 ]};
 
-    key <RALT> {[ ISO_Level3_Shift ]};
+    key <RALT> {
+        type = "TWO_LEVEL",
+        symbols[Group1] = [ ISO_Level3_Shift, ISO_Level3_Shift ]
+    };
     modifier_map Mod5 { ISO_Level3_Shift };
 };
 
