@@ -21,6 +21,11 @@ run = "enter"
 desc = "Enter the child directory"
 
 [[mgr.prepend_keymap]]
+on = "R"
+run = "bulk_rename"
+desc = "Bulk rename"
+
+[[mgr.prepend_keymap]]
 on = ["g", "/"]
 run = "cd /"
 desc = "/"

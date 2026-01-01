@@ -46,19 +46,19 @@ extract = [
 
 # [open]
 # prepend_rules = [
-#   { name = "*.html", use = ["open", "edit"] },
+#   { url = "*.html", use = ["open", "edit"] },
 #   { mime = "text/*", use = "edit" },
 # ]
 # append_rules = [
-#   { name = "*", use = "open" },
+#   { url = "*", use = "open" },
 # ]
 
 [[plugin.prepend_fetchers]]
 id = "git"
-name = "*"
+url = "*"
 run = "git"
 
 [[plugin.prepend_fetchers]]
 id = "git"
-name = "*/"
+url = "*/"
 run = "git"
