@@ -11,6 +11,7 @@ end, { desc = "Convert char to XKB Unicode hex" })
 local augroup = vim.api.nvim_create_augroup("uXkbSymbols", { clear = false })
 local ns = vim.api.nvim_create_namespace("uXkbSymbols")
 local buf = vim.api.nvim_get_current_buf()
+
 vim.api.nvim_create_autocmd(
   { "CursorHold", "BufEnter", "InsertLeave", "BufWritePost" },
   {
@@ -24,10 +25,15 @@ vim.api.nvim_create_autocmd(
         for hex in line:gmatch("U(%x%x%x%x+)") do
           local code = tonumber(hex, 16)
           if code then
+            local char = vim.fn.nr2char(code)
             if code == 160 then
-              code = 9251
+              char = "␣"
+            elseif code >= 0x0300 and code <= 0x036f then
+              char = "◌" .. char
             end
-            table.insert(symbols, code and vim.fn.nr2char(code) or "�")
+            table.insert(symbols, char ~= "" and char or "�")
+          else
+            table.insert(symbols, "�")
           end
         end
         if #symbols > 0 then
