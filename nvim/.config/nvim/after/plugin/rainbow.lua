@@ -43,7 +43,7 @@ local function rainbow_loop()
   vim.defer_fn(rainbow_loop, 1000)
 end
 
-vim.keymap.set("n", "<Leader>:w", function()
+vim.keymap.set("n", "<Leader>gw", function()
   if not vim.g.u_rainbow then
     vim.g.u_rainbow = 0
     rainbow_loop()

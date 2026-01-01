@@ -9,7 +9,7 @@ vim.keymap.set("n", "<Leader>;", function()
   vim.fn.cursor({ cur[2], cur[3], cur[4], cur[5] })
 end, { buffer = true, desc = "Toggle ;" })
 
-vim.keymap.set("n", "<Leader>'m", function()
+vim.keymap.set("n", "<Leader>:m", function()
   local cur = vim.fn.getcurpos()
   local line = vim.fn.getline(cur[2])
   if line:find("let mut ") then
@@ -23,7 +23,7 @@ vim.keymap.set("n", "<Leader>'m", function()
   vim.fn.cursor({ cur[2], cur[3], cur[4], cur[5] })
 end, { buffer = true, desc = "Toggle mut" })
 
-vim.keymap.set("n", "<Leader>'p", function()
+vim.keymap.set("n", "<Leader>:p", function()
   local cur = vim.fn.getcurpos()
   local line = vim.fn.getline(cur[2])
   if line:find("pub ") then

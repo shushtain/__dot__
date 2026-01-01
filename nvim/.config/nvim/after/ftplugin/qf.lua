@@ -1,4 +1,5 @@
 vim.keymap.set("n", "<CR>", function()
+  local qf_cursor = vim.fn.getpos(".")
   local qf_buf = vim.api.nvim_get_current_buf()
   local qf_win = vim.api.nvim_get_current_win()
   vim.cmd("wincmd W")
@@ -13,10 +14,11 @@ vim.keymap.set("n", "<CR>", function()
   if qf_buf == gf_buf then
     return
   end
-  local cursor = vim.fn.getpos(".")
+  local gf_cursor = vim.fn.getpos(".")
   vim.api.nvim_set_current_buf(qf_buf)
   vim.api.nvim_set_current_win(gf_win)
   vim.api.nvim_set_current_buf(gf_buf)
-  vim.fn.setpos(".", cursor)
+  vim.fn.setpos(".", gf_cursor)
   vim.api.nvim_set_current_win(qf_win)
+  vim.fn.setpos(".", qf_cursor)
 end)

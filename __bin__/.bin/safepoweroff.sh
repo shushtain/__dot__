@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-hyprctl devices >~/safepoweroff.log
-hyprctl monitors >>~/safepoweroff.log
-cat /sys/class/backlight/intel_backlight/actual_brightness >>~/safepoweroff.log
+# hyprctl devices >~/safepoweroff.log
+# hyprctl monitors >>~/safepoweroff.log
+# cat /sys/class/backlight/intel_backlight/actual_brightness >>~/safepoweroff.log
 
 status="$(hyprctl -j clients | jq -c ".[]" | wc -l)"
 busy="$(dropbox-cli status)"

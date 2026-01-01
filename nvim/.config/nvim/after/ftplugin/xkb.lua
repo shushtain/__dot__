@@ -1,12 +1,12 @@
 -- vim.bo.expandtab = false
 
-vim.keymap.set("n", "<Leader>ga", function()
-  vim.cmd('normal! "hyl')
-  local ch = vim.fn.getreg("h")
-  local hex = string.format("U%04x", vim.fn.char2nr(ch))
-  vim.fn.setreg("h", hex)
-  vim.cmd('normal! v"hp')
-end, { desc = "Convert char to XKB Unicode hex" })
+-- vim.keymap.set("n", "<Leader>ga", function()
+--   vim.cmd('normal! "qyiw')
+--   local ch = vim.fn.getreg("q")
+--   local hex = string.format("U%04x", vim.fn.char2nr(ch))
+--   vim.fn.setreg("q", hex)
+--   vim.cmd('normal! viw"qp')
+-- end, { desc = "Convert char to XKB Unicode hex" })
 
 local augroup = vim.api.nvim_create_augroup("uXkbSymbols", { clear = false })
 local ns = vim.api.nvim_create_namespace("uXkbSymbols")

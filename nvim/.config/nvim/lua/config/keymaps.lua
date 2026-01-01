@@ -144,9 +144,9 @@ end)
 
 -- [[ SPECIAL ]]
 
-vim.keymap.set("n", "<Leader>:r", "<Cmd>ri<CR>", { desc = "Format : Right" })
+vim.keymap.set("n", "<Leader>gr", "<Cmd>ri<CR>", { desc = "Format : Right" })
 
-vim.keymap.set("n", "<Leader>:j", function()
+vim.keymap.set("n", "<Leader>gj", function()
   local tw = vim.o.textwidth
   tw = tw == 0 and 80 or tw
 
@@ -389,6 +389,20 @@ vim.keymap.set("n", "<C-k>", "<C-w>+")
 
 vim.keymap.set(
   "n",
+  "<Leader>d",
+  vim.diagnostic.setloclist,
+  { desc = "Diagnostics : Buffer" }
+)
+
+vim.keymap.set(
+  "n",
+  "<Leader>D",
+  vim.diagnostic.setqflist,
+  { desc = "Diagnostics : Project" }
+)
+
+vim.keymap.set(
+  "n",
   "<M-d>",
   vim.diagnostic.open_float,
   { desc = "Diagnostics : Current" }
@@ -474,3 +488,28 @@ vim.keymap.set("n", "<Leader>|", function()
   pcall(vim.api.nvim_win_close, vim.g.u_last_term, false)
   vim.g.u_last_term = nil
 end, { desc = "Close Terminal" })
+
+-- [[ UNICODE ]]
+
+vim.keymap.set("n", "<Leader>ga", function()
+  vim.cmd('normal! "qyiw')
+  local word = vim.fn.getreg("q")
+  local codes = vim.fn.str2list(word)
+  local hex = ""
+  for _, code in ipairs(codes) do
+    hex = hex .. string.format("U%04x", code)
+  end
+  vim.fn.setreg("q", hex)
+  vim.cmd('normal! viw"qp')
+end, { desc = "Unicode : Hexes" })
+
+vim.keymap.set("n", "<Leader>gA", function()
+  vim.cmd('normal! "qyiw')
+  local seq = vim.fn.getreg("q")
+  local word = seq:gsub("U(%x+)", function(hex)
+    local dec = tonumber(hex, 16)
+    return vim.fn.nr2char(dec)
+  end)
+  vim.fn.setreg("q", word)
+  vim.cmd('normal! viw"qp')
+end, { desc = "Unicode : Chars" })

@@ -43,7 +43,7 @@ return {
           ["alt-enter"] = require("fzf-lua").actions.file_vsplit,
           ["alt-q"] = require("fzf-lua").actions.file_sel_to_qf,
           ["alt-l"] = require("fzf-lua").actions.file_sel_to_ll,
-          ["alt-t"] = require("trouble.sources.fzf").actions.open,
+          -- ["alt-t"] = require("trouble.sources.fzf").actions.open,
           ["alt-\\"] = require("fzf-lua").actions.toggle_ignore,
           ["alt-."] = require("fzf-lua").actions.toggle_hidden,
           ["alt-,"] = require("fzf-lua").actions.toggle_follow,
