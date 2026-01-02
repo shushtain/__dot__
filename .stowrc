@@ -1,2 +1,4 @@
 --target=~
---ignore=\.stowrc
+--ignore=^/\.git
+--ignore=^/\.gitignore
+--ignore=^/\.stowrc
