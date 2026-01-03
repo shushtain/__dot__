@@ -9,7 +9,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
   group = group,
   once = true,
   callback = function(_env)
-    if #vim.fn.argv() > 0 then
+    if vim.env.NVIM_NOSESSIONS or #vim.fn.argv() > 0 then
       return
     end
 
