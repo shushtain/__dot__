@@ -5,13 +5,15 @@ text/plain=nvim.desktop
 text/html=nvim.desktop
 text/javascript=nvim.desktop
 
-application/xml=browser.desktop
-application/xhtml+xml=browser.desktop
-application/x-extension-htm=browser.desktop
-application/x-extension-html=browser.desktop
-application/x-extension-shtml=browser.desktop
-application/x-extension-xhtml=browser.desktop
-application/x-extension-xht=browser.desktop
+application/text=nvim.desktop
+application/octet-stream=nvim.desktop
+application/xml=nvim.desktop
+application/xhtml+xml=nvim.desktop
+application/x-extension-htm=nvim.desktop
+application/x-extension-html=nvim.desktop
+application/x-extension-shtml=nvim.desktop
+application/x-extension-xhtml=nvim.desktop
+application/x-extension-xht=nvim.desktop
 application/x-shellscript=nvim.desktop
 application/javascript=nvim.desktop
 application/json=nvim.desktop
@@ -28,6 +30,3 @@ x-scheme-handler/magnet=rqbit.desktop
 x-scheme-handler/file=xdg-handler-file.desktop
 x-scheme-handler/gh=xdg-handler-gh.desktop
 x-scheme-handler/sh=xdg-handler-sh.desktop
-
-# # fallback
-# application/octet-stream=nvim.desktop
