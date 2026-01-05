@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=Browser
+Icon=firefox
+Actions=incognito
+Exec=firefox
+# Exec=brave --force-prefers-reduced-motion --password-store=basic
+
+[Desktop Action incognito]
+Name=Incognito
+Exec=firefox --private-window
+# Exec=brave --incognito --force-prefers-reduced-motion --password-store=basic

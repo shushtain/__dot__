@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
-Name=x-scheme-handler-gh
-Exec=x-scheme-handler-gh.sh
+Name=xdg-handler-gh
+Exec=xdg-handler-gh.sh
 MimeType=x-scheme-handler/gh
 NoDisplay=true

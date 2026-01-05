@@ -4,6 +4,7 @@ return {
   dependencies = {},
   config = function()
     require("fzf-lua").setup({
+      ui_select = { prompt = "> " },
       keymap = {
         builtin = {
           ["<M-Esc>"] = "hide",
@@ -172,8 +173,6 @@ return {
         gutter = { "bg", "NoneFloat" },
       },
     })
-
-    require("fzf-lua").register_ui_select({ prompt = "> " })
 
     vim.keymap.set(
       "n",

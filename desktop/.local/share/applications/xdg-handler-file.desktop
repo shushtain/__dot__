@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=xdg-handler-file
+Exec=xdg-handler-file.sh
+MimeType=x-scheme-handler/file
+NoDisplay=true

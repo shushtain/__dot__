@@ -4,8 +4,6 @@ alias cp='cp -vi'
 alias mv='mv -vi'
 alias c='clear'
 
-s() { if [[ $# == 0 ]]; then sudo "$(history -p '!!')"; else sudo "$@"; fi; }
-
 alias ls='eza'
 alias list='eza -al --group-directories-first --git'
 alias tree='eza -T --group-directories-first'

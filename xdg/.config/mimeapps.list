@@ -1,10 +1,33 @@
 [Default Applications]
-inode/directory=yazi.desktop
+inode/directory=xdg-handler-inode.desktop
+
 text/plain=nvim.desktop
 text/html=nvim.desktop
-application/xml=nvim.desktop
+text/javascript=nvim.desktop
+
+application/xml=browser.desktop
+application/xhtml+xml=browser.desktop
+application/x-extension-htm=browser.desktop
+application/x-extension-html=browser.desktop
+application/x-extension-shtml=browser.desktop
+application/x-extension-xhtml=browser.desktop
+application/x-extension-xht=browser.desktop
 application/x-shellscript=nvim.desktop
-x-scheme-handler/mailto=brave-browser.desktop
+application/javascript=nvim.desktop
+application/json=nvim.desktop
+application/pdf=browser.desktop
+
+image/svg+xml=browser.desktop
+image/webp=browser.desktop
+
+x-scheme-handler/http=browser.desktop
+x-scheme-handler/https=browser.desktop
+x-scheme-handler/mailto=browser.desktop
+x-scheme-handler/chrome=browser.desktop
 x-scheme-handler/magnet=rqbit.desktop
-x-scheme-handler/gh=x-scheme-handler-gh.desktop
-x-scheme-handler/sh=x-scheme-handler-sh.desktop
+x-scheme-handler/file=xdg-handler-file.desktop
+x-scheme-handler/gh=xdg-handler-gh.desktop
+x-scheme-handler/sh=xdg-handler-sh.desktop
+
+# # fallback
+# application/octet-stream=nvim.desktop

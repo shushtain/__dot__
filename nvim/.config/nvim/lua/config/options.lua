@@ -128,6 +128,7 @@ vim.o.timeout = false
 
 vim.o.backup = false
 vim.o.writebackup = true
+vim.o.backupcopy = "yes"
 vim.o.undofile = true
 vim.o.swapfile = true
 
