@@ -24,24 +24,24 @@ cursor_blink = false
 
 [opener]
 play = [
-  { run = 'app2unit -- mpv "$@"', block = true, desc = "MPV" },
-  { run = 'app2unit -- mpv "$@"', orphan = true, desc = "MPV (detached)" },
-  { run = 'app2unit -- $BROWSER file://"$@"', orphan = true, desc = "Browser" },
-  { run = 'app2unit -- nvim "$@"', orphan = true, desc = "Neovim" },
+  { run = "mpv %s", block = true, desc = "MPV" },
+  { run = "mpv %s", orphan = true, desc = "MPV (detached)" },
+  { run = "$BROWSER file://%s", orphan = true, desc = "Browser" },
+  { run = "nvim %s", orphan = true, desc = "Neovim" },
 ]
 edit = [
-  { run = 'app2unit -- nvim "$@"', block = true, desc = "Neovim" },
-  { run = 'app2unit -- nvim "$@"', orphan = true, desc = "Neovim (detached)" },
-  { run = 'app2unit -- nvim --clean "$@"', block = true, desc = "Neovim (clean)" },
-  { run = 'app2unit -- $BROWSER file://"$@"', orphan = true, desc = "Browser" },
+  { run = "nvim %s", block = true, desc = "Neovim" },
+  { run = "nvim %s", orphan = true, desc = "Neovim (detached)" },
+  { run = "nvim --clean %s", block = true, desc = "Neovim (clean)" },
+  { run = "$BROWSER %s", orphan = true, desc = "Browser" },
 ]
 open = [
-  { run = 'app2unit-open "$@"', orphan = true, desc = "Default" },
-  { run = 'app2unit -- $BROWSER file://"$@"', orphan = true, desc = "Browser" },
-  { run = 'app2unit -- nvim "$@"', orphan = true, desc = "Neovim" },
+  { run = "ydg-open %s", orphan = true, desc = "Default" },
+  { run = "$BROWSER %s", orphan = true, desc = "Browser" },
+  { run = "nvim %s", orphan = true, desc = "Neovim" },
 ]
 extract = [
-  { run = 'ya pub extract --list "$@"', desc = "Extract here" },
+  { run = "ya pub extract --list %s", desc = "Extract here" },
 ]
 
 # [open]
