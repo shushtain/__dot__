@@ -43,7 +43,7 @@ __ps1() {
         fi
     fi
 
-    if [[ "$(history 1)" =~ ^[[:space:]]*[0-9]+[[:space:]]+(clear|reset|c)([[:space:]]|$) ]]; then
+    if [[ "$(history 1)" =~ ^[[:space:]]*[0-9]+[[:space:]]+(clear|reset)([[:space:]]|$) ]]; then
         __ps1_vspace=""
     fi
 

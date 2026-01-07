@@ -2,19 +2,16 @@ alias rc='source ~/.bashrc'
 
 alias cp='cp -vi'
 alias mv='mv -vi'
-alias c='clear'
 
 alias ls='eza'
 alias list='eza -al --group-directories-first --git'
 alias tree='eza -T --group-directories-first'
 
-alias man='batman'
 alias dust='dust --depth 1'
 alias systui='systemctl-tui'
 alias ff='fastfetch'
 
-# alias parui='parui -p=yay'
-gay() {
+nay() {
     yay -Qi "$@" | rg "^URL\s*:\s*(.*)\s*$" -r '$1' | xargs -r xdg-open
 }
 
@@ -63,7 +60,6 @@ gcam() {
     fi
     git add --all
     git commit -m "$*"
-
 }
 
 alias gco='git checkout'
@@ -109,9 +105,9 @@ alias ais="aichat -s"
 alias aie="aichat -e"
 
 gsum() {
-    local __gsum
-    __gsum="$(git --no-pager diff). $*"
-    SHUSH_GSUM="$(aichat -r gsum "$__gsum")"
+    local sum
+    sum="$(git --no-pager diff). $*"
+    SHUSH_GSUM="$(aichat -r gsum "$sum")"
     export SHUSH_GSUM
     echo "[${#SHUSH_GSUM}] $SHUSH_GSUM"
 }
