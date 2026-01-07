@@ -13,7 +13,7 @@ alias dust='dust --depth 1'
 alias systui='systemctl-tui'
 alias ff='fastfetch'
 
-alias parui='parui -p=yay'
+# alias parui='parui -p=yay'
 gay() {
     yay -Qi "$@" | rg "^URL\s*:\s*(.*)\s*$" -r '$1' | xargs -r xdg-open
 }

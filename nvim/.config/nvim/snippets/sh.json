@@ -40,9 +40,5 @@
   "until": {
     "prefix": "~until",
     "body": ["until [[ ${1:condition} ]]; do", "\t${0}", "done", ""]
-  },
-  "shebang": {
-    "prefix": "#!",
-    "body": ["#!/usr/bin/env ${1:bash}"]
   }
 }
