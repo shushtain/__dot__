@@ -9,8 +9,7 @@ if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
             break
             ;;
         *)
-            start-hyprland
-            break
+            exec start-hyprland
             ;;
         esac
     done
