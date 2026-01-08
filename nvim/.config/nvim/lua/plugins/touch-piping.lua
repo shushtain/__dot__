@@ -2,7 +2,7 @@ return {
   "shushtain/touch-piping.nvim",
   -- enabled = false,
   cmd = { "TouchPipingStart" },
-  dir = vim.fn.expand("~/box/touch-piping.nvim"),
+  dir = vim.fn.expand("~/box/touch-piping"),
   dev = true,
   config = function()
     require("touch-piping").setup({

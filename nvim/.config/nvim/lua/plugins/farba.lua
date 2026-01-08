@@ -1,7 +1,7 @@
 return {
   "shushtain/farba.nvim",
   -- enabled = false,
-  dir = vim.fn.expand("~/box/farba.nvim"),
+  dir = vim.fn.expand("~/box/farba"),
   dev = true,
   priority = 1000,
   config = function()

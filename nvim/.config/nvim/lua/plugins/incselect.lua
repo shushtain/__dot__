@@ -1,7 +1,7 @@
 return {
   "shushtain/incselect.nvim",
   -- enabled = false,
-  dir = vim.fn.expand("~/box/incselect.nvim"),
+  dir = vim.fn.expand("~/box/incselect"),
   dev = true,
   config = function()
     vim.keymap.set("n", "<CR>", function()

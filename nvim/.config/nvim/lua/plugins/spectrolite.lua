@@ -1,7 +1,7 @@
 return {
   "shushtain/spectrolite.nvim",
   -- enabled = false,
-  dir = vim.fn.expand("~/box/spectrolite.nvim"),
+  dir = vim.fn.expand("~/box/spectrolite"),
   dev = true,
   config = function()
     require("spectrolite").setup({

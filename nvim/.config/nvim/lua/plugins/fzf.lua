@@ -316,7 +316,7 @@ return {
 
     vim.keymap.set(
       "n",
-      "<Leader>f.",
+      "<Leader>f,",
       require("fzf-lua").oldfiles,
       { desc = "Find : Recent Files" }
     )
@@ -335,7 +335,7 @@ return {
       { desc = "Find : Inside Buffer" }
     )
 
-    vim.keymap.set("n", "<Leader>f,", function()
+    vim.keymap.set("n", "<Leader>f.", function()
       require("fzf-lua").files({ cwd = vim.fn.stdpath("config") })
     end, { desc = "Find : Config" })
   end,

@@ -21,9 +21,9 @@ xkb_symbols "basic" {
     key <AD01> {[ U0439, U0419, NoSymbol, NoSymbol ]};
     key <AD02> {[ U0446, U0426, NoSymbol, NoSymbol ]};
     key <AD03> {[ U0443, U0423, U2713, U2717 ]};
-    key <AD04> {[ U043a, U041a, U00ae, NoSymbol ]};
+    key <AD04> {[ U043a, U041a, NoSymbol, NoSymbol ]};
     key <AD05> {[ U0435, U0415, NoSymbol, NoSymbol ]};
-    key <AD06> {[ U043d, U041d, U03bd, NoSymbol ]};
+    key <AD06> {[ U043d, U041d, NoSymbol, NoSymbol ]};
     key <AD07> {[ U0433, U0413, NoSymbol, NoSymbol ]};
     key <AD08> {[ U0448, U0428, NoSymbol, NoSymbol ]};
     key <AD09> {[ U0449, U0429, U2205, U29b0 ]};
@@ -35,7 +35,7 @@ xkb_symbols "basic" {
     key <AC02> {[ U0456, U0406, U044b, U042b ]};
     key <AC03> {[ U0432, U0412, NoSymbol, NoSymbol ]};
     key <AC04> {[ U0430, U0410, NoSymbol, NoSymbol ]};
-    key <AC05> {[ U043f, U041f, U03c0, NoSymbol ]};
+    key <AC05> {[ U043f, U041f, NoSymbol, NoSymbol ]};
     key <AC06> {[ U0440, U0420, U2190, U21d0 ]};
     key <AC07> {[ U043e, U041e, U2193, U21d3 ]};
     key <AC08> {[ U043b, U041b, U2191, U21d1 ]};
@@ -47,10 +47,10 @@ xkb_symbols "basic" {
 
     key <AB01> {[ U044f, U042f, U2423, Ufffd ]};
     key <AB02> {[ U0447, U0427, U00d7, U00f7 ]};
-    key <AB03> {[ U0441, U0421, U00a9, NoSymbol ]};
-    key <AB04> {[ U043c, U041c, U03bc, NoSymbol ]};
+    key <AB03> {[ U0441, U0421, NoSymbol, NoSymbol ]};
+    key <AB04> {[ U043c, U041c, NoSymbol, NoSymbol ]};
     key <AB05> {[ U0438, U0418, U2588, U1cc43 ]};
-    key <AB06> {[ U0442, U0422, U2122, NoSymbol ]};
+    key <AB06> {[ U0442, U0422, NoSymbol, NoSymbol ]};
     key <AB07> {[ U044c, U042c, U044a, U042a ]};
     key <AB08> {[ U0431, U0411, U003c, U00ab ]};
     key <AB09> {[ U044e, U042e, U003e, U00bb ]};
