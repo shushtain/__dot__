@@ -42,12 +42,24 @@ function handler.mode()
 end
 
 function handler.branch()
-  local branch = vim.b.gitsigns_head or ""
-  local status = vim.b.gitsigns_status or ""
-  if branch ~= "" and status ~= "" then
-    branch = "~" .. branch .. "~"
-  end
-  state.branch = branch
+  local cmd = [[
+    branch=$(git branch --show-current 2>/dev/null)
+    if [ -z "$branch" ]; then
+      printf ""
+    elif [ -n "$(git status --porcelain 2>/dev/null)" ]; then
+      printf "~%s~" "$branch"
+    elif [ -n "$(git rev-list @{u}.. 2>/dev/null)" ]; then
+      printf "+%s+" "$branch"
+    else
+      printf "%s" "$branch"
+    fi
+  ]]
+  vim.system({ "bash", "-c", cmd }, { text = true }, function(obj)
+    local branch = vim.trim(obj.stdout or "")
+    vim.schedule(function()
+      state.branch = branch
+    end)
+  end)
 end
 
 function handler.filename()
@@ -205,10 +217,6 @@ end
 
 local function run()
   enqueue("stats")
-  ---@diagnostic disable-next-line: unnecessary-if
-  if state.branch == "" then
-    enqueue("branch")
-  end
   redraw()
   vim.defer_fn(run, 1000)
 end
