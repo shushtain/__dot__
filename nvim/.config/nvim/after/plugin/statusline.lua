@@ -42,12 +42,9 @@ function handler.mode()
 end
 
 function handler.branch()
-  local git = vim.b.gitsigns_status_dict or {}
-  local branch = git.head or ""
-  if
-    branch ~= ""
-    and (git.added or 0) + (git.changed or 0) + (git.removed or 0) > 0
-  then
+  local branch = vim.b.gitsigns_head or ""
+  local status = vim.b.gitsigns_status or ""
+  if branch ~= "" and status ~= "" then
     branch = "~" .. branch .. "~"
   end
   state.branch = branch
@@ -208,6 +205,10 @@ end
 
 local function run()
   enqueue("stats")
+  ---@diagnostic disable-next-line: unnecessary-if
+  if state.branch == "" then
+    enqueue("branch")
+  end
   redraw()
   vim.defer_fn(run, 1000)
 end
@@ -224,17 +225,6 @@ vim.api.nvim_create_autocmd({
   callback = function()
     enqueue()
     redraw()
-  end,
-})
-
--- ::: initial branch
-vim.api.nvim_create_autocmd("BufEnter", {
-  group = group,
-  once = true,
-  callback = function()
-    vim.defer_fn(function()
-      enqueue("branch")
-    end, 100)
   end,
 })
 
