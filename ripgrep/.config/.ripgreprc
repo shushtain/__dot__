@@ -9,7 +9,7 @@
 --field-match-separator=\x20
 
 --colors=path:none
---colors=path:fg:yellow
+--colors=path:fg:black
 --colors=path:style:bold
 
 --colors=line:none
