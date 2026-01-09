@@ -3,14 +3,12 @@
 
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
     while true; do
-        read -r -p "Start Hyprland? (N/n to cancel) " answer
+        read -r -p "Start Hyprland? [Y/n] " answer
+        answer="${answer:-y}"
         case $answer in
-        [Nn]*)
-            break
-            ;;
-        *)
-            exec start-hyprland
-            ;;
+        [Nn]*) break ;;
+        [Yy]*) exec start-hyprland ;;
+        *) echo "Please answer Y/y or N/n." ;;
         esac
     done
 fi
