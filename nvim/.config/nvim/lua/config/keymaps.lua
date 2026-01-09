@@ -15,17 +15,18 @@ vim.keymap.set("n", "-", function()
     polars[v] = k
   end
   vim.cmd("normal! viw")
-  local _, srow, scol, _ = unpack(vim.fn.getpos("v"))
-  local _, erow, ecol, _ = unpack(vim.fn.getpos("."))
-  vim.cmd("normal! \27")
-  local word =
-    vim.api.nvim_buf_get_text(0, srow - 1, scol - 1, erow - 1, ecol, {})
-  if #word == 1 then
-    local repl = polars[word[1]]
-    if repl then
-      vim.api.nvim_buf_set_text(0, srow - 1, scol - 1, erow - 1, ecol, { repl })
+  local _, sr, sc, _ = unpack(vim.fn.getpos("v"))
+  local _, er, ec, _ = unpack(vim.fn.getpos("."))
+  if sr and sc and er and ec then
+    vim.cmd("normal! \27")
+    local word = vim.api.nvim_buf_get_text(0, sr - 1, sc - 1, er - 1, ec, {})
+    if #word == 1 then
+      local repl = polars[word[1]]
+      if repl then
+        vim.api.nvim_buf_set_text(0, sr - 1, sc - 1, er - 1, ec, { repl })
+      end
+      vim.fn.cursor(sr, sc)
     end
-    vim.fn.cursor(srow, scol)
   end
 end)
 
@@ -36,13 +37,14 @@ vim.keymap.set({ "n", "x" }, "k", "gk", { desc = "Visual Up" })
 
 vim.keymap.set({ "n", "x" }, "x", '"_x', { desc = "Cut" })
 vim.keymap.set({ "n", "x" }, "X", '"_X', { desc = "Cut" })
+vim.keymap.set("x", "p", '"_dP', { desc = "Paste" })
+
 vim.keymap.set("x", "<", "<gv", { desc = "Dedent" })
 vim.keymap.set("x", ">", ">gv", { desc = "Indent" })
-vim.keymap.set("x", "p", '"_dP', { desc = "Paste" })
 
 vim.keymap.set("i", "<M-h>", "<C-o>h", { desc = "Move left" })
 vim.keymap.set("i", "<M-l>", "<C-o>l", { desc = "Move right" })
-vim.keymap.set("i", "<M-;>", "<C-o>A", { desc = "Edit end" })
+vim.keymap.set("i", "<M-;>", "<C-o>A", { desc = "Move end" })
 
 vim.keymap.set("n", "<M-h>", "<<")
 vim.keymap.set("n", "<M-l>", ">>")
@@ -54,7 +56,6 @@ vim.keymap.set("n", "<M-p>", "0f{a<CR><Esc>P", { desc = "Paste Inside {}" })
 vim.keymap.set("n", "<Leader>tk", function()
   vim.o.keymap = vim.o.keymap == "" and "ukrainian-enhanced" or ""
 end, { desc = "Toggle : Keymap" })
-
 vim.keymap.set("i", "<M-k>", function()
   vim.o.keymap = vim.o.keymap == "" and "ukrainian-enhanced" or ""
 end, { desc = "Toggle : Keymap" })
@@ -217,8 +218,6 @@ vim.keymap.set("n", "<Leader>td", function()
 end, { desc = "Toggle : Diagnostics" })
 
 vim.keymap.set("n", "<Tab>", "<Cmd> b # <CR>", { desc = "Buffer : Back" })
-vim.keymap.set("n", "H", "<Cmd> bprevious <CR>", { desc = "Buffer : Prev" })
-vim.keymap.set("n", "L", "<Cmd> bnext <CR>", { desc = "Buffer : Next" })
 vim.keymap.set("n", "<Leader>`", "<Cmd> tabnew <CR>", { desc = "Tab : New" })
 vim.keymap.set(
   "n",
@@ -490,6 +489,9 @@ vim.keymap.set("n", "<Leader>|", function()
 end, { desc = "Close Terminal" })
 
 -- [[ UNICODE ]]
+-- TODO:
+-- Split into normal and visual.
+-- Make normal accept single char (but full unicode?).
 
 vim.keymap.set("n", "<Leader>ga", function()
   vim.cmd('normal! "qyiw')
