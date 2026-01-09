@@ -3,7 +3,19 @@
 [[ -f $HOME/.secrets ]] && . "$HOME/.secrets"
 [[ -f $HOME/.bash_aliases ]] && . "$HOME/.bash_aliases"
 
+shopt -s histappend
 HISTCONTROL=ignorespace:erasedups
+HISTSIZE=500
+HISTFILESIZE=5000
+
+histclean() {
+    if [ -f "$HISTFILE" ]; then
+        local tmp="${HISTFILE}_tmp$$"
+        tac "$HISTFILE" | awk '!x[$0]++' | tac | tail -n "$HISTFILESIZE" >"$tmp"
+        mv "$tmp" "$HISTFILE"
+    fi
+}
+trap histclean EXIT
 
 __ps1_vspace=""
 __ps1() {
@@ -53,6 +65,9 @@ __ps1() {
     printf "\x1b[0 q"
 
     __ps1_vspace="\n"
+
+    history -a
+    history -n
 }
 PROMPT_COMMAND=__ps1
 PS0="\[\e[0m\]"

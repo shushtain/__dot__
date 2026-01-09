@@ -1,7 +1,7 @@
 alias rc='source ~/.bashrc'
 
-alias cp='cp -vi'
-alias mv='mv -vi'
+alias copy='cp -vi'
+alias move='mv -vi'
 
 alias ls='eza'
 alias list='eza -al --group-directories-first --git'
