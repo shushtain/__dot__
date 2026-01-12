@@ -11,19 +11,10 @@ return {
       },
     })
 
+    local endwise = require("nvim-autopairs.ts-rule").endwise
     require("nvim-autopairs").add_rules({
-      require("nvim-autopairs.ts-rule").endwise(
-        "then$",
-        "end",
-        "lua",
-        "if_statement"
-      ),
-      require("nvim-autopairs.ts-rule").endwise(
-        "do$",
-        "end",
-        "lua",
-        { "for_statement", "while_statement" }
-      ),
+      endwise("then$", "end", "lua", "if_statement"),
+      endwise("do$", "end", "lua", { "for_statement", "while_statement" }),
     })
   end,
 }
