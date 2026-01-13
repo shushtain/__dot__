@@ -47,9 +47,9 @@ __ps1() {
     git_branch="$(git branch --show-current 2>/dev/null)"
     if [ -n "$git_branch" ]; then
         if [ -n "$(git status --porcelain 2>/dev/null)" ]; then
-            git="$c3~$git_branch~ "
-        elif [ -n "$(git rev-list '@{u}..' 2>/dev/null)" ]; then
             git="$c3$git_branch "
+        elif [ -n "$(git rev-list '@{u}..' 2>/dev/null)" ]; then
+            git="$c5$git_branch "
         else
             git="$c4$git_branch "
         fi
