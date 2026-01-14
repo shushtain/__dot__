@@ -3,20 +3,17 @@
   "exclusive": true,
   "position": "bottom",
   "start_hidden": true,
-  // "height": 24,
-  // "spacing": 4, // Gaps between modules (4px)
   "margin": "2 0 0 0",
   "fixed-center": true,
   "reload_style_on_change": false,
   "modules-left": ["hyprland/workspaces", "hyprland/window"],
   "modules-center": [],
   "modules-right": [
-    // "systemd-failed-units",
+    "systemd-failed-units",
     // "privacy",
     "tray",
     "hyprland/submap",
-    "hyprland/language",
-    // "idle_inhibitor",
+    "custom/language",
     "wireplumber",
     "bluetooth",
     "network",
@@ -39,11 +36,6 @@
     "format": "[{}]",
     "always-on": false,
     "default-submap": "N"
-  },
-  "hyprland/language": {
-    "format": "{}",
-    "format-en": "en",
-    "format-uk": "ua"
   },
   "tray": {
     "icon-size": 14,
@@ -101,15 +93,15 @@
     "interval": 60,
     "format": "{:%a %m-%d %H:%M}",
     "tooltip-format": "<tt>{calendar}</tt>",
+    "locale": "en_GB",
     "calendar": {
       "mode": "year",
       "mode-mon-col": 3,
       "format": {
-        "months": "<span><b>{}</b></span>",
-        "days": "<span><b>{}</b></span>",
-        "weeks": "<span>{}</span>",
-        "weekdays": "<span>{}</span>",
-        "today": "<span><b><u>{}</u></b></span>"
+        "days": "{}",
+        "today": "<b><u>{}</u></b>",
+        "weekdays": "<b>{}</b>",
+        "months": "<b>{}</b>"
       }
     }
   },
@@ -123,5 +115,10 @@
   "systemd-failed-units": {
     "format": "{nr_failed} systemd errors",
     "hide-on-ok": true
+  },
+  "custom/language": {
+    "exec": "hyprctl devices -j | jq -r '.keyboards[] | select(.main == true) | .active_keymap' | sd ' \\(Shush\\)' ''",
+    "interval": 1,
+    "format": "{}"
   }
 }
