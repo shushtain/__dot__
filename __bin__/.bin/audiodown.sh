@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-status="$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print $3}')"
+status="$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | choose 2)"
 if [[ $status == "[MUTED]" ]]; then
     wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
 fi
