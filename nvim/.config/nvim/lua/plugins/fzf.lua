@@ -69,7 +69,7 @@ return {
       },
       grep = {
         hidden = true,
-        path_shorten = 3,
+        -- path_shorten = 3,
         -- formatter = "path.dirname_first",
       },
       lsp = {

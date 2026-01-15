@@ -1,7 +1,6 @@
 return {
   "lewis6991/gitsigns.nvim",
   config = function()
-    ---@diagnostic disable-next-line: need-check-nil
     require("gitsigns").setup({
       signs = {
         add = { text = "┃" },

@@ -42,6 +42,9 @@ vim.api.nvim_create_autocmd("BufWritePre", {
       )
       return
     end
+    if not result.stdout then
+      return
+    end
 
     lines = vim.split(result.stdout, "\n")
     while #lines > 0 and lines[1] == "" do

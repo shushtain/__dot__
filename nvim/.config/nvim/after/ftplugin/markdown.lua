@@ -6,3 +6,4 @@ if vim.env.NVIM_NOIDE then
 end
 
 vim.lsp.enable("marksman")
+vim.lsp.enable("harper_ls")

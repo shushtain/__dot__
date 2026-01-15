@@ -84,6 +84,7 @@ vim.keymap.set("n", "<M-k>", function()
     vim.cmd('normal! "qddk')
   end
   vim.cmd('normal! "qP')
+  ---@diagnostic disable-next-line: param-type-mismatch
   vim.fn.cursor({ cur[2] - 1, cur[3], cur[4], cur[5] })
 end)
 
@@ -113,7 +114,9 @@ vim.keymap.set("x", "<M-j>", function()
     return
   end
   vim.cmd('normal! "qd"qp')
+  ---@diagnostic disable-next-line: need-check-nil
   vim.fn.setpos("'<", { le[1], le[2] + 1, le[3], le[4] })
+  ---@diagnostic disable-next-line: need-check-nil
   vim.fn.setpos("'>", { ri[1], ri[2] + 1, ri[3], ri[4] })
   vim.cmd("normal! gv")
   vim.fn.cursor({ cur[2] + 1, cur[3], cur[4], cur[5] })
@@ -137,9 +140,12 @@ vim.keymap.set("x", "<M-k>", function()
     vim.cmd('normal! "qdk')
   end
   vim.cmd('normal! "qP')
+  ---@diagnostic disable-next-line: assign-type-mismatch, need-check-nil
   vim.fn.setpos("'<", { le[1], le[2] - 1, le[3], le[4] })
+  ---@diagnostic disable-next-line: assign-type-mismatch, need-check-nil
   vim.fn.setpos("'>", { ri[1], ri[2] - 1, ri[3], ri[4] })
   vim.cmd("normal! gv")
+  ---@diagnostic disable-next-line: param-type-mismatch
   vim.fn.cursor({ cur[2] - 1, cur[3], cur[4], cur[5] })
 end)
 
@@ -203,12 +209,12 @@ vim.keymap.set("n", "<Leader>ts", function()
   local namespaces = vim.api.nvim_get_namespaces()
 
   local typos = namespaces["vim.lsp.typos_lsp.1"]
-  if typos then
+  if typos then ---@diagnostic disable-line: unnecessary-if
     vim.diagnostic.enable(vim.o.spell, { ns_id = typos })
   end
 
   local harper = namespaces["vim.lsp.harper_ls.1"]
-  if harper then
+  if harper then ---@diagnostic disable-line: unnecessary-if
     vim.diagnostic.enable(vim.o.spell, { ns_id = harper })
   end
 end, { desc = "Toggle : Spelling" })
@@ -510,7 +516,7 @@ vim.keymap.set("n", "<Leader>gA", function()
   local seq = vim.fn.getreg("q")
   local word = seq:gsub("U(%x+)", function(hex)
     local dec = tonumber(hex, 16)
-    return vim.fn.nr2char(dec)
+    return dec and vim.fn.nr2char(dec)
   end)
   vim.fn.setreg("q", word)
   vim.cmd('normal! viw"qp')

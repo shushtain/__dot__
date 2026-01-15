@@ -16,7 +16,6 @@ if not vim.uv.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
----@diagnostic disable-next-line
 require("lazy").setup({
   ui = { border = "solid", backdrop = 100 },
   change_detection = { enabled = false, notify = false },

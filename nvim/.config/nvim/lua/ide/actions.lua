@@ -86,6 +86,7 @@ vim.keymap.set("n", "<Leader>th", function()
 end, { desc = "Toggle : Hints" })
 
 vim.keymap.set("n", "<Leader>tv", function()
+  ---@diagnostic disable-next-line: need-check-nil
   local new_config = not vim.diagnostic.config().virtual_lines
   vim.diagnostic.config({ virtual_lines = new_config })
 end, { desc = "Toggle : Virtual Lines" })

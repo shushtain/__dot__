@@ -108,17 +108,5 @@ return {
       ---@diagnostic disable-next-line: assign-type-mismatch
       init_params.initializationOptions = config.settings["rust-analyzer"]
     end
-
-    -- ---@diagnostic disable-next-line: param-type-mismatch
-    -- vim.lsp.config("rust_analyzer", {
-    --   capabilities = {
-    --     workspace = {
-    --       didChangeConfiguration = { dynamicRegistration = true },
-    --       didChangeWatchedFiles = { dynamicRegistration = true },
-    --     },
-    --   },
-    -- })
-    -- ---@diagnostic disable-next-line: undefined-field
-    -- init_params.capabilities = vim.lsp.config.rust_analyzer.capabilities
   end,
 }
