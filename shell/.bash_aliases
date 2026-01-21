@@ -142,6 +142,7 @@ venv() {
 }
 
 purge() {
+    sudo rm -rf /var/cache/pacman/pkg/*
     trash-put -f "$HOME/box/dots/aichat/.config/aichat/messages.md"
     trash-put -f "$HOME/box/dots/aichat/.config/aichat/sessions/"
     trash-empty

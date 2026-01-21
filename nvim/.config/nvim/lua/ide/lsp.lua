@@ -27,8 +27,8 @@ vim.lsp.config("*", {
 vim.lsp.enable("typos_lsp")
 
 vim.api.nvim_create_autocmd("LspAttach", {
-  callback = function(ev)
-    local client = vim.lsp.get_client_by_id(ev.data.client_id)
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
     if not client then
       return
     end
@@ -46,12 +46,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
       local group =
         vim.api.nvim_create_augroup("uLspHighlight", { clear = false })
       vim.api.nvim_create_autocmd("CursorHold", {
-        buffer = ev.buf,
+        buffer = args.buf,
         group = group,
         callback = vim.lsp.buf.document_highlight,
       })
       vim.api.nvim_create_autocmd("CursorMoved", {
-        buffer = ev.buf,
+        buffer = args.buf,
         group = group,
         callback = vim.lsp.buf.clear_references,
       })

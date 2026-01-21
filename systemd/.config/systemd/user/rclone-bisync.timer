@@ -1,0 +1,6 @@
+[Timer]
+OnBootSec=1m
+OnUnitInactiveSec=5m
+
+[Install]
+WantedBy=timers.target

@@ -4,6 +4,7 @@ return {
   dependencies = {},
   config = function()
     require("fzf-lua").setup({
+      -- fzf_bin = "sk",
       ui_select = { prompt = "> " },
       keymap = {
         builtin = {
@@ -39,7 +40,8 @@ return {
       },
       actions = {
         files = {
-          ["enter"] = require("fzf-lua").actions.file_edit_or_qf,
+          -- ["enter"] = require("fzf-lua").actions.file_edit_or_qf,
+          ["enter"] = require("fzf-lua").actions.file_edit,
           ["alt-backspace"] = require("fzf-lua").actions.file_split,
           ["alt-enter"] = require("fzf-lua").actions.file_vsplit,
           ["alt-q"] = require("fzf-lua").actions.file_sel_to_qf,
@@ -60,7 +62,7 @@ return {
         no_header_i = true,
         silent = true,
         prompt = "> ",
-        rg_opts = "--line-number --no-heading --color=always --smart-case --max-columns=4096 -e --field-match-separator=':' --colors=path:fg:black --colors=path:style:intense --colors=line:fg:black --colors=line:style:intense --colors=column:fg:black --colors=column:style:intense --colors=match:fg:green --colors=match:style:nobold --colors=match:style:intense",
+        rg_opts = [[--line-number --no-heading --color=always --smart-case --max-columns=4096 -e --field-match-separator=':' --colors=path:fg:black --colors=path:style:intense --colors=line:fg:black --colors=line:style:intense --colors=column:fg:black --colors=column:style:intense --colors=match:fg:green --colors=match:style:nobold --colors=match:style:intense -g "!.git"]],
       },
       files = {
         formatter = "path.filename_first",

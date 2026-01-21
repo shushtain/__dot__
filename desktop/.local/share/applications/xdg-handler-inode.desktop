@@ -2,5 +2,4 @@
 Type=Application
 Name=xdg-handler-inode
 Exec=xdg-handler-inode.sh
-MimeType=inode/directory
 NoDisplay=true

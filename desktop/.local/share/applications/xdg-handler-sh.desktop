@@ -2,5 +2,4 @@
 Type=Application
 Name=xdg-handler-sh
 Exec=xdg-handler-sh.sh
-MimeType=x-scheme-handler/sh
 NoDisplay=true

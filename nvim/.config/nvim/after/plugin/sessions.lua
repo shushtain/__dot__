@@ -5,11 +5,23 @@ local function hash()
   return sessions .. vim.fn.sha256(vim.g.u_origin) .. ".vim"
 end
 
+vim.api.nvim_create_autocmd("StdinReadPre", {
+  group = group,
+  once = true,
+  callback = function(_args)
+    vim.g.u_started_with_stdin = true
+  end,
+})
+
 vim.api.nvim_create_autocmd("VimEnter", {
   group = group,
   once = true,
-  callback = function(_env)
-    if vim.env.NVIM_NOSESSIONS or #vim.fn.argv() > 0 then
+  callback = function(_args)
+    if
+      vim.env.NVIM_NOSESSIONS
+      or vim.fn.argc(-1) > 0
+      or vim.g.u_started_with_stdin
+    then
       return
     end
 
@@ -17,6 +29,18 @@ vim.api.nvim_create_autocmd("VimEnter", {
     if cwd == vim.fn.getenv("HOME") then
       return nil
     end
+
+    -- if
+    --   vim.bo[args.buf].filetype ~= ""
+    --   or vim.api.nvim_buf_get_name(args.buf) ~= ""
+    -- then
+    --   return nil
+    -- end
+    --
+    -- local lines = vim.api.nvim_buf_get_lines(args.buf, 0, -1, false)
+    -- if #lines > 1 or lines[1] ~= "" then
+    --   return nil
+    -- end
 
     vim.g.u_origin = vim.fn.getcwd()
     local session = hash()
@@ -51,7 +75,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
 
 vim.api.nvim_create_autocmd("VimLeavePre", {
   group = group,
-  callback = function(_env)
+  callback = function(_args)
     if not vim.g.u_origin then
       return
     end

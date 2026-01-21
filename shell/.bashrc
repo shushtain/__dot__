@@ -73,5 +73,6 @@ PROMPT_COMMAND=__ps1
 PS0="\[\e[0m\]"
 
 eval "$(fzf --bash)"
+eval "$(sk --shell bash)"
 eval "$(zoxide init bash)"
 eval "$(batman --export-env)"
