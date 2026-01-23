@@ -22,6 +22,8 @@ require("lazy").setup({
   spec = { { import = "plugins" } },
 })
 
+vim.keymap.set("n", "<Leader>gl", "<Cmd> Lazy check <CR>")
+
 if not vim.env.NVIM_NOIDE then
   require("ide.lsp")
   require("ide.actions")

@@ -22,7 +22,7 @@ xkb_symbols "basic" {
     key <AD02> {[ U0446, U0426, NoSymbol, NoSymbol ]};
     key <AD03> {[ U0443, U0423, U2713, U2717 ]};
     key <AD04> {[ U043a, U041a, NoSymbol, NoSymbol ]};
-    key <AD05> {[ U0435, U0415, NoSymbol, NoSymbol ]};
+    key <AD05> {[ U0435, U0415, U0451, U0401 ]};
     key <AD06> {[ U043d, U041d, NoSymbol, NoSymbol ]};
     key <AD07> {[ U0433, U0413, U0491, U0490 ]};
     key <AD08> {[ U0448, U0428, NoSymbol, NoSymbol ]};

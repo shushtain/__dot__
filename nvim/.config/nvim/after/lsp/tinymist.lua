@@ -17,7 +17,7 @@ return {
     formatterPrintWidth = 80,
     lint = {
       enabled = true,
-      when = "onSave",
+      when = "onType",
     },
   },
   on_attach = function(client, bufnr)
