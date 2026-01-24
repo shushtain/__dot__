@@ -10,6 +10,8 @@ vim.keymap.set("n", "-", function()
   local polars = {
     ["true"] = "false",
     ["True"] = "False",
+    ["yes"] = "no",
+    ["on"] = "off",
   }
   for k, v in pairs(polars) do
     polars[v] = k
