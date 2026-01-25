@@ -5,7 +5,12 @@ return {
   -- root_markers = { ".git" },
   root_dir = function(bufnr, on_dir)
     local fname = vim.api.nvim_buf_get_name(bufnr)
-    local root = vim.fs.root(fname, { ".git" })
+    local root = vim.fs.root(fname, {
+      "typst.toml",
+      "lib.typ",
+      "main.typ",
+      ".git",
+    })
     on_dir(root or vim.fn.getcwd())
   end,
   settings = {
