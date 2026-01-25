@@ -13,6 +13,14 @@ vim.api.nvim_create_autocmd("StdinReadPre", {
   end,
 })
 
+vim.api.nvim_create_autocmd("SwapExists", {
+  group = group,
+  once = true,
+  callback = function(_args)
+    vim.g.u_started_with_swap = true
+  end,
+})
+
 vim.api.nvim_create_autocmd("VimEnter", {
   group = group,
   once = true,

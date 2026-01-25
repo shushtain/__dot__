@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
 Name=rqbit
-Exec=rqbit.sh
+Exec=rqbit.sh %U
 Terminal=true
 NoDisplay=true

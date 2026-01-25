@@ -18,3 +18,20 @@ end, {})
 --   -- do something with res.stdout on success if you want
 --   -- save it to a file or something... vim.fn.writefile()
 -- end, { nargs = "+", complete = "command" })
+
+-- vim.keymap.set("x", "-", function()
+--   local char = vim.fn.getcharstr()
+--   if char == "\27" then
+--     return
+--   end
+--   local brackets =
+--     { ["("] = ")", ["["] = "]", ["{"] = "}", ["<"] = ">", ["«"] = "»" }
+--   if not brackets[char] then
+--     return
+--   end
+--   vim.cmd("normal! \27")
+--   vim.cmd("normal! r" .. brackets[char])
+--   vim.cmd("normal! gvo\27")
+--   vim.cmd("normal! r" .. char)
+--   vim.cmd("normal! gvo\27")
+-- end, { desc = "Surround : Replace" })
