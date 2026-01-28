@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-thumb_size=64
 thumb_dir="$HOME/.cache/cliphist/thumbnails"
 [ -d "$thumb_dir" ] || mkdir -p "$thumb_dir"
 
@@ -20,7 +19,7 @@ match(\$0, /^([0-9]+)\s(\[\[\s)?binary.*(jpg|jpeg|png|bmp)/, grp) {
   id=grp[1]
   ext=grp[3]
   thumb=id"."ext
-  system("[ -f ${thumb_dir}/"thumb" ] || echo " id "\\\\\t | cliphist decode | magick - -thumbnail ${thumb_size}^ -gravity center -extent ${thumb_size} ${thumb_dir}/"thumb)
+  system("[ -f ${thumb_dir}/"thumbnail_file" ] || echo " id "\\\\\t | cliphist decode >${thumb_dir}/"thumb)
   print \$0"\0icon\x1f${thumb_dir}/"thumb
   next
 }

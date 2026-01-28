@@ -33,4 +33,3 @@ x-scheme-handler/magnet=rqbit.desktop
 x-scheme-handler/file=xdg-handler-file.desktop
 x-scheme-handler/gh=xdg-handler-gh.desktop
 x-scheme-handler/sh=xdg-handler-sh.desktop
-#

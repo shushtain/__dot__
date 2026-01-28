@@ -13,7 +13,7 @@ if pgrep -x "openvpn" >/dev/null; then
         case $answer in
         [Yy]*)
             sudo killall openvpn
-            ip_new=$(curl -s https://ipinfo.io/ip)
+            ip_new=$(curl -s ipinfo.io/ip)
             echo "$ip_new"
             exit 0
             ;;
@@ -23,7 +23,7 @@ if pgrep -x "openvpn" >/dev/null; then
     done
 fi
 
-password=$(curl -s https://www.vpnbook.com/freevpn | rg -o 'Password.+?>(\S+)</code>' -r '$1')
+password=$(curl -s -L vpnbook.com/freevpn/openvpn | rg -o 'Password.+?>(\S+)</code>' -r '$1')
 echo "Password: $password"
 
 while true; do

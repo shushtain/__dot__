@@ -1,6 +1,6 @@
 [filechooser]
 cmd=yazi-wrapper.sh
-default_dir=$HOME/desk/
+default_dir=$XDG_DESKTOP_DIR
 env=TERMCMD=alacritty -e
 
 open_mode=suggested

@@ -19,19 +19,49 @@ end, {})
 --   -- save it to a file or something... vim.fn.writefile()
 -- end, { nargs = "+", complete = "command" })
 
--- vim.keymap.set("x", "-", function()
---   local char = vim.fn.getcharstr()
---   if char == "\27" then
+-- local brackets_open = { ["("] = ")", ["["] = "]", ["{"] = "}", ["<"] = ">" }
+-- local brackets_closed = { [")"] = "(", ["]"] = "[", ["}"] = "{", [">"] = "<" }
+-- vim.keymap.set("n", "g-", function()
+--   --[[ FINISH THE KEYMAP g-({, g-{(, etc ]]
+--   -- read the next character typed (existing bracket)
+--   local old = vim.fn.getcharstr()
+--   -- make sure it's a valid bracket
+--   if not brackets_open[old] and not brackets_closed[old] then
 --     return
 --   end
---   local brackets =
---     { ["("] = ")", ["["] = "]", ["{"] = "}", ["<"] = ">", ["«"] = "»" }
---   if not brackets[char] then
+--   -- read the next character typed (replacement bracket)
+--   local new = vim.fn.getcharstr()
+--   -- make sure it's a valid bracket
+--   if not brackets_open[new] and not brackets_closed[new] then
 --     return
 --   end
+--
+--   --[[ REMEMBER CURSOR POSITION ]]
+--   local cursor = vim.fn.getcurpos()
+--   -- we don't need the first element for later
+--   table.remove(cursor, 1)
+--
+--   --[[ FIND THE RIGHT PAIRS ]]
+--   local open = new
+--   local closed = brackets_open[new]
+--   -- if you type g-)}, we need to shuffle what is open/closed
+--   if not closed then
+--     open = brackets_closed[new]
+--     closed = new
+--   end
+--
+--   --[[ REPLACE BRACKETS ]]
+--   -- select around old bracket
+--   vim.cmd("normal! va" .. old)
+--   -- deselect (call ESCAPE) to end up at closing bracket
 --   vim.cmd("normal! \27")
---   vim.cmd("normal! r" .. brackets[char])
+--   -- replace closing bracket (cl since you don't want r)
+--   vim.cmd("normal! cl" .. closed .. "\27")
+--   -- select old selection with "gv", switch to its other end with "o"
 --   vim.cmd("normal! gvo\27")
---   vim.cmd("normal! r" .. char)
---   vim.cmd("normal! gvo\27")
+--   -- replace opening bracket
+--   vim.cmd("normal! cl" .. open .. "\27")
+--
+--   --[[ RESTORE CURSOR POSITION ]]
+--   vim.fn.cursor(cursor)
 -- end, { desc = "Surround : Replace" })

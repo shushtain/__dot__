@@ -31,14 +31,14 @@ play = [
 ]
 edit = [
   { run = "nvim %s", block = true, desc = "Neovim" },
-  { run = "nvim %s", orphan = true, desc = "Neovim (detached)" },
+  { run = "$TERMINAL -e nvim %s", orphan = true, desc = "Neovim (detached)" },
   { run = "nvim --clean %s", block = true, desc = "Neovim (clean)" },
   { run = "$BROWSER %s", orphan = true, desc = "Browser" },
 ]
 open = [
   { run = "xdg-open %s", orphan = true, desc = "Default" },
   { run = "$BROWSER %s", orphan = true, desc = "Browser" },
-  { run = "nvim %s", orphan = true, desc = "Neovim" },
+  { run = "$TERMINAL -e nvim %s", orphan = true, desc = "Neovim" },
 ]
 extract = [
   { run = "ya pub extract --list %s", desc = "Extract here" },
