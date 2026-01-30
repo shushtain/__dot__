@@ -63,7 +63,7 @@ return {
         silent = true,
         prompt = "> ",
         rg_opts = [[--line-number --no-heading --color=always --smart-case --max-columns=4096 -e --field-match-separator=':' --colors=path:fg:black --colors=path:style:intense --colors=line:fg:black --colors=line:style:intense --colors=column:fg:black --colors=column:style:intense --colors=match:fg:green --colors=match:style:nobold --colors=match:style:intense -g "!.git"]],
-        fd_opts = [[--color=never --hidden --type f --type l --exclude .git --exclude *.pdf]],
+        fd_opts = [[--color=never --hidden --type f --type l --exclude .git --exclude '*.pdf']],
       },
       files = {
         formatter = "path.filename_first",

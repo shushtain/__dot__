@@ -9,6 +9,12 @@ return {
         vim.cmd("normal! viW")
       end
     end)
+    -- vim.keymap.set({ "n", "x" }, "<2-LeftMouse>", function()
+    --   if not require("incselect").init() then
+    --     -- select sentence and such
+    --     vim.cmd("normal! viW")
+    --   end
+    -- end)
     vim.keymap.set("x", "<CR>", require("incselect").parent)
     vim.keymap.set("x", "<S-CR>", require("incselect").child)
     vim.keymap.set("x", "<Tab>", require("incselect").next)
