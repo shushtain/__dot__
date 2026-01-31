@@ -1,4 +1,4 @@
--- vim.o.expandtab = false
+-- vim.bo.expandtab = false
 
 -- ::: IDE
 if vim.env.NVIM_NOIDE then
