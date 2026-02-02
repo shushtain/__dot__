@@ -58,14 +58,13 @@ gcam() {
         echo "Error: Commit message required."
         return 1
     fi
-    git add --all
+    git add --all || return 1
     git commit -m "$*"
 }
 
-alias gco='git checkout'
-alias gcob='git checkout -b'
-alias gcox='git checkout -'
 alias gw='git switch'
+alias gwc='git switch -c'
+alias gwx='git switch -'
 
 alias gp='git push'
 gpt() {
