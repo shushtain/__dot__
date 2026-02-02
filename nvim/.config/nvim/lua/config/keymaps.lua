@@ -523,3 +523,19 @@ vim.keymap.set("n", "<Leader>gA", function()
   vim.fn.setreg("q", word)
   vim.cmd('normal! viw"qp')
 end, { desc = "Unicode : Chars" })
+
+-- [[ DELIM ]]
+
+vim.keymap.set("n", "<Leader>;", function()
+  local delim = vim.b.u_delim or ";"
+  local cur = vim.fn.getcurpos()
+  table.remove(cur, 1)
+  local line = vim.fn.getline(".")
+  if line:sub(-#delim) == delim then
+    line = line:sub(1, -#delim - 1)
+  else
+    line = line .. delim
+  end
+  vim.fn.setline(".", line)
+  vim.fn.cursor(cur)
+end, { desc = "Toggle Delimiter" })
