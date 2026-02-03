@@ -7,7 +7,14 @@ return {
     ["nil"] = {
       formatting = { command = { "nixfmt" } },
       -- diagnostics = { ignored = {} },
-      -- nix = { maxMemoryMB = 2560 },
+      nix = {
+        maxMemoryMB = 2560,
+        flake = {
+          autoArchive = true,
+          autoEvalInputs = true,
+          nixpkgsInputName = "nixpkgs",
+        },
+      },
     },
   },
 }

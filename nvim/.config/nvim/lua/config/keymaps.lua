@@ -215,7 +215,7 @@ vim.keymap.set("n", "<Leader>ts", function()
     vim.diagnostic.enable(vim.o.spell, { ns_id = typos })
   end
 
-  local harper = namespaces["vim.lsp.harper_ls.1"]
+  local harper = namespaces["vim.lsp.harper_ls.2"]
   if harper then ---@diagnostic disable-line: unnecessary-if
     vim.diagnostic.enable(vim.o.spell, { ns_id = harper })
   end
