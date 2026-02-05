@@ -1,18 +1,17 @@
 return {
-  "barrett-ruth/live-server.nvim",
+  "barrettruth/live-server.nvim",
   enabled = vim.env.NVIM_NOIDE == nil,
   build = "npm install -g live-server",
   config = function()
-    require("live-server").setup({
+    vim.g.live_server = {
       args = {
         "--port=8080",
         "--browser=chromium",
       },
-    })
+    }
 
-    local offset = ""
     vim.keymap.set("n", "<Leader>tl", function()
-      vim.cmd("LiveServerToggle " .. offset)
+      require("live-server").toggle(vim.fn.getcwd())
     end, { desc = "Toggle : Live Server" })
   end,
 }

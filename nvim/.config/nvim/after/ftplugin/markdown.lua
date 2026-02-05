@@ -1,6 +1,7 @@
 vim.bo.shiftwidth = 2
 
 -- XXX: so, just each color as hl then?
+
 -- vim.keymap.set("n", "<M-i>", function()
 --   local node = vim.treesitter.get_node({ ignore_injections = false })
 --   if not node then
