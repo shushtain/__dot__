@@ -1,14 +1,15 @@
 local group = vim.api.nvim_create_augroup("uFormatOnSave", { clear = false })
 
 local external = {
-  "html",
-  "css",
-  "javascript",
-  "typescript",
-  "markdown",
-  "yaml",
-  "json",
-  "jsonc",
+  html = "html",
+  xml = "html",
+  css = "css",
+  javascript = "babel",
+  typescript = "typescript",
+  markdown = "markdown",
+  yaml = "yaml",
+  json = "json",
+  jsonc = "jsonc",
 }
 
 vim.api.nvim_create_autocmd("BufWritePre", {
@@ -19,19 +20,17 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     end
 
     local filetype = vim.bo[args.buf].filetype
-    if not vim.tbl_contains(external, filetype) then
+    local parser = external[filetype]
+    if not parser then
       return
     end
 
     local filepath = vim.api.nvim_buf_get_name(args.buf)
-    local cmd = { "prettier", "--stdin-filepath", filepath }
+    local cmd = { "prettier", "--stdin-filepath", filepath, "--parser", parser }
     if filetype == "json" or filetype == "jsonc" then
       table.insert(cmd, "--trailing-comma")
       table.insert(cmd, "none")
     end
-    -- local cmd = (filetype == "json" or filetype == "jsonc")
-    --     and { "prettier", "--trailing-comma", "none", "--parser", filetype }
-    --   or { "prettier", "--parser", filetype }
 
     local lines = vim.api.nvim_buf_get_lines(args.buf, 0, -1, false)
     local result = vim.system(cmd, { text = true, stdin = lines }):wait(500)

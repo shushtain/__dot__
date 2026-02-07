@@ -1,6 +1,7 @@
 "$schema" = "https://yazi-rs.github.io/schemas/theme.json"
 
 [mgr]
+cwd = { fg = "#666666", bold = true }
 marker_copied = { fg = "green" }
 marker_cut = { fg = "red" }
 marker_marked = { fg = "blue" }
@@ -45,3 +46,29 @@ progress_error = { fg = "red", bg = "#333333" }
 # border = { fg = "darkgray" }
 # title = { fg = "gray", bold = true }
 btn_yes = {  }
+
+[filetype]
+rules = [
+  { url = "*/", is = "orphan", fg = "red", crossed = true, bold = true },
+  { url = "*/", is = "sticky", fg = "lightred", bold = true },
+  { url = "*/", is = "link", fg = "lightcyan", bold = true },
+  { url = "*/", fg = "lightblue", bold = true },
+  #
+  { url = "*", is = "orphan", fg = "red", crossed = true },
+  { url = "*", is = "sock", fg = "lightmagenta" },
+  { url = "*", is = "fifo", fg = "lightyellow" },
+  { url = "*", is = "block", fg = "yellow" },
+  { url = "*", is = "char", fg = "yellow" },
+  { url = "*", is = "link", fg = "lightcyan" },
+  { url = "*", is = "exec", fg = "lightgreen" },
+]
+
+[icon]
+globs = []
+dirs = []
+files = []
+exts = []
+conds = [
+  # { if = "dir", text = "∷" },
+  # { if = "!dir", text = "∙" },
+]

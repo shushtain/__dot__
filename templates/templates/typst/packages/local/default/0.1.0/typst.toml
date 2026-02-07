@@ -1,0 +1,12 @@
+[package]
+name = "default"
+version = "0.1.0"
+authors = ["Artem Shush <shushtain@gmail.com>"]
+description = "Personal templates"
+entrypoint = "lib.typ"
+license = "MIT"
+
+[template]
+path = "template"
+entrypoint = "main.typ"
+thumbnail = "thumbnail.png"

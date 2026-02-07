@@ -14,7 +14,7 @@ opacity = 1
 
 [font]
 builtin_box_drawing = true
-normal = { family = "JetBrains Mono NL" }
+normal = { family = "monospace" }
 size = 12.75
 
 [colors]

@@ -20,7 +20,7 @@
     progress_bar_frame_width = 1
     progress_bar_min_width = 32
     progress_bar_max_width = 400
-    progress_bar_corner_radius = 8
+    progress_bar_corner_radius = 4
     progress_bar_corners = all
 
     icon_corner_radius = 0
@@ -47,7 +47,7 @@
 
     ### Text ###
 
-    font = JetBrains Mono NL 12
+    font = monospace 12
     line_height = 0
 
     markup = full
