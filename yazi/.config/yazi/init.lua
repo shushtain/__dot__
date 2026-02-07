@@ -2,7 +2,7 @@
 
 Status:children_add(function(self)
   local h = self._current.hovered
-  return h and h.link_to and (" -> " .. tostring(h.link_to)) or ""
+  return h and h.link_to and (" → " .. tostring(h.link_to)) or ""
 end, 3300, Status.LEFT)
 
 require("session"):setup({ sync_yanked = true })

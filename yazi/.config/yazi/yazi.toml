@@ -18,6 +18,7 @@ wrap = "yes"
 tab_size = 4
 image_delay = 50
 image_filter = "nearest"
+image_quality = 50
 
 [input]
 cursor_blink = false
@@ -26,7 +27,7 @@ cursor_blink = false
 play = [
   { run = "mpv %s", block = true, desc = "MPV" },
   { run = "mpv %s", orphan = true, desc = "MPV (detached)" },
-  { run = "$BROWSER file://%s", orphan = true, desc = "Browser" },
+  { run = "$BROWSER %S", orphan = true, desc = "Browser" },
   { run = "nvim %s", orphan = true, desc = "Neovim" },
 ]
 edit = [
@@ -36,22 +37,13 @@ edit = [
   { run = "$BROWSER %s", orphan = true, desc = "Browser" },
 ]
 open = [
-  { run = "xdg-open %s", orphan = true, desc = "Default" },
+  { run = "xdg-open %S1", orphan = true, desc = "Default" },
   { run = "$BROWSER %s", orphan = true, desc = "Browser" },
   { run = "$TERMINAL -e nvim %s", orphan = true, desc = "Neovim" },
 ]
 extract = [
   { run = "ya pub extract --list %s", desc = "Extract here" },
 ]
-
-# [open]
-# prepend_rules = [
-#   { url = "*.html", use = ["open", "edit"] },
-#   { mime = "text/*", use = "edit" },
-# ]
-# append_rules = [
-#   { url = "*", use = "open" },
-# ]
 
 [[plugin.prepend_fetchers]]
 id = "git"
