@@ -116,15 +116,15 @@ function handler.diagnostics()
 
   local hl, sym = "DiagnosticSign", "█"
   local ndiags = vim.diagnostic.count(0)
-  local errors = (ndiags[1] or 0) > 0
-  local warns = (ndiags[2] or 0) > 0
-  local infos = (ndiags[3] or 0) > 0
-  local hints = (ndiags[4] or 0) > 0
+  local e = (ndiags[1] or 0) > 0
+  local w = (ndiags[2] or 0) > 0
+  local i = (ndiags[3] or 0) > 0
+  local h = (ndiags[4] or 0) > 0
 
-  errors = errors and ("%#" .. hl .. "Error#" .. sym) or ""
-  warns = warns and ("%#" .. hl .. "Warn#" .. sym) or ""
-  infos = infos and ("%#" .. hl .. "Info#" .. sym) or ""
-  hints = hints and ("%#" .. hl .. "Hint#" .. sym) or ""
+  local errors = e and ("%#" .. hl .. "Error#" .. sym) or ""
+  local warns = w and ("%#" .. hl .. "Warn#" .. sym) or ""
+  local infos = i and ("%#" .. hl .. "Info#" .. sym) or ""
+  local hints = h and ("%#" .. hl .. "Hint#" .. sym) or ""
   state.diagnostics = errors .. warns .. infos .. hints
 end
 
@@ -132,7 +132,7 @@ function handler.stats()
   local stats = {
     keymap = vim.o.keymap ~= "" and "⌥" or "",
     format = vim.g.u_manual_formatting and "⨂" or "",
-    macro = vim.fn.reg_recording() ~= "" and "⏺" or "",
+    macro = vim.fn.reg_recording() ~= "" and "●" or "",
   }
   stats = vim.tbl_filter(function(v)
     return v ~= ""
@@ -140,6 +140,7 @@ function handler.stats()
   state.stats = vim.fn.join(stats, " ")
 end
 
+---@return boolean result
 local function update()
   local updated = false
   for module, _ in pairs(queue) do
@@ -207,6 +208,7 @@ local function redraw()
   }
 
   local statusline = is_short and mini or full
+  ---@type table
   statusline = vim.tbl_filter(function(v)
     return v and v ~= ""
   end, statusline)

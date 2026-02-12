@@ -1,6 +1,7 @@
 vim.bo.shiftwidth = 2
+vim.b.u_delim = ","
 
-vim.keymap.set("n", "<Leader>;", function()
+vim.keymap.set("n", "<Leader>,", function()
   local line = vim.fn.getline(".")
   local pkg, ver = line:match('^(%S-)%s*=%s*"(%S*)"')
   if pkg and ver then

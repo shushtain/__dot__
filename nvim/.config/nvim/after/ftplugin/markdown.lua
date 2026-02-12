@@ -1,4 +1,5 @@
 vim.bo.shiftwidth = 2
+vim.b.u_delim = "  "
 
 -- XXX: so, just each color as hl then?
 

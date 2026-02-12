@@ -7,6 +7,28 @@ vim.api.nvim_create_user_command("DiffOrig", function()
   vim.cmd("diffthis")
 end, {})
 
+-- function Fd(match)
+--   local files = vim.fn.systemlist(
+--     'fd -c never -Hi -tf -d 8 -E ".git" --full-path ' .. match
+--   )
+--
+--   local items = {}
+--   for _, path in ipairs(files) do
+--     table.insert(items, { path = path, tail = vim.fn.fnamemodify(path, ":t") })
+--   end
+--
+--   local match_tail = vim.fn.fnamemodify(match, ":t")
+--   local res = vim.fn.matchfuzzy(items, match_tail, { key = "tail" })
+--
+--   local out = {}
+--   for _, item in ipairs(res) do
+--     table.insert(out, item.path)
+--   end
+--
+--   return out
+-- end
+-- vim.o.findfunc = "v:lua.Fd"
+
 -- vim.api.nvim_create_user_command("PipeCurrent", function(cmd)
 --   local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
 --   local res = vim.system(cmd.fargs, { text = true, stdin = lines }):wait(500)
