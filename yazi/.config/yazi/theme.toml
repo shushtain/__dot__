@@ -43,9 +43,11 @@ progress_normal = { fg = "cyan", bg = "#333333" }
 progress_error = { fg = "red", bg = "#333333" }
 
 [confirm]
-# border = { fg = "darkgray" }
-# title = { fg = "gray", bold = true }
 btn_yes = {  }
+
+[which]
+separator = " "
+desc = { fg = "#cccccc" }
 
 [filetype]
 rules = [
@@ -68,7 +70,4 @@ globs = []
 dirs = []
 files = []
 exts = []
-conds = [
-  # { if = "dir", text = "∷" },
-  # { if = "!dir", text = "∙" },
-]
+conds = []
