@@ -5,18 +5,17 @@ return {
   filetypes = {
     "asciidoc",
     "gitcommit",
-    "html",
     "markdown",
-    "typst",
     "text",
+    "html",
     "json",
     "jsonc",
+    "typst",
   },
   settings = {
     ["harper-ls"] = {
       linters = {
         PossessiveNoun = true,
-        -- BoringWords = true,
         UseGenitive = true,
         --
         SentenceCapitalization = false,

@@ -5,7 +5,10 @@ vim.g.query_lint_on = {}
 return {
   cmd = { "ts_query_ls" },
   filetypes = { "query" },
-  root_markers = { ".tsqueryrc.json", ".git" },
+  root_markers = {
+    ".tsqueryrc.json",
+    ".git",
+  },
   init_options = {
     parser_aliases = {
       ecma = "javascript",

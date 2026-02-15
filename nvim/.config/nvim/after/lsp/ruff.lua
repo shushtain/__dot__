@@ -2,17 +2,20 @@
 return {
   cmd = { "ruff", "server" },
   filetypes = { "python" },
-  root_markers = { "pyproject.toml", "ruff.toml", ".ruff.toml", ".git" },
-  settings = {
-    ruff = {
-      path = { vim.fn.exepath("ruff") },
-      importStrategy = "fromEnvironment",
-      organizeImports = true,
-      fixAll = true,
+  root_markers = {
+    "pyproject.toml",
+    "ruff.toml",
+    ".ruff.toml",
+    ".git",
+  },
+  init_options = {
+    settings = {
+      configurationPreference = "filesystemFirst",
+      lineLength = 80,
       lint = {
         preview = true,
-        extendSelect = {},
-        ignore = {},
+        -- extendSelect = {},
+        -- ignore = {},
       },
     },
   },
