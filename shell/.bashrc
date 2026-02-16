@@ -10,9 +10,12 @@ HISTFILESIZE=5000
 
 histclean() {
     if [ -f "$HISTFILE" ]; then
-        local tmp="${HISTFILE}_tmp$$"
+        local tmp
+        tmp="$(mktemp)"
         tac "$HISTFILE" | awk '!x[$0]++' | tac | tail -n "$HISTFILESIZE" >"$tmp"
-        mv "$tmp" "$HISTFILE"
+        if [[ -s "$tmp" ]]; then
+            mv "$tmp" "$HISTFILE"
+        fi
     fi
 }
 trap histclean EXIT
