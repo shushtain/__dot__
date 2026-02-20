@@ -7,7 +7,7 @@
   time: ("", ""),
   body,
 ) = {
-  let sep = ", "
+  let sep = " ∙ "
   let (stime, etime) = time
   if etime == "" {
     etime = "Present"
