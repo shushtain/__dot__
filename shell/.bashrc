@@ -20,7 +20,6 @@ histclean() {
 }
 trap histclean EXIT
 
-__ps1_vspace=""
 __ps1() {
     local c0="\[\e[1;90m\]"
     local c1="\[\e[1;91m\]"
