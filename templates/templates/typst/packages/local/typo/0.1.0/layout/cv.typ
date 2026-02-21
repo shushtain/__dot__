@@ -1,17 +1,52 @@
 #import "/utils.typ"
 #import "/reset.typ"
 
+#let header(
+  base: 6pt,
+  margin: (
+    left: 42pt,
+    right: 42pt,
+    top: 36pt,
+    bottom: 36pt,
+  ),
+  ..children,
+  body,
+) = context {
+  let margin = margin.top
+  if content != none {
+    set page(
+      header: {
+        set text(size: base / 0.6, top-edge: base)
+        let content = stack(dir: ltr, spacing: 1fr, ..children)
+        stack(spacing: base, content, line(length: 100%))
+      },
+      margin: (top: margin + base * 2),
+    )
+    body
+  } else {
+    set page(
+      header: none,
+      margin: (top: margin),
+    )
+    body
+  }
+}
+
 #let job(
   position: "<title>",
   place: "freelance",
-  time: ("", ""),
+  time: (datetime.today(),),
   body,
 ) = {
   let sep = " ∙ "
-  let (stime, etime) = time
-  if etime == "" {
-    etime = "Present"
+
+  let stime = time.at(0)
+  let etime = if time.len() == 1 { datetime.today() } else { time.at(1) }
+  stime = stime.display("[month repr:short] [year]")
+  etime = if time.len() == 1 { "Present" } else {
+    etime.display("[month repr:short] [year]")
   }
+
   stack(
     dir: ltr,
     [=== #position],

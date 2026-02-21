@@ -3,12 +3,12 @@ default:
 
 [private]
 cook items:
-    @if ! stow -R --no-folding --target="$HOME" {{ items }}; then \
+    @if ! stow -R --no-folding --target="$HOME" "{{ items }}"; then \
         dunstify -u critical -a shush "dot error" "{{ items }}"; \
         exit 1; \
     fi
 
-all: __bin__ aichat alacritty btop cliphist desktop dmentia dunst fastfetch firefox fontconfig fuzzel git gtk_3 gtk_4 hypr kitty mpv nvim openvpn ripgrep shell systemd templates tldr waybar xdg xkb yay yazi
+all: __bin__ aichat alacritty btop cliphist desktop dmentia dunst fastfetch firefox fontconfig fuzzel git gtk_3 gtk_4 hypr kitty mpv nvim openvpn ripgrep shell systemd templates tldr waybar xdg xkb yay yazi auto-cpufreq
 
 __bin__:
     just cook "__bin__"
@@ -99,3 +99,6 @@ yay:
 
 yazi:
     just cook "yazi"
+
+auto-cpufreq:
+    just cook "auto-cpufreq"

@@ -7,6 +7,11 @@ vim.api.nvim_create_user_command("DiffOrig", function()
   vim.cmd("diffthis")
 end, {})
 
+vim.keymap.set("n", "<Leader>gy", function()
+  local item = vim.api.nvim_get_current_line()
+  vim.cmd("!yay -Qi " .. item)
+end)
+
 -- function Fd(match)
 --   local files = vim.fn.systemlist(
 --     'fd -c never -Hi -tf -d 8 -E ".git" --full-path ' .. match

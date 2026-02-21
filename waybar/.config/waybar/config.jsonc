@@ -17,7 +17,7 @@
     "wireplumber",
     "bluetooth",
     "network",
-    "power-profiles-daemon",
+    // "power-profiles-daemon",
     "clock",
     "backlight"
   ],

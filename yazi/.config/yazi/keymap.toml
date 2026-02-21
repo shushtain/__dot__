@@ -26,6 +26,11 @@ run = "bulk_rename"
 desc = "Bulk rename"
 
 [[mgr.prepend_keymap]]
+on = ["u"]
+run = "plugin recycle-bin"
+desc = "trash"
+
+[[mgr.prepend_keymap]]
 on = ["g", "/"]
 run = "cd /"
 desc = "/"

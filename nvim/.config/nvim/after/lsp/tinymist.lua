@@ -11,13 +11,14 @@ return {
   settings = {
     outputPath = "$root/target/$dir/$name",
     exportPdf = "never", -- onType|onSave|never
+    -- projectResolution = "lockDatabase",
     -- systemFonts = false,
     -- semanticTokens = "disable",
     formatterMode = "typstyle",
     formatterPrintWidth = 80,
     lint = {
       enabled = true,
-      when = "onType",
+      when = "onSave",
     },
   },
   on_attach = function(client, bufnr)
