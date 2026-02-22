@@ -1,10 +1,26 @@
 #!/usr/bin/env bash
 
+fpid="/tmp/radio.pid"
+fsta="/tmp/radio.sta"
+
+notify() {
+    dunstify -t 1000 -r 8080 "Radio" "$1"
+}
+
+if [[ $1 == "check" ]]; then
+    if [[ -f "$fsta" ]]; then
+        notify "$(cat $fsta)"
+    else
+        notify "off"
+    fi
+    exit 0
+fi
+
 sp_stop="= STOP ="
 sp_rand="= RAND ="
 
 if [[ $1 == "stop" ]]; then
-    choice="$sp_stop"
+    station="$sp_stop"
 else
     declare -A stations
     stations["0R Lofi"]="https://0nlineradio.radioho.st/0r-lo-fi?ref=radio-browser26"
@@ -17,42 +33,43 @@ else
     stations["Paradise"]="http://stream-uk1.radioparadise.com/aac-320"
 
     if [[ $1 == "random" ]]; then
-        choice="$sp_rand"
+        station="$sp_rand"
     else
-        choice=$(
+        station=$(
             printf "%s\n" "$sp_rand" "${!stations[@]}" "$sp_stop" | fuzzel --dmenu
         )
     fi
 fi
 
-[[ -z "$choice" ]] && exit 1
+[[ -z "$station" ]] && exit 1
 
-fpid="/tmp/radio.pid"
 if [[ -f "$fpid" ]]; then
     kill "$(cat "$fpid")" 2>/dev/null
     rm "$fpid"
+    rm "$fsta"
 fi
 
-if [[ "$choice" == "$sp_stop" ]]; then
-    dunstify -t 1000 -r 8080 "Radio" "off"
+if [[ "$station" == "$sp_stop" ]]; then
+    notify "off"
 fi
 
-case "$choice" in
+case "$station" in
 "$sp_stop") exit 0 ;;
 "$sp_rand")
     keys=("${!stations[@]}")
     rand="$((RANDOM % ${#keys[@]}))"
-    choice="${keys[$rand]}"
-    station="${stations[$choice]}"
+    station="${keys[$rand]}"
+    url="${stations[$station]}"
     ;;
-*) station="${stations[$choice]}" ;;
+*) url="${stations[$station]}" ;;
 esac
 
-if [[ -n "$station" ]]; then
-    dunstify -t 1000 -r 8080 "Radio" "$choice"
-    mpv --no-video --volume=50 "$station" &
+if [[ -n "$url" ]]; then
+    notify "$station"
+    echo "$station" >"$fsta"
+    mpv --no-video --volume=50 "$url" &
     echo "$!" >"$fpid"
     disown
 else
-    dunstify -t 1000 -r 8080 "Radio" "station not found"
+    notify "station not found"
 fi
