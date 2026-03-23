@@ -8,9 +8,16 @@ cook items:
         exit 1; \
     fi
 
-all: __bin__ aichat alacritty btop cliphist desktop dmentia dunst fastfetch firefox fontconfig fuzzel git gtk_3 gtk_4 hypr kitty mpv nvim openvpn ripgrep shell systemd templates tldr waybar xdg xkb yay yazi auto-cpufreq
+[private]
+wipe items:
+    @if ! stow -D --target="$HOME" "{{ items }}"; then \
+        dunstify -u critical -a shush "dot error" "{{ items }}"; \
+        exit 1; \
+    fi
 
-__bin__:
+all: bin aichat alacritty btop cliphist desktop dmentia dunst fastfetch firefox fontconfig fuzzel git gtk_3 gtk_4 hypr kitty mpv nvim openvpn ripgrep shell systemd templates tldr waybar xdg xkb yay yazi auto-cpufreq sway
+
+bin:
     just cook "__bin__"
 
 aichat:
@@ -59,7 +66,7 @@ hypr:
     just cook "hypr"
 
 kitty:
-    just cook "kitty"
+    just wipe "kitty"
 
 mpv:
     just cook "mpv"
@@ -86,7 +93,7 @@ tldr:
     just cook "tldr"
 
 waybar:
-    just cook "waybar"
+    just wipe "waybar"
 
 xdg:
     just cook "xdg"
@@ -101,4 +108,7 @@ yazi:
     just cook "yazi"
 
 auto-cpufreq:
-    just cook "auto-cpufreq"
+    just wipe "auto-cpufreq"
+
+sway:
+    just cook "sway"

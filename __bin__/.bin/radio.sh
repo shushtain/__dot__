@@ -43,6 +43,10 @@ fi
 
 [[ -z "$station" ]] && exit 1
 
+if [[ -f "$fsta" ]]; then
+    old="$(cat $fsta)"
+fi
+
 if [[ -f "$fpid" ]]; then
     kill "$(cat "$fpid")" 2>/dev/null
     rm "$fpid"
@@ -57,8 +61,13 @@ case "$station" in
 "$sp_stop") exit 0 ;;
 "$sp_rand")
     keys=("${!stations[@]}")
-    rand="$((RANDOM % ${#keys[@]}))"
+    len="${#keys[@]}"
+    rand="$((RANDOM % len))"
     station="${keys[$rand]}"
+    if [[ $station == "$old" ]]; then
+        ((rand += 1, rand %= len))
+        station="${keys[$rand]}"
+    fi
     url="${stations[$station]}"
     ;;
 *) url="${stations[$station]}" ;;
@@ -67,7 +76,7 @@ esac
 if [[ -n "$url" ]]; then
     notify "$station"
     echo "$station" >"$fsta"
-    mpv --no-video --volume=50 "$url" &
+    mpv --no-video --no-resume-playback --volume=100 "$url" &
     echo "$!" >"$fpid"
     disown
 else

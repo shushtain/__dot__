@@ -37,15 +37,23 @@
   place: "freelance",
   time: (datetime.today(),),
   body,
-) = {
+) = context {
   let sep = " ∙ "
+  let pattern = if text.lang == "en" {
+    "[month repr:short] [year]"
+  } else {
+    "[month].[year]"
+  }
+  let present = if text.lang == "en" { "Present" } else { "…" }
+  let place = place
+  if text.lang == "uk" and place == "freelance" {
+    place = "фриланс"
+  }
 
   let stime = time.at(0)
   let etime = if time.len() == 1 { datetime.today() } else { time.at(1) }
-  stime = stime.display("[month repr:short] [year]")
-  etime = if time.len() == 1 { "Present" } else {
-    etime.display("[month repr:short] [year]")
-  }
+  stime = stime.display(pattern)
+  etime = if time.len() == 1 { present } else { etime.display(pattern) }
 
   stack(
     dir: ltr,

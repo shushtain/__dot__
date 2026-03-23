@@ -54,7 +54,7 @@ xkb_symbols "basic" {
     key <AB07> {[ U006d, U004d, NoSymbol, NoSymbol ]};
     key <AB08> {[ U002c, U003c, U2039, U00ab ]};
     key <AB09> {[ U002e, U003e, U203a, U00bb ]};
-    key <AB10> {[ U002f, U003f, U2026, U203d ]};
+    key <AB10> {[ U002f, U003f, U203d, U2026 ]};
 
     key <SPCE> {[ U0020, U0020, U00a0, U00a0 ]};
 
