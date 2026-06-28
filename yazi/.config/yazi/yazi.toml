@@ -1,4 +1,4 @@
-"$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
+#:schema https://yazi-rs.github.io/schemas/yazi.json
 
 [mgr]
 ratio = [0, 1, 1]
@@ -11,7 +11,6 @@ sort_translit = true
 show_hidden = true
 show_symlink = false
 scrolloff = 8
-title_format = "{cwd}"
 
 [preview]
 wrap = "yes"
@@ -46,11 +45,11 @@ extract = [
 ]
 
 [[plugin.prepend_fetchers]]
-id = "git"
+group = "git"
 url = "*"
 run = "git"
 
 [[plugin.prepend_fetchers]]
-id = "git"
+group = "git"
 url = "*/"
 run = "git"
