@@ -9,4 +9,4 @@ export FZF_DEFAULT_OPTS='--color=16 --bind=alt-j:down,alt-k:up --cycle'
 
 export RIPGREP_CONFIG_PATH=$HOME/.config/.ripgreprc
 export CARGO_TARGET_DIR=$HOME/.cache/.cargo
-export TYPST_PACKAGE_PATH=$HOME/templates/typst/packages
+export TYPST_PACKAGE_PATH=$HOME/tpl/typst/packages

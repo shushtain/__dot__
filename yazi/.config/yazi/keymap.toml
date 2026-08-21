@@ -46,14 +46,24 @@ run = "cd ~/.config"
 desc = "~/.config"
 
 [[mgr.prepend_keymap]]
-on = ["g", "d"]
-run = "cd ~/desk"
-desc = "~/desk"
+on = ["g", "l"]
+run = "cd ~/lot"
+desc = "~/lot"
 
 [[mgr.prepend_keymap]]
 on = ["g", "b"]
 run = "cd ~/box"
 desc = "~/box"
+
+[[mgr.prepend_keymap]]
+on = ["g", "t"]
+run = "cd ~/tpl"
+desc = "~/tpl"
+
+[[mgr.prepend_keymap]]
+on = ["g", "p"]
+run = "cd ~/pub"
+desc = "~/pub"
 
 [[mgr.prepend_keymap]]
 on = ["g", "r"]

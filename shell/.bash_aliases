@@ -11,9 +11,10 @@ alias dust='dust --depth 1'
 alias systui='systemctl-tui'
 alias ff='fastfetch'
 
-nay() {
-    yay -Qi "$@" | rg "^URL\s*:\s*(.*)\s*$" -r '$1' | xargs -r xdg-open
-}
+alias nxo='nix-store --optimize'
+nxr() { sudo nixos-rebuild switch --install-bootloader --flake "${1:-$XDG_CLOUD_DIR/__nix__/}" "${@:2}"; }
+nxu() { nix flake update --flake "${1:-$XDG_CLOUD_DIR/__nix__/}" "${@:2}"; }
+nxur() { sudo echo -e "\n= OS UPDATE =\n" && nxu "" && nxr "$@"; }
 
 alias x='cd -'
 alias ..='cd ..'
@@ -161,7 +162,7 @@ pad() {
         name="$1"
     fi
 
-    local path="$HOME/desk/"
+    local path="$HOME/lot/"
     if [[ $# -ge 2 ]]; then
         path="$2"
     fi
@@ -177,5 +178,5 @@ pad() {
 }
 
 bit() {
-    rqbit download --exit-on-finish -o ~/desk/ -- "$@"
+    rqbit download --exit-on-finish -o ~/lot/ -- "$@"
 }

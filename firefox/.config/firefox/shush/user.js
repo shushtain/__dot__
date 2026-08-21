@@ -21,7 +21,7 @@ user_pref("browser.download.alwaysOpenPanel", false);
 user_pref("browser.download.always_ask_before_handling_new_types", true);
 user_pref("browser.download.deletePrivate.chosen", true);
 user_pref("browser.download.enableDeletePrivate", false);
-user_pref("browser.download.dir", "/home/shushtain/desk"); // TODO: shush
+user_pref("browser.download.dir", "/home/shush/lot");
 user_pref("browser.download.manager.addToRecentDocs", false);
 user_pref("browser.download.open_pdf_attachments_inline", true);
 user_pref("browser.download.panel.shown", true);

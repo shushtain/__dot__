@@ -15,7 +15,7 @@ wipe items:
         exit 1; \
     fi
 
-all: bin aichat alacritty btop cliphist desktop dmentia dunst fastfetch firefox fontconfig fuzzel git gtk_3 gtk_4 hypr kitty mpv nvim openvpn ripgrep shell systemd templates tldr waybar xdg xkb yay yazi auto-cpufreq sway
+all: bin aichat alacritty btop cliphist desktop dmentia dunst fastfetch firefox fontconfig fuzzel git gtk_3 gtk_4 hypr kitty mpv nvim openvpn ripgrep shell systemd tpl tldr waybar xdg xkb yay yazi auto-cpufreq sway
 
 bin:
     just cook "__bin__"
@@ -86,8 +86,8 @@ shell:
 systemd:
     just cook "systemd"
 
-templates:
-    just cook "templates"
+tpl:
+    just cook "tpl"
 
 tldr:
     just cook "tldr"

@@ -2,6 +2,7 @@ vim.filetype.add({
   extension = {
     ebnf = "ebnf",
     scm = "query",
+    gcode = "gcode",
   },
 })
 

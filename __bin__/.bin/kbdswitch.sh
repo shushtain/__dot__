@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-device="at-translated-set-2-keyboard"
+device="keyd-virtual-keyboard"
 index="${1:-next}"
 
 hyprctl switchxkblayout $device "$index"

@@ -1,0 +1,39 @@
+hl.config({
+  input = {
+    kb_layout = "shush_en,shush_ua",
+    kb_options = "caps:escape_shifted_capslock",
+    repeat_rate = 25,
+    repeat_delay = 600,
+    follow_mouse = 2,
+    focus_on_close = 0,
+    -- special_fallthrough = true,
+    sensitivity = 0,
+    accel_profile = "flat",
+    scroll_method = "2fg",
+    touchpad = {
+      natural_scroll = true,
+      disable_while_typing = true,
+      middle_button_emulation = true,
+      tap_to_click = true,
+      drag_lock = 2,
+      scroll_factor = 0.5,
+    },
+  },
+})
+
+hl.config({
+  gestures = {
+    workspace_swipe_distance = 200,
+    workspace_swipe_cancel_ratio = 0.3,
+    workspace_swipe_create_new = true,
+    workspace_swipe_forever = true,
+    workspace_swipe_use_r = true,
+  },
+})
+
+hl.config({
+  cursor = {
+    no_warps = true,
+    -- enable_hyprcursor = false
+  },
+})

@@ -113,7 +113,9 @@ vim.diagnostic.config({
     },
   },
   jump = {
-    float = true,
+    -- XXX:
+    ---@diagnostic disable-next-line: param-type-mismatch
+    on_jump = true,
     wrap = true,
     severity = {
       vim.diagnostic.severity.ERROR,

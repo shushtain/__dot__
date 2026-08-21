@@ -19,7 +19,7 @@ elif [[ $1 == "start" ]]; then
     else
         init_sink
         dunstify -t 1000 -r 8080 -u low "⤓ Update"
-        wf-recorder --audio="Combined.monitor" --file="$HOME/desk/$(date +'%Y-%m-%d-%H%M%S')_screencast.mp4"
+        wf-recorder --audio="Combined.monitor" --file="$HOME/lot/$(date +'%Y-%m-%d-%H%M%S')_screencast.mp4"
     fi
 elif [[ $1 == "start-area" ]]; then
     if [[ $(pgrep -x wf-recorder) ]]; then
@@ -27,7 +27,7 @@ elif [[ $1 == "start-area" ]]; then
     else
         init_sink
         dunstify -t 1000 -r 8080 -u low "Select area to fix"
-        wf-recorder -g "$(slurp)" --audio="Combined.monitor" --file="$HOME/desk/$(date +'%Y-%m-%d-%H%M%S')_screencast.mp4"
+        wf-recorder -g "$(slurp)" --audio="Combined.monitor" --file="$HOME/lot/$(date +'%Y-%m-%d-%H%M%S')_screencast.mp4"
     fi
 else
     dunstify -t 1000 -r 8080 -u low "Undefined option"
