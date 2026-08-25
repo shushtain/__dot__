@@ -3,11 +3,13 @@
 mode="$1"
 max=64530
 min=0
+idle_p=20
 eco_p=60
 
 cur="$(brightnessctl get)"
 step="$((max / 5))"
 battery="$((max * eco_p / 100))"
+idle="$((max * idle_p / 100))"
 
 case "$mode" in
 "up") cur="$((cur + step))" ;;
@@ -15,6 +17,7 @@ case "$mode" in
 "max") cur="$max" ;;
 "min") cur="$min" ;;
 "eco") cur="$battery" ;;
+"idle") cur="$idle" ;;
 "battery")
     if [[ "$cur" -gt "$battery" ]]; then
         cur="$battery"
