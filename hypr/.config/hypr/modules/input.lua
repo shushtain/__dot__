@@ -1,7 +1,7 @@
 hl.config({
   input = {
     kb_layout = "shush_en,shush_ua",
-    kb_options = "caps:escape_shifted_capslock",
+    -- kb_options = "caps:escape_shifted_capslock",
     repeat_rate = 25,
     repeat_delay = 600,
     follow_mouse = 2,
