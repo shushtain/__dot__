@@ -19,7 +19,10 @@ case "$mark" in
     ;;
 "off")
     if [[ "$mode" == "in" ]]; then
-        hyprctl dispatch dpms off
+        bat_s="$(cat /sys/class/power_supply/BAT*/status)"
+        if [[ "$bat_s" != "Charging" ]]; then
+            hyprctl dispatch dpms off
+        fi
     fi
     ;;
 "sleep")
@@ -32,7 +35,7 @@ case "$mark" in
     fi
     ;;
 *)
-    dunstify -u critical "idle.sh" "[$mark] is not supported as time mark."
+    dunstify -u critical -a user "idle.sh" "[$mark] is not supported as time mark."
     exit 1
     ;;
 esac

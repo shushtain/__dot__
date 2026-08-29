@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 mode="$1"
-max=64530
-min=0
+max=62451
+min=1
 idle_p=20
 eco_p=60
 
@@ -24,7 +24,7 @@ case "$mode" in
     fi
     ;;
 *)
-    dunstify -u critical "backlight.sh" "[$mode] is not supported as mode."
+    dunstify -u critical -a user "backlight.sh" "[$mode] is not supported as mode."
     exit 1
     ;;
 esac

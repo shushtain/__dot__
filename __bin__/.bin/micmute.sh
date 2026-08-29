@@ -3,7 +3,7 @@
 wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
 status="$(wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | choose 2)"
 if [[ $status == "[MUTED]" ]]; then
-    dunstify -t 1000 -r 8080 -u low "󰍭 off"
+    dunstify -t 1000 -r 8080 -u low "≢≢≢"
 else
-    dunstify -t 1000 -r 8080 -u low "󰍬 on"
+    dunstify -t 1000 -r 8080 -u low "≡≡≡"
 fi

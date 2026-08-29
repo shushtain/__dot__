@@ -13,8 +13,8 @@ alias ff='fastfetch'
 
 alias nxo='nix-store --optimize'
 nxr() { sudo nixos-rebuild switch --install-bootloader --flake "${1:-$XDG_CLOUD_DIR/__nix__/}" "${@:2}"; }
-nxu() { nix flake update --flake "${1:-$XDG_CLOUD_DIR/__nix__/}" "${@:2}"; }
-nxur() { sudo echo -e "\n= OS UPDATE =\n" && nxu "" && nxr "$@"; }
+nxu() { sudo nix flake update --flake "${1:-$XDG_CLOUD_DIR/__nix__/}" "${@:2}"; }
+nxur() { echo -e "= OS UPDATE =\n" && nxu "" && nxr "$@"; }
 
 alias x='cd -'
 alias ..='cd ..'

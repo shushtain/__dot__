@@ -10,5 +10,5 @@ if [[ $mode == "status" ]]; then
     fi
     dunstify -t 3000 -r 8080 -u low "Insync" "$status"
 else
-    dunstify -u critical "sync.sh" "[$mode] is not supported as mode."
+    dunstify -u critical -a user "sync.sh" "[$mode] is not supported as mode."
 fi

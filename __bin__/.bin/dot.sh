@@ -38,7 +38,7 @@ dotfiles=(
 )
 
 alert() {
-    dunstify -u critical "dot.sh" "$1"
+    dunstify -u critical -a user "dot.sh" "$1"
 }
 
 cook() {

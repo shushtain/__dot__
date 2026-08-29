@@ -22,7 +22,7 @@ case "$mode" in
     wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
     ;;
 *)
-    dunstify -u critical "volume.sh" "[$mode] is not supported as mode."
+    dunstify -u critical -a user "volume.sh" "[$mode] is not supported as mode."
     exit 1
     ;;
 esac

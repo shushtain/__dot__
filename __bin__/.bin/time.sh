@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-state="/tmp/dunstify_8080"
+state="/tmp/__time"
 
 if [ -f "$state" ]; then
     bat_c="$(cat /sys/class/power_supply/BAT*/capacity)"
