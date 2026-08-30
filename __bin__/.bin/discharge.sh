@@ -18,7 +18,7 @@ if [[ "$bat_c" -le 10 ]]; then
     fi
 fi
 
-if [[ "$bat_c" -le 30 ]]; then
+if [[ "$bat_c" -le 20 ]]; then
     if [[ ! -f "$state" ]]; then
         touch "$state"
         dunstify -u critical -a user "$bat_c% left"
