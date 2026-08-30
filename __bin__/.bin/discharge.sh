@@ -4,7 +4,7 @@ state="/tmp/__discharge"
 bat_c="$(cat /sys/class/power_supply/BAT*/capacity)"
 bat_s="$(cat /sys/class/power_supply/BAT*/status)"
 
-if [[ "$bat_s" == "Charging" ]]; then
+if [[ "$bat_s" == "Charging" || "$bat_s" == "Full" ]]; then
     rm -f "$state"
     if [[ "$(hyprshade current)" == "critical" ]]; then
         hyprshade off

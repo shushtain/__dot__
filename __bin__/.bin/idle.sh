@@ -20,7 +20,7 @@ case "$mark" in
 "off")
     if [[ "$mode" == "in" ]]; then
         bat_s="$(cat /sys/class/power_supply/BAT*/status)"
-        if [[ "$bat_s" != "Charging" ]]; then
+        if [[ "$bat_s" != "Charging" && "$bat_s" != "Full" ]]; then
             hyprctl dispatch dpms off
         fi
     fi
@@ -28,7 +28,7 @@ case "$mark" in
 "sleep")
     if [[ "$mode" == "in" ]]; then
         bat_s="$(cat /sys/class/power_supply/BAT*/status)"
-        if [[ "$bat_s" != "Charging" ]]; then
+        if [[ "$bat_s" != "Charging" && "$bat_s" != "Full" ]]; then
             pidof hyprlock || hyprlock
             systemctl suspend-then-hibernate
         fi

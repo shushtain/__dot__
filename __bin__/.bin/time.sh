@@ -6,7 +6,7 @@ if [ -f "$state" ]; then
     bat_c="$(cat /sys/class/power_supply/BAT*/capacity)"
     bat_s="$(cat /sys/class/power_supply/BAT*/status)"
     bat_i="○"
-    if [[ "$bat_s" == "Charging" ]]; then
+    if [[ "$bat_s" == "Charging" || "$bat_s" == "Full" ]]; then
         bat_i="●"
     fi
     dunstify -t 2000 -r 8080 -u low "$(date +'%H:%M')" "$(date +'%y-%m-%d\n%A')\n$bat_i $bat_c%"
