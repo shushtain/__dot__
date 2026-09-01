@@ -48,7 +48,7 @@ firefox:
     just cook "firefox"
 
 fontconfig:
-    just cook "fontconfig"
+    just wipe "fontconfig"
 
 fuzzel:
     just cook "fuzzel"

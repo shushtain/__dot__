@@ -16,14 +16,14 @@ return {
       },
       window = { winblend = 0 },
       keymaps = {
-        ["j"] = "move_next",
-        ["k"] = "move_prev",
-        ["gj"] = "move2parent",
-        ["J"] = "move_change_next",
-        ["K"] = "move_change_prev",
-        ["<CR>"] = "action_enter",
-        ["p"] = "enter_diffbuf",
-        ["q"] = "quit",
+        ["move_next"] = "j",
+        ["move_prev"] = "k",
+        ["move2parent"] = "gj",
+        ["move_change_next"] = "J",
+        ["move_change_prev"] = "K",
+        ["action_enter"] = "<CR>",
+        ["enter_diffbuf"] = "p",
+        ["quit"] = "q",
       },
     })
 
