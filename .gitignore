@@ -1,8 +1,5 @@
-**/*.lock
 **/*.log
 **/*.tmp
-
-**/lazy-lock.json
 
 **/aichat/sessions/
 **/aichat/messages.md

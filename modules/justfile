@@ -1,0 +1,108 @@
+default:
+    @just --list
+
+[private]
+cook mod:
+    @if ! stow -R --no-folding --target="$HOME" "{{ mod }}"; then \
+        dunstify -u critical -a user "dot error" "{{ mod }}"; \
+        exit 1; \
+    fi
+
+[private]
+wipe mod:
+    @if ! stow -D --target="$HOME" "{{ mod }}"; then \
+        dunstify -u critical -a user "dot error" "{{ mod }}"; \
+        exit 1; \
+    fi
+
+all: alacritty battery firefox btop camera cli clipboard dmentia dunst fastfetch fuzzel git hypr ide mpv nvim radio record ripgrep rqbit scrcpy shell sync theme tpl vpn xdg xkb yazi
+
+__bin__:
+    just cook __bin__
+
+alacritty:
+    just cook alacritty
+
+battery:
+    just cook battery
+
+firefox:
+    just cook firefox
+
+btop:
+    just cook btop
+
+camera:
+    just cook camera
+
+cli:
+    just cook cli
+
+clipboard:
+    just cook clipboard
+
+dmentia:
+    just cook dmentia
+
+dunst:
+    just cook dunst
+
+fastfetch:
+    just cook fastfetch
+
+fuzzel:
+    just cook fuzzel
+
+git:
+    just cook git
+
+hypr:
+    just cook hypr
+
+ide:
+    just cook ide
+
+mpv:
+    just cook mpv
+
+nvim:
+    just cook nvim
+
+radio:
+    just cook radio
+
+record:
+    just cook record
+
+ripgrep:
+    just cook ripgrep
+
+rqbit:
+    just cook rqbit
+
+scrcpy:
+    just cook scrcpy
+
+shell:
+    just cook shell
+
+sync:
+    just cook sync
+
+theme:
+    just cook theme
+
+tpl:
+    just cook tpl
+
+vpn:
+    just cook vpn
+
+xdg:
+    just cook xdg
+
+xkb:
+    just cook xkb
+
+yazi:
+    just cook yazi

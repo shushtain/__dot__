@@ -1,5 +1,0 @@
---target=~
---ignore=^/\.git
---ignore=^/\.gitignore
---ignore=^/\.stowrc
---ignore=^/justfile

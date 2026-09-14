@@ -1,0 +1,55 @@
+[general]
+import = ["themes/farba-dark.toml"]
+live_config_reload = true
+
+[window]
+padding = { x = 0, y = 0 }
+dynamic_padding = true
+decorations = "none"
+dynamic_title = true
+opacity = 1
+
+[font]
+builtin_box_drawing = true
+normal = { family = "monospace" }
+size = 12.75
+
+[colors]
+draw_bold_text_with_bright_colors = false
+
+[cursor]
+style = { shape = "Beam", blinking = "Never" }
+vi_mode_style = { shape = "Block", blinking = "Never" }
+unfocused_hollow = true
+thickness = 0.1
+
+[mouse]
+hide_when_typing = true
+
+[[keyboard.bindings]]
+action = "ToggleViMode"
+mods = "Alt"
+key = "Space"
+
+[[keyboard.bindings]]
+action = "SpawnNewInstance"
+mods = "Super|Shift"
+key = "Return"
+
+[[hints.enabled]]
+command = "alacritty-hints.sh"
+hyperlinks = true
+post_processing = true
+persist = false
+mouse.enabled = false
+binding = { key = "O", mods = "Control|Shift" }
+regex = "(gh:|sh:|ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`\\\\]+"
+
+[[hints.enabled]]
+action = "Copy"
+hyperlinks = true
+post_processing = true
+persist = false
+mouse.enabled = false
+binding = { key = "H", mods = "Control|Shift" }
+regex = "(gh:|sh:|ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`\\\\]+"

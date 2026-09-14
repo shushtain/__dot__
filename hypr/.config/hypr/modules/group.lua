@@ -1,8 +1,0 @@
-hl.config({
-  group = {
-    auto_group = false,
-    groupbar = {
-      enabled = false,
-    },
-  },
-})
