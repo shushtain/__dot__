@@ -12,8 +12,8 @@ alias systui='systemctl-tui'
 alias ff='fastfetch'
 
 alias nxo='nix-store --optimize'
-nxr() { sudo nixos-rebuild switch --install-bootloader --flake "${1:-$XDG_CLOUD_DIR/__nix__/}" "${@:2}"; }
-nxu() { sudo nix flake update --flake "${1:-$XDG_CLOUD_DIR/__nix__/}" "${@:2}"; }
+nxr() { sudo nixos-rebuild switch --install-bootloader --flake "${1:-$XDG_CLOUD_DIR/__dot__/}" "${@:2}"; }
+nxu() { sudo nix flake update --flake "${1:-$XDG_CLOUD_DIR/__dot__/}" "${@:2}"; }
 nxur() { echo -e "= OS UPDATE =\n" && nxu "" && nxr "$@"; }
 
 alias x='cd -'
@@ -144,8 +144,8 @@ venv() {
 }
 
 purge() {
-    trash-put -f "$HOME/box/dots/aichat/.config/aichat/messages.md"
-    trash-put -f "$HOME/box/dots/aichat/.config/aichat/sessions/"
+    trash-put -f "$HOME/box/__dot__/modules/aichat/.config/aichat/messages.md"
+    trash-put -f "$HOME/box/__dot__/modules/aichat/.config/aichat/sessions/"
     sudo trash-empty
 }
 
@@ -180,4 +180,10 @@ pad() {
 
 bit() {
     rqbit download --exit-on-finish -o ~/lot/ -- "$@"
+}
+
+ino() {
+    arduino-cli compile --fqbn esp32:esp32:esp32 . >/dev/null && echo -n "● " || return 1
+    arduino-cli upload --fqbn esp32:esp32:esp32 --port /dev/ttyUSB0 . >/dev/null && echo -n "● " || return 1
+    arduino-cli monitor -p /dev/ttyUSB0 -c baudrate=115200 | tee "${1:-tmp}".log
 }

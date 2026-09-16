@@ -2,7 +2,7 @@
 
 dunstify -t 5000 -r 8080 -u low "⮌⮎ Hyprland"
 {
-    cd "$HOME/box/__dot__/" || exit 1
+    cd "$HOME/box/__dot__/modules/" || exit 1
     just all
 }
 hyprctl reload

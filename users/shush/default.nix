@@ -51,10 +51,15 @@ in
     (mod ../../modules/mpv)
     (mod ../../modules/nvim)
     (mod ../../modules/scrcpy)
+    (mod ../../modules/share)
     (mod ../../modules/sync)
     (mod ../../modules/theme)
     (mod ../../modules/xdg)
     (mod ../../modules/yazi)
+    (mod ../../modules/blender)
+    (mod ../../modules/freecad)
+    (mod ../../modules/bluetooth)
+    (mod ../../modules/telegram)
   ];
 
   users.users.shush = {
@@ -69,30 +74,18 @@ in
       "dialout"
     ];
     packages = [
-      pkgr.croc
-      pkgs.blender
-      pkgs.bluetui
-      pkgs.brave
       pkgs.brightnessctl
       pkgs.font-manager
-      pkgs.git-cliff
-      pkgs.github-cli
       pkgs.imagemagick
-      pkgs.magic-wormhole
       pkgs.pandoc
       pkgs.playerctl
       pkgs.rqbit
-      pkgs.scrcpy
-      pkgs.serie
-      pkgs.signal-desktop
       pkgs.stow
       pkgs.systemctl-tui
-      pkgs.telegram-desktop
       pkgs.trash-cli
       pkgs.typst
       pkgs.vim
       pkgs.wev
-      pkgs.whatsapp-electron
       pkgs.wiremix
     ];
   };
