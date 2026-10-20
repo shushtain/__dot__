@@ -70,5 +70,7 @@ in
       pkgs.nixfmt
       pkgs.nil
     ];
+
+    programs.java.enable = true;
   };
 }

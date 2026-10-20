@@ -8,7 +8,7 @@ return {
       formatting = { command = { "nixfmt" } },
       -- diagnostics = { ignored = {} },
       nix = {
-        maxMemoryMB = 2560,
+        maxMemoryMB = 4096,
         flake = {
           autoArchive = true,
           autoEvalInputs = true,

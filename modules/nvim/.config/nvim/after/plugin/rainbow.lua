@@ -40,7 +40,9 @@ local function rainbow_loop(step, ms)
 
   require("farba").setup(theme)
   vim.cmd("colorscheme farba")
-  vim.defer_fn(rainbow_loop, ms or 1000)
+  vim.defer_fn(function()
+    rainbow_loop(step, ms)
+  end, ms or 500)
 end
 
 vim.keymap.set("n", "<Leader>g9", function()
@@ -57,7 +59,7 @@ end)
 vim.keymap.set("n", "<Leader>g8", function()
   if not vim.g.u_rainbow then
     vim.g.u_rainbow = 0
-    rainbow_loop(27, 30)
+    rainbow_loop(nil, 100)
   else
     vim.g.u_rainbow = false
     require("farba").setup(vim.g.u_theme)

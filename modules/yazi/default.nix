@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  pkgr,
   currentUser,
   ...
 }:
@@ -15,8 +16,8 @@ in
 
   config = lib.mkIf mod.enable {
     users.users.${currentUser}.packages = [
-      (pkgs.yazi.override {
-        _7zz = pkgs._7zz-rar;
+      (pkgr.yazi.override {
+        _7zz = pkgr._7zz-rar;
       })
       pkgs.glib
       pkgs.ueberzugpp

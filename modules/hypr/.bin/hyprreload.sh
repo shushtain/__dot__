@@ -6,6 +6,5 @@ dunstify -t 5000 -r 8080 -u low "⮌⮎ Hyprland"
     just all
 }
 hyprctl reload
-# killall -SIGUSR2 waybar
 dunstify -t 1000 -r 8080 -u low "⮎⮌ Hyprland"
 dropbox-cli start

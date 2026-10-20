@@ -33,6 +33,8 @@ in
   imports = [
     (mod ../../modules/alacritty)
     (mod ../../modules/battery)
+    (mod ../../modules/blender)
+    (mod ../../modules/bluetooth)
     (mod ../../modules/brave)
     (mod ../../modules/btop)
     (mod ../../modules/camera)
@@ -43,6 +45,7 @@ in
     (mod ../../modules/dunst)
     (mod ../../modules/fastfetch)
     (mod ../../modules/firefox)
+    (mod ../../modules/freecad)
     (mod ../../modules/fuzzel)
     (mod ../../modules/git)
     (mod ../../modules/hypr)
@@ -52,14 +55,14 @@ in
     (mod ../../modules/nvim)
     (mod ../../modules/scrcpy)
     (mod ../../modules/share)
+    (mod ../../modules/signal)
     (mod ../../modules/sync)
+    (mod ../../modules/telegram)
     (mod ../../modules/theme)
+    (mod ../../modules/whatsapp)
     (mod ../../modules/xdg)
     (mod ../../modules/yazi)
-    (mod ../../modules/blender)
-    (mod ../../modules/freecad)
-    (mod ../../modules/bluetooth)
-    (mod ../../modules/telegram)
+    (mod ../../modules/gog)
   ];
 
   users.users.shush = {
@@ -87,6 +90,10 @@ in
       pkgs.vim
       pkgs.wev
       pkgs.wiremix
+      pkgr.shattered-pixel-dungeon
+      pkgs.audacity
+      pkgs.openvpn
+      # pkgs.heroic
     ];
   };
 }

@@ -1,3 +1,5 @@
+# TODO: add archive shortcuts
+
 alias rc='source ~/.bashrc'
 
 alias copy='cp -vi'

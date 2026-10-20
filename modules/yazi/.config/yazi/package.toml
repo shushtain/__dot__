@@ -1,42 +1,42 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "d7588f6"
-hash = "3cce60031b27cbce80b50f68ca319c0a"
+rev = "f703392"
+hash = "347cc6b190eb0c2fd60513cc7ae37412"
 
 [[plugin.deps]]
 use = "KKV9/compress"
-rev = "c264639"
-hash = "e17c11b605d989568a1d1741ca17c584"
+rev = "80e5268"
+hash = "868db729374b97871bc30b96d0e9061f"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:mount"
-rev = "d7588f6"
-hash = "e1de3054c0d1a2d8dc6f007eadc0fa31"
+rev = "f703392"
+hash = "b95f898e6dc60b52edbc415952e14395"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:vcs-files"
-rev = "d7588f6"
-hash = "cc8da55f1deda45ee3787cc97b58ffc9"
+rev = "f703392"
+hash = "4f2a05edce73aef2bceb2ee2c134c8f2"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:chmod"
-rev = "d7588f6"
-hash = "1adc12c2b2b025411ab61eb8f0879574"
+rev = "f703392"
+hash = "87472b05a8c420100f6a2b9cde1e7746"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:toggle-pane"
-rev = "d7588f6"
-hash = "d6f60c24d8c0cf57a855bf46115b2502"
+rev = "f703392"
+hash = "5b2fbef7d1513ce38ff72623a071a5e"
 
 [[plugin.deps]]
 use = "boydaihungst/gvfs"
-rev = "6db0c60"
-hash = "4351334ef72ea0fb3bbafc6eec8738cf"
+rev = "c92953c"
+hash = "d1e8d33ed36d339d5588f036dc3a9204"
 
 [[plugin.deps]]
 use = "uhs-robert/recycle-bin"
-rev = "fa68711"
-hash = "8714306b5cac6359edbacbf545fbd691"
+rev = "fe48a02"
+hash = "edd449b02a169bd8fee052be96a31823"
 
 [flavor]
 deps = []

@@ -93,10 +93,9 @@
     logind = {
       settings = {
         Login = {
-          LidSwitch = "suspend-then-hibernate";
+          HandleLidSwitch = "lock";
           HandlePowerKey = "suspend-then-hibernate";
-          PowerKey = "suspend-then-hibernate";
-          PowerKeyLongPress = "poweroff";
+          HandlePowerKeyLongPress = "poweroff";
           IdleAction = "ignore";
         };
       };

@@ -1,50 +1,50 @@
 vim.g.u_todos = true
 
 local groups = {
-  -- ERROR: 𜱃𜱃𜱃𜱃𜱃
-  --   FIX: 𜱃𜱃𜱃𜱃𜱃
+  -- ERROR: ▓▓▓▓▓
+  --   FIX: ▓▓▓▓▓
   error = {
     important = true,
     kinds = { "ERROR", "FIX", "BUG", "ISSUE", "FIXME", "FIXIT" },
     color = "#FF4A20",
   },
-  -- WARN:  𜱃𜱃𜱃𜱃𜱃
-  -- :XXX:  𜱃𜱃𜱃𜱃𜱃
+  -- WARN:  ▓▓▓▓▓
+  -- :XXX:  ▓▓▓▓▓
   warn = {
     important = true,
     kinds = { "WARN", "WARNING", "XXX", "HACK" },
     color = "#FF8000",
   },
-  -- INFO:  𜱃𜱃𜱃𜱃𜱃
-  -- other  𜱃𜱃𜱃𜱃𜱃
+  -- INFO:  ▓▓▓▓▓
+  -- other  ▓▓▓▓▓
   info = {
     important = false,
     kinds = { "INFO", "NOTE" },
     color = "#81AE64",
   },
-  -- TEST:  𜱃𜱃𜱃𜱃𜱃
-  --    --  𜱃𜱃𜱃𜱃𜱃
+  -- TEST:  ▓▓▓▓▓
+  --    --  ▓▓▓▓▓
   test = {
     important = true,
     kinds = { "TEST", "TESTING", "PASSED", "FAILED", "PASS", "FAIL" },
     color = "#47DDAA",
   },
-  -- TODO:  𜱃𜱃𜱃𜱃𜱃
-  --        𜱃𜱃𜱃𜱃𜱃
+  -- TODO:  ▓▓▓▓▓
+  --        ▓▓▓▓▓
   todo = {
     important = true,
     kinds = { "TODO" },
     color = "#1AB9D1",
   },
-  -- PERF:  𜱃𜱃𜱃𜱃𜱃
-  --        𜱃𜱃𜱃𜱃𜱃
+  -- PERF:  ▓▓▓▓▓
+  --        ▓▓▓▓▓
   perf = {
     important = true,
     kinds = { "PERF", "OPTIM", "PERFORMANCE", "OPTIMIZE" },
     color = "#B575FF",
   },
-  -- :::    𜱃𜱃𜱃𜱃𜱃
-  --    ~>: 𜱃𜱃𜱃𜱃𜱃
+  -- :::    ▓▓▓▓▓
+  --    ~>: ▓▓▓▓▓
   mark = {
     important = false,
     kinds = { "::", "~>" },
