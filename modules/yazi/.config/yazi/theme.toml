@@ -71,3 +71,24 @@ dirs = []
 files = []
 exts = []
 conds = []
+
+[git]
+unknown = {}
+ignored = { fg = "darkgray" }
+untracked = { fg = "darkgray" }
+unstaged = { fg = "yellow" }
+staged = { fg = "blue" }
+added = { fg = "green" }
+deleted = { fg = "red" }
+updated = { fg = "magenta" }
+clean = {}
+# ---
+unknown_sign = ""
+ignored_sign = "∙"
+untracked_sign = "?"
+unstaged_sign = "~"
+staged_sign = "="
+added_sign = "+"
+deleted_sign = "-"
+updated_sign = "≈"
+clean_sign = ""

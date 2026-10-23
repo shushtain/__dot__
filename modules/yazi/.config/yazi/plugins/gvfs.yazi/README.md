@@ -1,5 +1,14 @@
 # gvfs.yazi
 
+> [!IMPORTANT]
+> This repository is deprecated  
+> This project is no longer actively maintained,  
+> and there will be no more updates to this repository.  
+> If you've made a fork or a newer, actively maintained version of this project,  
+> feel free to share it in the Issues page.  
+> This way, newcomers can easily find an up-to-date alternative.
+> Forks, improvements, and alternative implementations are always welcome!
+
 <!-- toc -->
 
 - [Preview](#preview)
@@ -46,7 +55,7 @@ https://github.com/user-attachments/assets/fb74a710-5f05-4bf4-b95f-10f40583c5a0
 
 ## Requirements
 
-1. [yazi >= 25.5.31](https://github.com/sxyazi/yazi)
+1. [yazi >= 26.5.6 and <= v26.9.1](https://github.com/sxyazi/yazi)
 
 2. This plugin only supports Linux, and requires having [GLib](https://github.com/GNOME/glib), [gvfs](https://gitlab.gnome.org/GNOME/gvfs) (need D-Bus Session)
 
@@ -59,6 +68,12 @@ https://github.com/user-attachments/assets/fb74a710-5f05-4bf4-b95f-10f40583c5a0
 
    # Arch
    sudo pacman -S gvfs glib2
+
+   # Gentoo (Use elogind (openrc) or systemd)
+   # Add fuse USE flag to /etc/portage/package.use/gvfs.conf:
+   gnome-base/gvfs fuse
+   # Then run this to install gvfs:
+   sudo emerge -av gnome-base/gvfs
    ```
 
 3. And other `gvfs` protocol packages, choose what you need, all of them are optional:
@@ -73,6 +88,13 @@ https://github.com/user-attachments/assets/fb74a710-5f05-4bf4-b95f-10f40583c5a0
 
    # Arch
    sudo pacman -S gvfs-mtp gvfs-afc gvfs-google gvfs-gphoto2 gvfs-nfs gvfs-smb gvfs-afc gvfs-dnssd gvfs-goa gvfs-onedrive gvfs-wsdd
+
+   # Gentoo
+   # Edit /etc/portage/package.use/gvfs.conf again, add more USE flags:
+   # https://wiki.gentoo.org/wiki/GVfs
+   gnome-base/gvfs afp gnome-online-accounts google ios mtp nfs onedrive samba zeroconf fuse gphoto2
+   # Then run this to update gvfs:
+   sudo emerge -av gnome-base/gvfs
    ```
 
 4. For headless session (non-active console, like connect to a computer via SSH, etc.)
@@ -81,13 +103,15 @@ https://github.com/user-attachments/assets/fb74a710-5f05-4bf4-b95f-10f40583c5a0
 5. (Optional) Store passwords with Keyring or Password Store (secret-tool + keyring or pass + gpg)
    There are two methods to securely store passwords. Please refer to [SECURE_SAVED_PASSWORD.md](./SECURE_SAVED_PASSWORD.md) for more information.
 
+6. Restart to make sure gvfs deamon is started.
+
 ## Installation
 
 ```sh
 ya pkg add boydaihungst/gvfs
 ```
 
-Modify your `~/.config/yazi/init.lua` to include:
+Modify your `~/.config/yazi/init.lua` to include (`setup` function is required):
 
 ```lua
 require("gvfs"):setup({
@@ -151,6 +175,8 @@ require("gvfs"):setup({
 >   For other protocols (smb, ftp, sftp, etc), use `add-mount` command to add [Schemes/Mount URI](<https://wiki.gnome.org/Projects(2f)gvfs(2f)schemes.html>).
 > - There is a bug in Yazi that prevents mounted folders from refreshing after they are mounted/unmounted.
 >   If you encounter this issue, try opening a new tab or moving the cursor up and down to trigger a refresh.
+> - Mount Windows bitlocker drives requires bitlocker password to unlock: https://aka.ms/myrecoverykey or https://support.microsoft.com/en-us/windows/find-your-bitlocker-recovery-key-6b71ad27-0b89-ea08-f143-056f5ab347d6
+> - Mount hard drives may require polkit rule to fix permission denied error. Refer to [HEADLESS_WORKAROUND.md](./HEADLESS_WORKAROUND.md) for a workaround.
 
 Add this to your `~/.config/yazi/keymap.toml`:
 
@@ -168,12 +194,15 @@ prepend_keymap = [
     #   -> remount this DEVIEC_1 if needed
     { on = [ "M", "R" ], run = "plugin gvfs -- remount-current-cwd-device", desc = "Remount device under cwd" },
 
+    # Unmount device.
+    #   -> Unmounted device can safely be removed, if it's not hard drive (usb drive, hdd, ssd, etc). e.g. mtp, etc.
     { on = [ "M", "u" ], run = "plugin gvfs -- select-then-unmount", desc = "Select device then unmount" },
-    # Or this if you want to unmount and eject device.
+    # Eject hard device (including both mounted or not mounted devices, and only show hard drives).
     #   -> Ejected device can safely be removed.
     #   -> Ejecting a device will unmount all paritions/volumes under it.
+    #   -> Ejected device CAN'T be mounted again. Re-plug the device to show it again.
     #   -> Fallback to normal unmount if not supported by device.
-    { on = [ "M", "u" ], run = "plugin gvfs -- select-then-unmount --eject", desc = "Select device then eject" },
+    { on = [ "M", "U" ], run = "plugin gvfs -- select-then-unmount --eject", desc = "Select device then eject" },
 
     # Also support force unmount/eject.
     #   -> Ignore outstanding file operations when unmounting or ejecting
@@ -185,6 +214,9 @@ prepend_keymap = [
     #   -> Explain about the scheme:
     #       -> If it shows like this: {ftp,ftps,ftpis}://[user@]host[:port]
     #       -> All of the value within [] is optional. For values within {}, you must choose exactly one. All others are required.
+    #       -> empty [user] or "anonymous" user is anonymous user in (ftp)
+    #           -> ftp://anonymous@192.168.1.2:9999 -> skip user input step.
+    #           -> ftp://192.168.1.2:9999 -> input empty value in user input box.
     #       -> Example: {ftp,ftps,ftpis}://[user@]host[:port] => ip and port: "ftp://myusername@192.168.1.2:9999" or domain: "ftps://myusername@github.com"
     #       -> More examples: smb://user@192.168.1.2/share, smb://WORKGROUP;user@192.168.1.2/share, sftp://user@192.168.1.2/, ftp://192.168.1.2/
     # !WARNING: - Scheme/Mount URI shouldn't contain password.
@@ -228,39 +260,66 @@ prepend_keymap = [
 
 It's highly recommended to add these lines to your `~/.config/yazi/yazi.toml`,  
 because GVFS is slow that can make yazi freeze when it preloads or previews a large number of files.  
-Especially when you use `Google-drive` or `One-drive`.
+Especially when you use `Google-drive` or `One-drive`. Also please read this before adding these lines  
+to your `yazi.toml`:
+
+- https://yazi-rs.github.io/docs/configuration/overview#mixing
+- https://yazi-rs.github.io/docs/configuration/yazi#plugin
+
+> [!NOTE]
+> If you already have `preloaders` and `previewers` in your `yazi.toml`,
+> you can add all of `url...` directly to `preloaders` and `previewers`
+> instead of copy the whole `prepend_preloaders` and `prepend_previewers` to your `yazi.toml`.
+
+For example: https://github.com/boydaihungst/.config/blob/34fed94fb65230c550b9153d2fedf0cadc619be2/yazi/yazi.toml#L230-L338
 
 - Replace `1000` with your real user id (run `id -u` to get user id).
 - Replace `USER_NAME` with your real user name (run `whoami` to get username).
-
-> [!IMPORTANT]
->
-> For yazi nightly replace `name` with `url`
 
 ```toml
 [plugin]
 prepend_preloaders = [
   # Do not preload files in mounted locations:
   # Environment variable won't work here.
+
   # Using absolute path instead.
-  { name = "/run/user/1000/gvfs/**/*", run = "noop" },
+  { url = "/run/user/1000/gvfs/**/*", run = "noop" },
+  # Or match any user id
+  { url = "/run/user/*/gvfs/**/*", run = "noop" },
 
   # For mounted hard disk/drive
-  { name = "/run/media/USER_NAME/**/*", run = "noop" },
+  { url = "/run/media/USER_NAME/**/*", run = "noop" },
+  # Or match any username
+  { url = "/run/media/*/**/*", run = "noop" },
+
+  # You can also use glob pattern to match paths
+  { url = "/run/user/*/gvfs/google-drive:host=gmail.com,user=*/**/*", run = "noop", prio = "high" },
+  { url = "/run/user/*/gvfs/google-drive:host=gmail.com,user=*/**/*/", run = "noop", prio = "high" },
+
 ]
 prepend_previewers = [
-  # Allow to preview folder.
-  { name = "*/", run = "folder" },
+  # Allow to preview folder by default.
+  # https://github.com/sxyazi/yazi/blob/main/yazi-config/preset/yazi-default.toml#L153
+  { url = "*/", run = "folder" }, # use this if you use yazi version <= 26.8.15
+  { url = "folder/*", run = "folder" }, # use this if you use yazi version > 26.8.15
 
   # Do not previewing files in mounted locations.
   # Uncomment the line below to allow previewing text files.
   # { mime = "{text/*,application/x-subrip}", run = "code" },
 
   # Using absolute path.
-  { name = "/run/user/1000/gvfs/**/*", run = "noop" },
+  { url = "/run/user/1000/gvfs/**/*", run = "noop" },
+  # Or match any user id
+  { url = "/run/user/*/gvfs/**/*", run = "noop" },
 
   # For mounted hard disk/drive.
-  { name = "/run/media/USER_NAME/**/*", run = "noop" },
+  { url = "/run/media/USER_NAME/**/*", run = "noop" },
+  # Or match any username
+  { url = "/run/media/*/**/*", run = "noop" },
+
+  # You can also use glob pattern to match paths
+  { url = "/run/user/*/gvfs/google-drive:host=gmail.com,user=*/**/*", run = "noop", prio = "high" },
+  { url = "/run/user/*/gvfs/google-drive:host=gmail.com,user=*/**/*/", run = "noop", prio = "high" },
 ]
 ```
 

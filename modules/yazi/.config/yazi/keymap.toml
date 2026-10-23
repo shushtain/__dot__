@@ -51,6 +51,11 @@ run = "cd ~"
 desc = "~"
 
 [[mgr.prepend_keymap]]
+on = ["g", "d"]
+run = "cd ~/box/__dot__/"
+desc = "__dot__"
+
+[[mgr.prepend_keymap]]
 on = ["g", "c"]
 run = "cd ~/.config"
 desc = "~/.config"

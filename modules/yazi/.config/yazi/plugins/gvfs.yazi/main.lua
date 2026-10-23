@@ -1,4 +1,4 @@
---- @since 25.5.31
+--- @since 26.5.6
 
 local M = {}
 local SHELL = os.getenv("SHELL") or ""
@@ -15,6 +15,7 @@ local SECRET_TOOL = "secret-tool"
 local GPG_TOOL = "gpg"
 local PASS_TOOL = "pass"
 local SECRET_VAULT_VERSION = "1"
+local path_separator = package.config:sub(1, 1)
 
 ---@enum NOTIFY_MSG
 local NOTIFY_MSG = {
@@ -63,6 +64,7 @@ local PASSWORD_VAULT = {
 local DEVICE_CONNECT_STATUS = {
 	MOUNTED = 1,
 	NOT_MOUNTED = 2,
+	BOTH = 3,
 }
 
 ---@enum SCHEME
@@ -157,6 +159,7 @@ local ACTION = {
 ---@field scheme SCHEME
 ---@field bus integer?
 ---@field device integer?
+---@field drive string?
 ---@field uuid string?
 ---@field encrypted_uuid string?
 ---@field service_domain string?
@@ -168,6 +171,7 @@ local ACTION = {
 ---@field can_mount "1"|"0"|nil
 ---@field can_unmount "1"|"0"
 ---@field can_eject "1"|"0"
+---@field can_stop "1"|"0"
 ---@field should_automount "1"|"0"
 ---@field remote_path string?
 
@@ -376,12 +380,8 @@ local function tbl_remove_empty(tbl)
 	return cleaned
 end
 
-local get_cwd = ya.sync(function()
-	return cx.active.current.cwd
-end)
-
 local current_dir = ya.sync(function()
-	return tostring(cx.active.current.cwd)
+	return tostring(cx.active.current.cwd.path or cx.active.current.cwd)
 end)
 
 ---@enum PUBSUB_KIND
@@ -443,14 +443,10 @@ local function path_quote(path)
 	return result
 end
 
-local current_hovered_folder_cwd = ya.sync(function()
-	return cx.active.preview.folder and cx.active.preview.folder.cwd
-end)
-
 local get_hovered_path = ya.sync(function()
 	local h = cx.active.current.hovered
 	if h then
-		return tostring(h.url)
+		return h.url
 	end
 end)
 
@@ -931,6 +927,7 @@ local function get_gdrive_children_folder_info(parent_folder)
 					.. "/*",
 			})
 			:env("XDG_RUNTIME_DIR", XDG_RUNTIME_DIR)
+			:env("LC_ALL", "C")
 			:stderr(Command.PIPED)
 			:stdout(Command.PIPED)
 			:output()
@@ -957,7 +954,10 @@ local function display_virtual_children(cwd, children_folder_info)
 
 	for _, gdrive_mountpoint_info in ipairs(children_folder_info) do
 		if id ~= nil and id ~= "" then
-			local url = Url(cwd):join(gdrive_mountpoint_info.display_name)
+			-- TODO: WORKAROUND: cwd prefix `search://` can't be joined
+			-- local url = Url(cwd):join(gdrive_mountpoint_info.display_name)
+			local url =
+				Url(tostring(cwd.path or cwd) .. path_separator .. tostring(gdrive_mountpoint_info.display_name))
 
 			local kind = gdrive_mountpoint_info.type == "directory" and 1
 				or (
@@ -1031,6 +1031,7 @@ local function parse_devices(raw_input)
 		end
 	end
 
+	local hard_drive_path = nil
 	for line in raw_input:gmatch("[^\r\n]+") do
 		local clean_line = line:match("^%s*(.-)%s*$")
 
@@ -1039,13 +1040,15 @@ local function parse_devices(raw_input)
 		if line:match("^Drive%(%d+%):") then
 			current_mount = nil
 			current_volume = nil
+			hard_drive_path = nil
 		elseif volume_name then
 			current_mount = nil
-			current_volume = { name = volume_name, mounts = {} }
+			current_volume = { name = volume_name, mounts = {}, drive = hard_drive_path }
 			table.insert(volumes, current_volume)
 
 		-- Match mount(0)
 		elseif clean_line:match("^Mount%(%d+%):") then
+			hard_drive_path = nil
 			current_mount = nil
 			local mount_indent, mount_name, mount_uri = line:match("^(%s*)Mount%(%d+%):%s*(.-)%s*->%s*(.+)$")
 			if not mount_name then
@@ -1057,8 +1060,17 @@ local function parse_devices(raw_input)
 			end
 			current_mount = { name = mount_name or "", uri = mount_uri or "" }
 
+			local mount_base_uri = mount_uri:gsub("/+$", "")
+			local mount_uri_port = mount_base_uri:match(":%d+$")
 			for m = #predefined_mounts, 1, -1 do
-				if predefined_mounts[m].uri:gsub("/+$", "") == mount_uri:gsub("/+$", "") then
+				local predefined_mount_base_uri = predefined_mounts[m].uri:gsub("/+$", "")
+				if
+					predefined_mount_base_uri == mount_base_uri
+					or (
+						not mount_uri_port
+						and predefined_mount_base_uri:gsub(":%d+$", "") == mount_base_uri:gsub(":%d+$", "")
+					)
+				then
 					current_mount = table.remove(predefined_mounts, m)
 				end
 			end
@@ -1097,6 +1109,9 @@ local function parse_devices(raw_input)
 				key, value = clean_line:match("^(%S+)%s*:%s*'(.-)'$")
 				if key == "uuid" and value then
 					current_volume.encrypted_uuid = value
+				end
+				if not hard_drive_path and key == "unix-device" and value then
+					hard_drive_path = value
 				end
 			end
 			if key and value then
@@ -1170,6 +1185,7 @@ local function parse_devices(raw_input)
 		m.mounts = { tbl_deep_clone(m) }
 		table.insert(volumes, m)
 	end
+
 	if #blacklist_devices > 0 then
 		for i = #volumes, 1, -1 do
 			local v = volumes[i]
@@ -1206,6 +1222,7 @@ local function get_mounted_path(device)
 					.. ' | grep -E "^local path: "',
 			})
 			:env("XDG_RUNTIME_DIR", XDG_RUNTIME_DIR)
+			:env("LC_ALL", "C")
 			:stderr(Command.PIPED)
 			:stdout(Command.PIPED)
 			:output()
@@ -1237,7 +1254,7 @@ local function is_mounted(device)
 end
 
 ---mount device
----@param opts {device: Device, username?:string, password?: string, service_domain?: string, is_pw_saved?: boolean, skipped_secret_vault?: boolean,max_retry?: integer, retries?: integer}
+---@param opts {device: Device, username?:string, password?: string, service_domain?: string, is_pw_saved?: boolean, skipped_secret_vault?: boolean,max_retry?: integer, retries?: integer, anonymous?: boolean, first_time_connect_confirmed?: boolean}
 ---@return boolean
 local function mount_device(opts)
 	local device = opts.device
@@ -1247,7 +1264,9 @@ local function mount_device(opts)
 	local is_pw_saved = opts.is_pw_saved
 	local skipped_secret_vault = opts.skipped_secret_vault
 	local username = opts.username
+	local anonymous = opts.anonymous
 	local service_domain = opts.service_domain
+	local first_time_connect_confirmed = opts.first_time_connect_confirmed
 	local error_msg = nil
 
 	local auths = ""
@@ -1266,15 +1285,21 @@ local function mount_device(opts)
 			auth_string_format = auth_string_format .. "%s\n"
 		end
 	end
+	if first_time_connect_confirmed then
+		auths = auths .. " " .. path_quote("1")
+		auth_string_format = auth_string_format .. "%s\n"
+	end
 
 	local res, err = Command(SHELL)
 		:arg({
 			"-c",
 			(auth_string_format ~= "" and "printf " .. path_quote(auth_string_format) .. " " .. auths .. " | " or "")
 				.. " gio mount "
+				.. (anonymous and "-a " or "")
 				.. (device.uuid and ("-d " .. device.uuid) or path_quote(device.uri)),
 		})
 		:env("XDG_RUNTIME_DIR", XDG_RUNTIME_DIR)
+		:env("LC_ALL", "C")
 		:stderr(Command.PIPED)
 		:stdout(Command.PIPED)
 		:output()
@@ -1332,103 +1357,139 @@ local function mount_device(opts)
 		if res.stderr:match(".*is already mounted.*") then
 			return true
 		end
-		if res.stdout:find("Authentication Required") then
-			local stdout = res.stdout:match(".*Authentication Required(.*)") or ""
-			if stdout:find("\nUser: \n") or stdout:find("\nUser %[.*%]: \n") then
-				if retries < max_retry then
-					username, _ = show_input(
-						"Enter username " .. (device.uri and "(" .. device.uri .. ")" or "") .. ":",
-						false,
-						username or stdout:match("User %[(.*)%]:") or ""
-					)
-					if username == nil then
-						return false
-					end
-				else
-					error_msg = string.format(
-						NOTIFY_MSG.MOUNT_ERROR_USERNAME,
-						(device.name or "NO_NAME") .. " (" .. (device.scheme or "UNKNOWN_SCHEME") .. ")"
-					)
+
+		local stdout = res.stdout
+		if stdout:find("\nUser: \n") or stdout:find("\nUser %[.*%]: \n") then
+			if retries < max_retry then
+				username, _ = show_input(
+					"Enter username "
+						.. (device.name and ("(" .. device.name .. ")") or (device.uri and ("(" .. device.uri .. ")") or ""))
+						.. ":",
+					false,
+					username or stdout:match("User %[(.*)%]:") or ""
+				)
+				if username == nil then
+					return false
+				elseif username == "" then
+					-- Case using anonymous user
+					anonymous = true
+				end
+			else
+				error_msg = string.format(
+					NOTIFY_MSG.MOUNT_ERROR_USERNAME,
+					(device.name or "NO_NAME") .. " (" .. (device.scheme or "UNKNOWN_SCHEME") .. ")"
+				)
+			end
+		end
+		if stdout:find("\nChoice: \n") then
+			if retries < max_retry then
+				local pos = get_state(STATE_KEY.INPUT_POSITION)
+				if pos.h == nil then
+					pos.h = 15
+				end
+				first_time_connect_confirmed = ya.confirm({
+					title = ui.Line("Log In Anyway"):style(th.confirm.title),
+					body = ui.Text(stdout):align(ui.Align.LEFT):wrap(ui.Wrap.YES),
+					-- TODO: remove this after next yazi released
+					content = ui.Text(stdout):align(ui.Align.LEFT):wrap(ui.Wrap.YES),
+					pos = pos,
+				})
+				if not first_time_connect_confirmed then
+					return false
 				end
 			end
-			if
+		end
+		if
+			(device.scheme == SCHEME.SMB or device.scheme == SCHEME.DNS_SD or device.scheme == SCHEME.DAVSD)
+			and (
 				stdout:find("\nDomain: \n")
 				or stdout:find("\nDomain %[.*%]: \n")
 				or stdout:find("\nUser: \n")
 				or stdout:find("\nUser %[.*%]: \n")
-			then
-				if retries < max_retry then
-					service_domain, _ = show_input(
-						"Enter Domain " .. (device.uri and "(" .. device.uri .. ")" or "") .. ":",
-						false,
-						service_domain or stdout:match("Domain %[(.*)%]:") or "WORKGROUP"
-					)
-					if service_domain == nil then
-						return false
-					end
-				else
-					error_msg = string.format(
-						NOTIFY_MSG.MOUNT_ERROR_USERNAME,
-						(device.name or "NO_NAME") .. " (" .. device.scheme .. ")"
-					)
+			)
+		then
+			if retries < max_retry then
+				service_domain, _ = show_input(
+					"Enter Domain "
+						.. (device.name and ("(" .. device.name .. ")") or (device.uri and ("(" .. device.uri .. ")") or ""))
+						.. ":",
+					false,
+					service_domain or stdout:match("Domain %[(.*)%]:") or "WORKGROUP"
+				)
+				if service_domain == nil then
+					return false
 				end
+			else
+				error_msg = string.format(
+					NOTIFY_MSG.MOUNT_ERROR_USERNAME,
+					(device.name or "NO_NAME") .. " (" .. device.scheme .. ")"
+				)
 			end
-			if
-				stdout:find("\nPassword: \n")
+		end
+		if
+			not anonymous
+			and (
+				stdout:find("Password: \n")
 				or stdout:find("\nUser: \n")
 				or stdout:find("\nUser %[.*%]: \n")
 				or stdout:find("\nDomain: \n")
 				or stdout:find("\nDomain %[.*%]: \n")
-			then
-				if username ~= opts.username or (username == nil and is_pw_saved == nil) then
-					-- Prevent showing gpg passphrase twice
-					if not skipped_secret_vault and not is_secret_vault_available(true) then
-						skipped_secret_vault = true
-					end
-					if not skipped_secret_vault then
-						if device.uuid then
-							-- case hard drive
-							password = lookup_password(device.scheme, device.uuid, device.uuid)
-						else
-							local scheme, domain, user, _, prefix, port, _service_domain =
-								extract_info_from_uri(device.uri)
-							password = lookup_password(
-								scheme,
-								username or user,
-								domain,
-								prefix,
-								port,
-								service_domain or (username or user or ""):match("^([^;]+);") or _service_domain
-							)
-						end
-						is_pw_saved = password ~= nil
-						if is_pw_saved then
-							info(NOTIFY_MSG.RETRIVE_PASSWORD_SUCCESS)
-						end
-					end
+			)
+		then
+			if username ~= opts.username or (username == nil and is_pw_saved == nil) then
+				-- Prevent showing gpg passphrase twice
+				if not skipped_secret_vault and not is_secret_vault_available(true) then
+					skipped_secret_vault = true
 				end
-				if retries < max_retry then
-					if not is_pw_saved then
-						password, _ = show_input(
-							"Enter password " .. (device.uri and "(" .. device.uri .. ")" or "") .. ":",
-							true
+				if not skipped_secret_vault then
+					if device.uuid then
+						-- case hard drive
+						password = lookup_password(device.scheme, device.uuid, device.uuid)
+					else
+						local scheme, domain, user, _, prefix, port, _service_domain = extract_info_from_uri(device.uri)
+						password = lookup_password(
+							scheme,
+							username or user,
+							domain,
+							prefix,
+							port,
+							service_domain or (username or user or ""):match("^([^;]+);") or _service_domain
 						)
-						if password == nil then
-							return false
-						end
 					end
-				else
-					error_msg = string.format(
-						NOTIFY_MSG.MOUNT_ERROR_PASSWORD,
-						(device.name or "NO_NAME") .. " (" .. device.scheme .. ")"
-					)
+					is_pw_saved = password ~= nil
+					if is_pw_saved then
+						info(NOTIFY_MSG.RETRIVE_PASSWORD_SUCCESS)
+					end
 				end
+			end
+			if retries < max_retry then
+				if not is_pw_saved then
+					password, _ = show_input(
+						"Enter password "
+							.. (device.name and ("(" .. device.name .. ")") or (device.uri and ("(" .. device.uri .. ")") or ""))
+							.. ":",
+						true
+					)
+					if password == nil then
+						return false
+					end
+				end
+			else
+				error_msg = string.format(
+					NOTIFY_MSG.MOUNT_ERROR_PASSWORD,
+					(device.name or "NO_NAME") .. " (" .. device.scheme .. ")"
+				)
 			end
 		end
 	end
 	-- show notification after get max retry
 	if retries >= max_retry then
-		error(error_msg or (res and not res.status.success and res.stderr) or err or "Error: Unknown")
+		error(
+			tostring(error_msg or (res and not res.status.success and res.stderr) or err or "Error: Unknown"):gsub(
+				"%%",
+				"%%%%"
+			)
+		)
 		return false
 	end
 
@@ -1443,6 +1504,8 @@ local function mount_device(opts)
 		skipped_secret_vault = skipped_secret_vault,
 		username = username,
 		service_domain = service_domain,
+		first_time_connect_confirmed = first_time_connect_confirmed,
+		anonymous = anonymous,
 	})
 end
 
@@ -1474,10 +1537,11 @@ local function list_gvfs_device_by_status(status, filter)
 		end
 		local mounted = is_mounted(d)
 
-		if status == DEVICE_CONNECT_STATUS.MOUNTED and mounted then
+		if status == DEVICE_CONNECT_STATUS.BOTH then
 			table.insert(devices_filtered, d)
-		end
-		if status == DEVICE_CONNECT_STATUS.NOT_MOUNTED and not mounted then
+		elseif status == DEVICE_CONNECT_STATUS.MOUNTED and mounted then
+			table.insert(devices_filtered, d)
+		elseif status == DEVICE_CONNECT_STATUS.NOT_MOUNTED and not mounted then
 			table.insert(devices_filtered, d)
 		end
 		::continue::
@@ -1498,12 +1562,21 @@ local function unmount_gvfs(device, eject, force, max_retry, retries)
 	retries = retries or 0
 
 	local unmount_method = "-u"
-	if eject then
+	if eject and device.drive then
+		unmount_method = "-t"
+	elseif eject then
 		unmount_method = "-e"
 	end
-	for _, mount in ipairs(device.mounts ~= nil and device.mounts or { device }) do
-		local cmd_err, res =
-			run_command("gio", tbl_remove_empty({ "mount", unmount_method, force and "-f" or nil, mount.uri }))
+	for _, mount in ipairs((device.mounts ~= nil and not eject) and device.mounts or { device }) do
+		local cmd_err, res = run_command(
+			"gio",
+			tbl_remove_empty({
+				"mount",
+				force and "-f" or nil,
+				unmount_method,
+				not eject and mount.uri or (mount.drive or mount["unix-device"]),
+			})
+		)
 		if cmd_err or (res and not res.status.success) then
 			if eject and res and res.stderr:find("mount doesn.*t implement .*eject.* or .*eject_with_operation.*") then
 				return unmount_gvfs(device, false, force)
@@ -1572,6 +1645,7 @@ local function get_gio_uri_from_local_path(path)
 			"gio info " .. path_quote(path) .. ' | grep "^uri:"',
 		})
 		:env("XDG_RUNTIME_DIR", XDG_RUNTIME_DIR)
+		:env("LC_ALL", "C")
 		:stderr(Command.PIPED)
 		:stdout(Command.PIPED)
 		:output()
@@ -1778,6 +1852,7 @@ local function mount_action(opts)
 					) .. ' | grep -E "^unix mount:.*x-gvfs-show.*"',
 				})
 				:env("XDG_RUNTIME_DIR", XDG_RUNTIME_DIR)
+				:env("LC_ALL", "C")
 				:stderr(Command.PIPED)
 				:stdout(Command.PIPED)
 				:status()
@@ -1813,9 +1888,11 @@ end
 local save_tab_hovered = ya.sync(function()
 	local hovered_item_per_tab = {}
 	for _, tab in ipairs(cx.tabs) do
+		local is_virtual = (Url(tab.current.cwd).spec and Url(tab.current.cwd).spec.is_virtual)
+			or (not Url(tab.current.cwd).spec and Url(tab.current.cwd).scheme.is_virtual)
 		table.insert(hovered_item_per_tab, {
 			id = (type(tab.id) == "number" or type(tab.id) == "string") and tab.id or tab.id.value,
-			cwd = tostring(tab.current.cwd),
+			cwd = tostring((is_virtual and tab.current.cwd or tab.current.cwd.path) or tab.current.cwd),
 		})
 	end
 	return hovered_item_per_tab
@@ -1830,7 +1907,9 @@ local redirect_unmounted_tab_to_home = ya.sync(function(_, unmounted_url, notify
 		broadcast(PUBSUB_KIND.unmounted, hex_encode(unmounted_url))
 	end
 	for _, tab in ipairs(cx.tabs) do
-		if tab.current.cwd:starts_with(unmounted_url) then
+		local is_virtual = (Url(tab.current.cwd).spec and Url(tab.current.cwd).spec.is_virtual)
+			or (not Url(tab.current.cwd).spec and Url(tab.current.cwd).scheme.is_virtual)
+		if ((is_virtual and tab.current.cwd or tab.current.cwd.path) or tab.current.cwd):starts_with(unmounted_url) then
 			ya.emit("cd", {
 				HOME,
 				tab = (type(tab.id) == "number" or type(tab.id) == "string") and tab.id or tab.id.value,
@@ -1849,22 +1928,28 @@ local function unmount_action(device, eject, force)
 	if not device then
 		local root_mountpoint = get_state(STATE_KEY.ROOT_MOUNTPOINT)
 
-		local list_devices = list_gvfs_device_by_status(DEVICE_CONNECT_STATUS.MOUNTED, function(d)
-			if d.scheme == SCHEME.FILE then
-				return (
-					d.mounts
-					and #d.mounts >= 1
-					and d.mounts[1].uri
-					and (
-						d.mounts[1].uri:match("^" .. is_literal_string("file://" .. root_mountpoint) .. "(.+)$")
-						or d.mounts[1].uri:match(
-							"^" .. is_literal_string("file://" .. GVFS_ROOT_MOUNTPOINT_FILE) .. "(.+)$"
+		local list_devices = list_gvfs_device_by_status(
+			eject and DEVICE_CONNECT_STATUS.BOTH or DEVICE_CONNECT_STATUS.MOUNTED,
+			function(d)
+				if d.scheme == SCHEME.FILE then
+					if eject then
+						return d.drive ~= nil
+					end
+					return (
+						d.mounts
+						and #d.mounts >= 1
+						and d.mounts[1].uri
+						and (
+							d.mounts[1].uri:match("^" .. is_literal_string("file://" .. root_mountpoint) .. "(.+)$")
+							or d.mounts[1].uri:match(
+								"^" .. is_literal_string("file://" .. GVFS_ROOT_MOUNTPOINT_FILE) .. "(.+)$"
+							)
 						)
 					)
-				)
+				end
+				return not eject
 			end
-			return true
-		end)
+		)
 		-- NOTE: Automatically select the first device if there is only one device
 		selected_device = #list_devices == 1 and list_devices[1] or nil
 		if not selected_device then
@@ -1880,7 +1965,9 @@ local function unmount_action(device, eject, force)
 			return
 		end
 		--NOTE: Fall-safe x-gvfs-show
-		if selected_device then
+		if
+			selected_device and (selected_device.uri or (#selected_device.mounts > 0 and selected_device.mounts[1].uri))
+		then
 			local status, err = Command(SHELL)
 				:arg({
 					"-c",
@@ -1889,6 +1976,7 @@ local function unmount_action(device, eject, force)
 					) .. ' | grep -E "^unix mount:.*x-gvfs-show.*"',
 				})
 				:env("XDG_RUNTIME_DIR", XDG_RUNTIME_DIR)
+				:env("LC_ALL", "C")
 				:stderr(Command.PIPED)
 				:stdout(Command.PIPED)
 				:status()
@@ -1923,7 +2011,7 @@ end
 ---@param state_key STATE_KEY.CACHED_LOCAL_PATH_DEVICE|STATE_KEY.AUTOMOUNTS|string
 ---@param jump_location string?
 ---@param tab_id number?
-local function remount_keep_cwd_unchanged_action(state_key, jump_location, tab_id)
+local function remount_keep_cwd_unchanged_action(state_key, jump_location, tab_id, hide_cant_remount_message)
 	local cwd = jump_location or current_dir()
 	local root_mountpoint = get_state(STATE_KEY.ROOT_MOUNTPOINT)
 	if
@@ -1940,8 +2028,10 @@ local function remount_keep_cwd_unchanged_action(state_key, jump_location, tab_i
 		return
 	end
 	if is_mounted(current_tab_device) then
-		info(NOTIFY_MSG.CANT_REMOUNT_DEVICE, current_tab_device.name)
-		return
+		if not hide_cant_remount_message then
+			info(NOTIFY_MSG.CANT_REMOUNT_DEVICE, current_tab_device.name)
+		end
+		return current_tab_device
 	end
 	local tabs = save_tab_hovered()
 	local saved_matched_tabs = {}
@@ -2073,6 +2163,9 @@ local function add_or_edit_mount_action(is_edit)
 	end
 
 	mount.uri, _ = show_input("Enter mount URI:", false, mount.uri)
+	if mount.uri == nil then
+		return
+	end
 	mount.uri = mount.uri:gsub("^%s*(.-)%s*$", "%1")
 	if mount.uri == nil then
 		return
@@ -2204,6 +2297,12 @@ end
 ---@param enabled boolean?
 local function toggle_automount_when_cd_action(enabled)
 	local hovered_path = get_hovered_path()
+	local is_virtual = (hovered_path.spec and hovered_path.spec.is_virtual)
+		or (not hovered_path.spec and hovered_path.scheme.is_virtual)
+	if is_virtual then
+		return
+	end
+	hovered_path = tostring(hovered_path)
 	local local_path = hovered_path:match("^" .. is_literal_string(get_state(STATE_KEY.ROOT_MOUNTPOINT)) .. "/[^/]+")
 		or hovered_path:match("^" .. is_literal_string(GVFS_ROOT_MOUNTPOINT_FILE) .. "/[^/]+")
 	if local_path then
@@ -2470,7 +2569,8 @@ function M:entry(job)
 		end
 		if cached_device then
 			-- Update cached device with new data
-			local new_cached_device = remount_keep_cwd_unchanged_action(STATE_KEY.AUTOMOUNTS, subfolder_path, tab_id)
+			local new_cached_device =
+				remount_keep_cwd_unchanged_action(STATE_KEY.AUTOMOUNTS, subfolder_path, tab_id, true)
 			if new_cached_device then
 				cached_device = new_cached_device
 			end
