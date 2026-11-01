@@ -7,11 +7,11 @@
   ...
 }:
 let
-  mod = config.modules.gog;
+  mod = config.modules.gms;
 in
 {
   options = {
-    modules.gog.enable = lib.mkEnableOption "gog";
+    modules.gms.enable = lib.mkEnableOption "gms";
   };
 
   config = lib.mkIf mod.enable {
@@ -24,6 +24,7 @@ in
           ];
       })
       pkgr.protonup-qt
+      pkgr.wine
     ];
     programs.gamescope.enable = true;
     programs.gamemode.enable = true;

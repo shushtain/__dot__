@@ -62,7 +62,7 @@ in
     (mod ../../modules/whatsapp)
     (mod ../../modules/xdg)
     (mod ../../modules/yazi)
-    (mod ../../modules/gog)
+    (mod ../../modules/gms)
   ];
 
   users.users.shush = {
